@@ -134,8 +134,10 @@ def print_pokemon_ranks(pokemon, opponent_pokemon):
 
 
 def got_pokemon_choices_from_user(num_pokemon, pokemon):
-    picker = PokemonPickerDialog(pokemon)
-    picker.exec()
+    if len(pokemon) != 0:
+        for i in range(0, num_pokemon):
+            picker = PokemonPickerDialog(pokemon)
+            picker.exec()
 
 
 class MainViewModel:
