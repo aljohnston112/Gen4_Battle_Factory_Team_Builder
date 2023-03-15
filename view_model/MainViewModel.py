@@ -5,6 +5,7 @@ from typing import List
 from data_class.Pokemon import Pokemon
 from repository.MoveRepository import moves
 from repository.TypeChartRepository import get_defense_multipliers
+from view.PokemonPickerDialog import PokemonPickerDialog
 
 
 def max_damage_attacker_can_do_to_defender(
@@ -133,7 +134,8 @@ def print_pokemon_ranks(pokemon, opponent_pokemon):
 
 
 def got_pokemon_choices_from_user(num_pokemon, pokemon):
-    pass
+    picker = PokemonPickerDialog(pokemon)
+    picker.exec()
 
 
 class MainViewModel:

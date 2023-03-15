@@ -39,7 +39,6 @@ class TeamLayout(QGridLayout):
         # [0:3] are the team data_class; [3:6] are the choices.
         # If it is the first battle, all are choices.
         self.pokemon = []
-        self.pokemon_use_cases = []
         # Add team layout
         team = QHBoxLayout()
         label_team = QLabel(string_team)
