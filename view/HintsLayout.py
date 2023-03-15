@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import QGridLayout, QGroupBox, QHBoxLayout, QRadioButton, Q
 from data.Strings import string_round_4, string_round_5_up, string_round_3, string_round_1, \
     string_round_2
 from use_case.CurrentRoundUseCase import Round
-from use_case.Round1And2UseCase import Round1And2UseCase
 from view.Round1And2Layout import Round1And2Layout
 from view.Round3Layout import Round3Layout
 from view.Round4Layout import Round4Layout

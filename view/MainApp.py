@@ -58,3 +58,9 @@ class MainApp(QGridLayout):
                     self.__team_use_case__.get_choice_pokemon(),
                     self.__round_1_and_2_use_case__.get_opponent_pokemon()
                 )
+            case Round.TWO:
+                self.__view_model__.confirm_clicked_round_two(
+                    self.__team_use_case__.get_team_pokemon(),
+                    self.__team_use_case__.get_choice_pokemon(),
+                    self.__round_1_and_2_use_case__.get_opponent_pokemon()
+                )

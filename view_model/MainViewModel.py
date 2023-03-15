@@ -123,6 +123,19 @@ def rank_team_against_opponents(team_pokemon, opponent_pokemon):
     return pokemon_ranks
 
 
+def print_pokemon_ranks(pokemon, opponent_pokemon):
+    team_pokemon_ranks = rank_team_against_opponents(
+        pokemon,
+        opponent_pokemon
+    )
+    pprint("Team pokemon ranks")
+    pprint(team_pokemon_ranks)
+
+
+def got_pokemon_choices_from_user(num_pokemon, pokemon):
+    pass
+
+
 class MainViewModel:
 
     def __init__(self):
@@ -134,20 +147,23 @@ class MainViewModel:
             choice_pokemon,
             opponent_pokemon
     ):
-        team_pokemon_ranks = rank_team_against_opponents(
-            team_pokemon,
-            opponent_pokemon
-        )
-        pprint("Team pokemon ranks")
-        pprint(team_pokemon_ranks)
-
+        print_pokemon_ranks(team_pokemon, opponent_pokemon)
+        # Print choice ranks if not the first battle
         if len(choice_pokemon) != 0:
-            choice_pokemon_ranks = rank_team_against_opponents(
-                choice_pokemon,
-                opponent_pokemon
-            )
-            pprint("Choice pokemon ranks")
-            pprint(choice_pokemon_ranks)
+            print_pokemon_ranks(choice_pokemon, opponent_pokemon)
+
+    def confirm_clicked_round_two(
+            self,
+            team_pokemon,
+            choice_pokemon,
+            opponent_pokemon
+    ):
+        print_pokemon_ranks(team_pokemon, opponent_pokemon)
+        got_pokemon_choices_from_user(2, team_pokemon)
+
+        # Print choice ranks if not the first battle
+        if len(choice_pokemon) != 0:
+            print_pokemon_ranks(choice_pokemon, opponent_pokemon)
 
 
 def do_round_three(team, choices):
