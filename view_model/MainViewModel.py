@@ -4,8 +4,9 @@ from typing import List
 
 from data_class.Pokemon import Pokemon
 from repository.MoveRepository import moves
-from repository.TypeChartRepository import get_defense_multipliers
-from view.PokemonPickerDialog import PokemonPickerDialog
+from repository.TypeChartRepository import get_defense_multipliers, get_defense_multipliers_for_list, \
+    get_max_attack_power_for_list
+from use_case.PokemonPickerUseCase import PokemonPickerUseCase
 
 
 def max_damage_attacker_can_do_to_defender(
@@ -40,7 +41,7 @@ def get_max_damage_attackers_can_do_to_defenders(attacking_pokemon, defending_po
 def rank_attack_of_attackers_against_defenders(
         attackers: List[Pokemon],
         defenders: List[Pokemon]
-) -> defaultdict[str, List[Pokemon]]:
+):
     """
     Ranks pokemon by how much attackers can do to the defenders.
     :param attackers: The attacking pokemon.
@@ -55,15 +56,27 @@ def rank_attack_of_attackers_against_defenders(
         defenders
     )
 
-    # Rank by max damage
+    # Sort by max damage
     opponent_to_pokemon_rank = defaultdict(lambda: [])
+    pokemon_ranks = defaultdict(lambda: defaultdict(lambda: []))
     for opponent in opponent_to_pokemon_to_max_damage.keys():
         opponent_to_pokemon_rank[opponent] = sorted(
             (poke for poke in opponent_to_pokemon_to_max_damage[opponent]),
             key=lambda poke: opponent_to_pokemon_to_max_damage[opponent][poke],
             reverse=True
         )
-    return opponent_to_pokemon_rank
+
+        rank = 0
+        last_damage = opponent_to_pokemon_to_max_damage[opponent][
+            next(iter(opponent_to_pokemon_rank[opponent]))
+        ]
+        for poke in opponent_to_pokemon_rank[opponent]:
+            damage = opponent_to_pokemon_to_max_damage[opponent][poke]
+            if damage != last_damage:
+                rank = rank + 1
+            pokemon_ranks[opponent][rank].append(poke)
+            last_damage = damage
+    return pokemon_ranks
 
 
 def rank_defense_of_team_against_opponents(
@@ -82,14 +95,29 @@ def rank_defense_of_team_against_opponents(
             opponent_to_pokemon_to_max_damage[opponent][pokemon] = \
                 pokemon_to_opponent_to_max_damage[pokemon][opponent]
 
-    # Rank by max damage
+    # Sort by max damage
     opponent_to_pokemon_rank = defaultdict(lambda: [])
+    pokemon_ranks = defaultdict(lambda: defaultdict(lambda: []))
     for opponent in opponent_to_pokemon_to_max_damage.keys():
-        opponent_to_pokemon_rank[opponent] = sorted(
-            (poke for poke in opponent_to_pokemon_to_max_damage[opponent]),
-            key=lambda poke: opponent_to_pokemon_to_max_damage[opponent][poke],
-        )
-    return opponent_to_pokemon_rank
+        opponent_to_pokemon_rank[opponent] = \
+            sorted(
+                (poke for poke in opponent_to_pokemon_to_max_damage[opponent]),
+                key=lambda poke: opponent_to_pokemon_to_max_damage[opponent][poke],
+            )
+
+        # rank by max damage
+        rank = 0
+        last_damage = opponent_to_pokemon_to_max_damage[opponent][
+            next(iter(opponent_to_pokemon_rank[opponent]))
+        ]
+        for poke in opponent_to_pokemon_rank[opponent]:
+            damage = opponent_to_pokemon_to_max_damage[opponent][poke]
+            if damage != last_damage:
+                rank = rank + 1
+            pokemon_ranks[opponent][rank].append(poke)
+            last_damage = damage
+
+    return pokemon_ranks
 
 
 def rank_team_pokemon_against_each_opponent(
@@ -98,11 +126,13 @@ def rank_team_pokemon_against_each_opponent(
 ):
     pokemon_ranks = defaultdict(lambda: 0)
     for pokemon_attack_ranks in opponent_to_pokemon_attack_rank.values():
-        for i, poke in enumerate(pokemon_attack_ranks):
-            pokemon_ranks[poke] += i
+        for i, poke_list in pokemon_attack_ranks.items():
+            for poke in poke_list:
+                pokemon_ranks[poke] += i
     for pokemon_defense_ranks in opponent_to_pokemon_defense_rank.values():
-        for i, poke in enumerate(pokemon_defense_ranks):
-            pokemon_ranks[poke] += i
+        for i, poke_list in pokemon_defense_ranks.items():
+            for poke in poke_list:
+                pokemon_ranks[poke] += i
     pokemon_ranks_out = sorted(pokemon_ranks.items(), key=lambda item: item[1])
     return pokemon_ranks_out
 
@@ -133,11 +163,100 @@ def print_pokemon_ranks(pokemon, opponent_pokemon):
     pprint(team_pokemon_ranks)
 
 
-def got_pokemon_choices_from_user(num_pokemon, pokemon):
-    if len(pokemon) != 0:
-        for i in range(0, num_pokemon):
-            picker = PokemonPickerDialog(pokemon)
-            picker.exec()
+def get_weaknesses(pokemon):
+    defense_multipliers = get_defense_multipliers_for_list(pokemon)
+
+    # Average defense multipliers
+    all_defense_multipliers = defaultdict(lambda: [])
+    for poke in pokemon:
+        if poke.name in defense_multipliers.keys():
+            for poke_type in defense_multipliers[poke.name]:
+                all_defense_multipliers[poke_type].append(
+                    defense_multipliers[poke.name][poke_type]
+                )
+
+    average_defense_multipliers = {
+        poke_type: sum(multipliers) / len(multipliers)
+        for poke_type, multipliers in all_defense_multipliers.items()
+    }
+
+    # Filter out the ones less than 1.0
+    weaknesses_of_team = {
+        poke_type: multiplier
+        for poke_type, multiplier in sorted(
+            average_defense_multipliers.items(),
+            key=lambda item: item[1],
+            reverse=True
+        )
+    }
+    return weaknesses_of_team
+
+
+def get_resistances(choice_pokemon):
+    pokemon_to_max_attack_powers = get_max_attack_power_for_list(choice_pokemon)
+    team_max_attack_powers = defaultdict(lambda: 0.0)
+    for pokemon in pokemon_to_max_attack_powers.keys():
+        for poke_type in pokemon_to_max_attack_powers[pokemon].keys():
+            team_max_attack_powers[poke_type] = max(
+                team_max_attack_powers[poke_type],
+                pokemon_to_max_attack_powers[pokemon][poke_type]
+            )
+    sorted_team_max_attack_powers = {
+        poke_type: power
+        for poke_type, power in sorted(team_max_attack_powers.items(), key=lambda item: item[1])
+    }
+    return sorted_team_max_attack_powers
+
+
+def ask_user_to_pick_pokemon(num_pokemon, team_pokemon):
+    pokemon_picker_use_case = PokemonPickerUseCase()
+    chosen_pokemon_names = pokemon_picker_use_case.got_pokemon_choices_from_user(
+        num_pokemon,
+        team_pokemon
+    )
+    chosen_pokemon = [
+        team_poke
+        for team_poke in team_pokemon
+        if team_poke.name in chosen_pokemon_names
+    ]
+    return chosen_pokemon
+
+
+def rank_types_by_weakness_and_resistance(weaknesses, resistances):
+    weakness_ranks = defaultdict(lambda: [])
+    rank = 0
+    last_weakness = next(iter(weaknesses.items()))[1]
+    for poke_type, weakness in weaknesses.items():
+        if weakness != last_weakness:
+            rank = rank + 1
+        weakness_ranks[rank].append(poke_type)
+        last_weakness = weakness
+
+    resistance_ranks = defaultdict(lambda: [])
+    rank = 0
+    last_resistance = next(iter(resistances.items()))[1]
+    for poke_type, resistance in resistances.items():
+        if resistance != last_resistance:
+            rank = rank + 1
+        resistance_ranks[rank].append(poke_type)
+        last_resistance = resistance
+
+    type_ranks = defaultdict(lambda: [])
+    for rank, poke_types in weakness_ranks.items():
+        for poke_type in poke_types:
+            type_ranks[rank].append(poke_type)
+    for rank, poke_types in resistance_ranks.items():
+        for poke_type in poke_types:
+            type_ranks[rank].append(poke_type)
+    return type_ranks
+
+
+def rank_from_weaknesses_and_resistances(
+        remaining_pokemon,
+        weaknesses,
+        resistances
+):
+    type_ranks = rank_types_by_weakness_and_resistance(weaknesses, resistances)
 
 
 class MainViewModel:
@@ -163,8 +282,14 @@ class MainViewModel:
             opponent_pokemon
     ):
         print_pokemon_ranks(team_pokemon, opponent_pokemon)
-        got_pokemon_choices_from_user(2, team_pokemon)
+        chosen_pokemon = ask_user_to_pick_pokemon(2, team_pokemon)
 
+        # Rank the types by which need to be covered
+        weaknesses = get_weaknesses(chosen_pokemon)
+        resistances = get_resistances(chosen_pokemon)
+        remaining_pokemon = set(team_pokemon).difference(set(chosen_pokemon))
+        rank_from_weaknesses_and_resistances(remaining_pokemon, weaknesses, resistances)
+        pprint(True)
         # Print choice ranks if not the first battle
         if len(choice_pokemon) != 0:
             print_pokemon_ranks(choice_pokemon, opponent_pokemon)
