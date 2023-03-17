@@ -1,8 +1,11 @@
-from view.MainApp import main_app
+from view.MainLayout import run_main_app
 
 
-def main():
-    main_app()
+def main() -> None:
+    """
+    Runs the app.
+    """
+    run_main_app()
 
 
 if __name__ == '__main__':

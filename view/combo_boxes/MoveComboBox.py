@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QComboBox
 
-from repository.MoveRepository import moves
+from repository.MoveRepository import get_all_moves
 
 
 class MoveComboBox(QComboBox):
@@ -12,7 +12,7 @@ class MoveComboBox(QComboBox):
         # No move has this string of letters
         last_move = "ZZZ"
         self.addItem("")
-        for move in sorted(moves):
+        for move in sorted(get_all_moves):
             if last_move not in move:
                 self.addItem(move)
             else:

@@ -8,7 +8,7 @@ class TeamUseCase:
             self,
             team_pokemon: List[Pokemon],
             choice_pokemon: List[Pokemon]
-    ):
+    ) -> None:
         self.__team_pokemon__ = team_pokemon
         self.__choice_pokemon__ = choice_pokemon
 
@@ -16,12 +16,12 @@ class TeamUseCase:
             self,
             team_pokemon: List[Pokemon],
             choice_pokemon: List[Pokemon]
-    ):
+    ) -> None:
         self.__team_pokemon__ = team_pokemon
         self.__choice_pokemon__ = choice_pokemon
 
-    def get_team_pokemon(self):
+    def get_team_pokemon(self) -> List[Pokemon]:
         return self.__team_pokemon__
 
-    def get_choice_pokemon(self):
+    def get_choice_pokemon(self) -> List[Pokemon]:
         return self.__choice_pokemon__

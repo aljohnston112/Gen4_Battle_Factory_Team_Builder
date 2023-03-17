@@ -4,7 +4,7 @@ from typing import List
 from data_class.Pokemon import Pokemon
 from data_class.Type import PokemonType
 from data_source.TypeChartDataSource import get_attack_type_dict, get_defend_type_dict
-from repository.MoveRepository import moves
+from repository.MoveRepository import get_all_moves
 
 type_chart_attack = get_attack_type_dict()
 type_chart_defend = get_defend_type_dict()
@@ -14,7 +14,7 @@ def get_max_attack_power(attacker: Pokemon):
     max_attacker_powers = defaultdict(lambda: 0.0)
     for move in attacker.moves:
         attack_type = move.move_type
-        detailed_move = moves[move.name]
+        detailed_move = get_all_moves[move.name]
         # [no_eff, not_eff, normal_eff, super_eff]
         no_effect_types = type_chart_attack[0].get(attack_type, [])
         not_effective_types = type_chart_attack[1].get(attack_type, [])

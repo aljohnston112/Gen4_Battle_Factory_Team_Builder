@@ -1,10 +1,9 @@
 from typing import List
 
-from PyQt5.QtWidgets import QDialog, QGroupBox, QRadioButton, QLabel, QPushButton, QLayout, QVBoxLayout, QHBoxLayout
+from PyQt5.QtWidgets import QDialog, QGroupBox, QLabel, QVBoxLayout, QHBoxLayout
 
-from data.Strings import string_pick, string_confirm
-from data_class.Pokemon import Pokemon
-from view.PokemonButton import PokemonButton
+from data.Strings import string_pick
+from view.buttons.StringButton import StringButton
 
 
 class PokemonPickerDialog(QDialog):
@@ -24,7 +23,7 @@ class PokemonPickerDialog(QDialog):
         h_box_layout_pokemon = QHBoxLayout()
         self.push_buttons = []
         for name in pokemon_names:
-            push_button = PokemonButton(name, self.confirm_clicked)
+            push_button = StringButton(name, self.confirm_clicked)
             h_box_layout_pokemon.addWidget(push_button)
             self.push_buttons.append(push_button)
         group_box_rb.setLayout(h_box_layout_pokemon)

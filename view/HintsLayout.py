@@ -2,7 +2,8 @@ from PyQt5.QtWidgets import QGridLayout, QGroupBox, QHBoxLayout, QRadioButton, Q
 
 from data.Strings import string_round_4, string_round_5_up, string_round_3, string_round_1, \
     string_round_2
-from use_case.CurrentRoundUseCase import Round
+from view_model.HintsViewModel import Round, HintsViewModel
+from use_case.TeamUseCase import TeamUseCase
 from view.Round1And2Layout import Round1And2Layout
 from view.Round3Layout import Round3Layout
 from view.Round4Layout import Round4Layout
@@ -15,12 +16,7 @@ class HintsLayout(QGridLayout):
     The layout for the hints UI.
     """
 
-    def __init__(
-            self,
-            current_round_use_case,
-            round_1_and_2_use_case,
-            team_use_case
-    ):
+    def __init__(self):
         """
         Creates the hints UI.
         The three Pokemon the user has, and the three they have to choose from
@@ -31,16 +27,20 @@ class HintsLayout(QGridLayout):
         """
         super().__init__()
 
-        self.__current_round_use_case__ = current_round_use_case
-        self.__round_1_and_2_use_case__ = round_1_and_2_use_case
-        self.team = TeamLayout(team_use_case)
+        self.__view_model__ = HintsViewModel()
+        self.__current_round_use_case__ = HintsViewModel()
+        self.__team_use_case__ = TeamUseCase(
+            team_pokemon=[],
+            choice_pokemon=[]
+        )
+        self.team = TeamLayout(self.__team_use_case__)
         self.addLayout(self.team, 0, 0)
 
         self.round_widgets = None
         self.stacked_rounds = None
-        self.radio_buttons_rounds = None
-
         self.__set_up_stacked_rounds__()
+
+        self.radio_buttons_rounds = None
         self.__set_up_radio_buttons__()
 
     def __set_up_radio_buttons__(self):
@@ -91,15 +91,15 @@ class HintsLayout(QGridLayout):
         self.stacked_rounds.setCurrentWidget(self.round_widgets[new_round])
         match new_round:
             case 0:
-                self.__current_round_use_case__.set_current_round(Round.ONE)
+                self.__view_model__.set_current_round(Round.ONE)
             case 1:
-                self.__current_round_use_case__.set_current_round(Round.TWO)
+                self.__view_model__.set_current_round(Round.TWO)
             case 2:
-                self.__current_round_use_case__.set_current_round(Round.THREE)
+                self.__view_model__.set_current_round(Round.THREE)
             case 3:
-                self.__current_round_use_case__.set_current_round(Round.FOUR)
+                self.__view_model__.set_current_round(Round.FOUR)
             case 4:
-                self.__current_round_use_case__.set_current_round(Round.FIVE)
+                self.__view_model__.set_current_round(Round.FIVE)
 
     def __set_up_stacked_rounds__(self):
         """
@@ -108,8 +108,8 @@ class HintsLayout(QGridLayout):
         """
         self.stacked_rounds = QStackedWidget()
         self.round_widgets = [
-            Round1And2Layout(self.__round_1_and_2_use_case__),
-            Round1And2Layout(self.__round_1_and_2_use_case__, is_round_2=True),
+            Round1And2Layout(self.__team_use_case__),
+            Round1And2Layout(self.__team_use_case__, is_round_2=True),
             Round3Layout(),
             Round4Layout(),
             Round5Layout()

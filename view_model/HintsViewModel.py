@@ -12,7 +12,7 @@ class Round(Enum):
     FIVE = 4
 
 
-class CurrentRoundUseCase:
+class HintsViewModel:
 
     def __init__(self):
         self.__current_round__ = Round.ONE
