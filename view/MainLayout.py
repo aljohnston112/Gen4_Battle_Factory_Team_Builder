@@ -12,20 +12,14 @@ def run_main_app() -> None:
     Creates and runs the main application.
     """
     app = QApplication([])
-    create_main_window()
-    sys.exit(app.exec())
-
-
-def create_main_window() -> None:
-    """
-    Creates the main window of the app.
-    """
 
     # All top level widgets create a window
     window = QWidget()
     window.setWindowTitle(string_title)
     window.setLayout(MainLayout())
     window.show()
+
+    sys.exit(app.exec())
 
 
 class MainLayout(QGridLayout):

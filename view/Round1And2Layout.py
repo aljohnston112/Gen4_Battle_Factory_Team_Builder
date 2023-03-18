@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QHBoxLayout, QPushButton
+from PyQt5.QtWidgets import QWidget, QLabel, QHBoxLayout, QPushButton, QVBoxLayout
 
 from data.Strings import string_opponents, string_confirm
 from view.combo_boxes.PokemonComboBox import PokemonComboBox
@@ -12,20 +12,23 @@ class Round1And2Layout(QWidget):
     def __init__(self, team_use_case, is_round_2=False):
         super().__init__()
         num_pokemon = 2 if is_round_2 else 3
-        self.__view_model__ = Round1And2ViewModel(team_use_case)
-        layout = QHBoxLayout()
+        self.__view_model__ = Round1And2ViewModel(team_use_case, is_round_2=is_round_2)
+
+        layout = QVBoxLayout()
         self.setLayout(layout)
-        layout.addWidget(QLabel(string_opponents))
+
+        fields_layout = QHBoxLayout()
+        fields_layout.addWidget(QLabel(string_opponents))
         self.pokemonComboBoxes = []
         for i in range(0, num_pokemon):
             self.pokemonComboBoxes.append(PokemonComboBox())
         for pokemonComboBox in self.pokemonComboBoxes:
             pokemonComboBox.currentTextChanged.connect(self.__text_changed__)
-            layout.addWidget(pokemonComboBox)
+            fields_layout.addWidget(pokemonComboBox)
 
-    def set_up_button(self):
+        layout.addLayout(fields_layout)
         button_confirm = QPushButton(string_confirm)
-        self.addWidget(button_confirm, 1, 0)
+        layout.addWidget(button_confirm)
         button_confirm.clicked.connect(self.__view_model__.confirm_clicked)
 
     def __text_changed__(self):
