@@ -4,11 +4,11 @@ import typing
 
 import cattr
 
-from config import ITEM_FILE_OUT, HOLD_ITEMS_FILE
+from config import FRESH_HOLD_ITEMS, RAW_HOLD_ITEMS_FILE
 
 
 def __parse_items__():
-    with open(HOLD_ITEMS_FILE, "r") as f:
+    with open(RAW_HOLD_ITEMS_FILE, "r") as f:
         items = {}
         done = False
         while not done:
@@ -20,13 +20,16 @@ def __parse_items__():
                 items[item] = d
             else:
                 done = True
-        with open(ITEM_FILE_OUT, "w") as fo:
+        with open(FRESH_HOLD_ITEMS, "w") as fo:
             fo.write(json.dumps(cattr.unstructure(items)))
 
 
 def get_items():
-    if not os.path.exists(ITEM_FILE_OUT):
+    if not os.path.exists(FRESH_HOLD_ITEMS):
         __parse_items__()
-    with open(ITEM_FILE_OUT, "r") as fo:
+    with open(FRESH_HOLD_ITEMS, "r") as fo:
         return cattr.structure(json.loads(fo.read()), typing.Dict[str, str])
 
+
+if __name__ == "__main__":
+    get_items()

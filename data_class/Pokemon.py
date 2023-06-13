@@ -6,6 +6,7 @@ from typing import List
 import attr
 
 from data_class.Move import Move
+from data_class.Stat import Stat
 from data_class.Type import PokemonType
 from repository.MoveRepository import get_all_moves
 from repository.TypeChartRepository import type_chart_defend, type_chart_attack
@@ -14,10 +15,12 @@ from repository.TypeChartRepository import type_chart_defend, type_chart_attack
 @attr.define
 class Pokemon:
     name: str
+    nature: str
     types: list[PokemonType]
-    ability: list[str]
     item: str
     moves: list[Move]
+    set_number: int
+    effort_values: list[Stat]
 
     def __hash__(self) -> int:
         return hash(self.name)
@@ -26,47 +29,63 @@ class Pokemon:
         return self.name
 
 
-def max_damage_attacker_can_do_to_defender(
-        attacker: Pokemon,
-        defender: Pokemon
-) -> float:
-    opponent_defense_multipliers = get_defense_multipliers(defender)
-    max_damage = 0
-    for pokemon_move in attacker.moves:
-        max_damage = max(
-            opponent_defense_multipliers[pokemon_move.move_type] *
-            get_all_moves[pokemon_move.name].power,
-            max_damage
-        )
-    return max_damage
+pokemon_to_defense_multipliers = {}
 
 
-def get_defense_multipliers(defender: Pokemon):
-    defense_multipliers = defaultdict(lambda: 1.0)
-    defender_types = defender.types
-    for defender_type in defender_types:
+def get_defense_multipliers_for_pokemon(defender: Pokemon):
+    attacker_type_to_multiplier = pokemon_to_defense_multipliers[defender]
+    if len(attacker_type_to_multiplier) != 0:
+        attacker_type_to_multiplier = defaultdict(lambda: 1.0)
+        defender_types = defender.types
+        for defender_type in defender_types:
+            new_type_multipliers = get_defense_multipliers_for_type(defender_type)
+            attacker_type_to_multiplier = {
+                key: attacker_type_to_multiplier[key] * new_type_multipliers[key]
+                for key in new_type_multipliers.keys()
+            }
+        pokemon_to_defense_multipliers[defender] = attacker_type_to_multiplier
+    return attacker_type_to_multiplier
+
+
+type_to_defense_multipliers = {}
+
+
+def get_defense_multipliers_for_type(
+        pokemon_type: PokemonType,
+        current_defense_multipliers=None
+):
+    cached_defense_multipliers = type_to_defense_multipliers.get(pokemon_type)
+    if (current_defense_multipliers is None or len(current_defense_multipliers) == 0) and cached_defense_multipliers is not None:
+        current_defense_multipliers = cached_defense_multipliers
+    else:
+        cache = False
+        if current_defense_multipliers is None or len(current_defense_multipliers) == 0:
+            cache = True
+            current_defense_multipliers = defaultdict(lambda: 1.0)
         # [no_eff, not_eff, normal_eff, super_eff]
-        no_effect_types = type_chart_defend[0].get(defender_type, [])
-        not_effective_types = type_chart_defend[1].get(defender_type, [])
-        normal_effective_types = type_chart_defend[2].get(defender_type, [])
-        super_effective_types = type_chart_defend[3].get(defender_type, [])
+        no_effect_types = type_chart_defend[0].get(pokemon_type, [])
+        not_effective_types = type_chart_defend[1].get(pokemon_type, [])
+        normal_effective_types = type_chart_defend[2].get(pokemon_type, [])
+        super_effective_types = type_chart_defend[3].get(pokemon_type, [])
         for no_effect_type in no_effect_types:
-            defense_multipliers[no_effect_type] *= 0.0
+            current_defense_multipliers[no_effect_type] *= 0.0
         for not_effective_type in not_effective_types:
-            defense_multipliers[not_effective_type] *= 0.5
+            current_defense_multipliers[not_effective_type] *= 0.5
         for normal_effective_type in normal_effective_types:
-            defense_multipliers[normal_effective_type] *= 01.0
+            current_defense_multipliers[normal_effective_type] *= 1.0
         for super_effective_type in super_effective_types:
-            defense_multipliers[super_effective_type] *= 2.0
-    return defense_multipliers
+            current_defense_multipliers[super_effective_type] *= 2.0
+        if cache:
+            type_to_defense_multipliers[pokemon_type] = current_defense_multipliers
+    return current_defense_multipliers
 
 
 def get_defense_multipliers_for_list(
-    defending_pokemon: List[Pokemon]
-) -> defaultdict[str, defaultdict[PokemonType, float]]:
+        defending_pokemon: List[Pokemon]
+) -> defaultdict[Pokemon, defaultdict[PokemonType, float]]:
     defense_multipliers = defaultdict(lambda: defaultdict(lambda: 1.0))
     for defender in defending_pokemon:
-        defense_multipliers[defender.name] = get_defense_multipliers(defender)
+        defense_multipliers[defender] = get_defense_multipliers_for_pokemon(defender)
     return defense_multipliers
 
 

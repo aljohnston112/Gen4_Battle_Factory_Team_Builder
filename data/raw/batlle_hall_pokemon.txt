@@ -1,0 +1,512 @@
+List of Battle Hall Pokémon,,,,,,,,,,,,,,
+Group 1,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Pokémon in this group have base stat totals below 340 and may appear during a battle from Rank 1 to Rank 5 for a certain type.,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Argenta will randomly use one of the Pokémon listed here each time when challenged for the Silver Print if the player is also using a Pokémon with a base stat total below 340.,,,,,,,,,,,,,,
+# ,Pokémon ,Item ,Moves ,Nature ,EVs,,,,,,,,,
+HP ,Attack ,Defense ,Sp. Atk ,Sp. Def ,Speed,,,,,,,,,
+1,Bulbasaur ,Bulbasaur ,Miracle Seed Miracle Seed ,Energy Ball ,Sludge Bomb ,Charm ,Razor Leaf ,Mild ,- ,- ,- ,252,- ,252
+4,Charmander ,Charmander ,Charcoal Charcoal ,Slash ,Fire Fang ,Swords Dance ,Flamethrower ,Lonely ,- ,252,- ,- ,- ,252
+7,Squirtle ,Squirtle ,Mystic Water Mystic Water ,Facade ,Aqua Tail ,Iron Defense ,Aqua Jet ,Adamant ,252,252,- ,- ,- ,-
+10,Caterpie ,Caterpie ,SilverPowder SilverPowder ,Tackle ,String Shot ,Bug Bite ,- ,Jolly ,- ,252,- ,- ,- ,252
+11,Metapod ,Metapod ,SilverPowder SilverPowder ,Tackle ,String Shot ,Bug Bite ,Iron Defense ,Impish ,252,- ,252,- ,- ,-
+13,Weedle ,Weedle ,SilverPowder SilverPowder ,Poison Sting ,String Shot ,Bug Bite ,- ,Jolly ,- ,252,- ,- ,- ,252
+14,Kakuna ,Kakuna ,SilverPowder SilverPowder ,Poison Sting ,String Shot ,Bug Bite ,Iron Defense ,Impish ,252,- ,252,- ,- ,-
+16,Pidgey ,Pidgey ,Sharp Beak Sharp Beak ,Quick Attack ,Air Slash ,Feather Dance ,Aerial Ace ,Mild ,- ,252,- ,252,- ,-
+19,Rattata ,Rattata ,Silk Scarf Silk Scarf ,Hyper Fang ,Endeavor ,Screech ,Crunch ,Jolly ,- ,252,- ,- ,- ,252
+21,Spearow ,Spearow ,Sharp Beak Sharp Beak ,Drill Peck ,Quick Attack ,Scary Face ,Aerial Ace ,Adamant ,- ,252,- ,- ,- ,252
+23,Ekans ,Ekans ,Poison Barb Poison Barb ,Gunk Shot ,Screech ,Slam ,Sludge Bomb ,Hasty ,- ,252,- ,- ,- ,252
+25,Pikachu ,Pikachu ,Magnet Magnet ,Thunderbolt ,Quick Attack ,Charm ,Volt Tackle ,Naughty ,- ,252,- ,- ,- ,252
+27,Sandshrew ,Sandshrew ,Soft Sand Soft Sand ,Dig ,Slash ,Swords Dance ,Sandstorm ,Jolly ,- ,252,- ,- ,- ,252
+29,Nidoran? ,Nidoran? ,Poison Barb Poison Barb ,Sludge Bomb ,Fury Swipes ,Charm ,Poison Fang ,Mild ,- ,252,- ,252,- ,-
+32,Nidoran? ,Nidoran? ,Poison Barb Poison Barb ,Poison Jab ,Amnesia ,Fury Attack ,Sludge Bomb ,Naughty ,- ,252,- ,252,- ,-
+35,Clefairy ,Clefairy ,Silk Scarf Silk Scarf ,Return ,Moonlight ,Meteor Mash ,Cosmic Power ,Relaxed ,- ,- ,252,- ,252,-
+37,Vulpix ,Vulpix ,Charcoal Charcoal ,Fire Blast ,Quick Attack ,Double Team ,Swift ,Modest ,- ,- ,- ,252,- ,252
+39,Jigglypuff ,Jigglypuff ,Silk Scarf Silk Scarf ,Hyper Voice ,Charm ,Rollout ,Fake Tears ,Rash ,252,- ,- ,252,- ,-
+41,Zubat ,Zubat ,Poison Barb Poison Barb ,Poison Fang ,Air Slash ,Sludge Bomb ,Nasty Plot ,Hasty ,- ,- ,- ,252,- ,252
+43,Oddish ,Oddish ,Miracle Seed Miracle Seed ,Petal Dance ,Razor Leaf ,Sludge Bomb ,Charm ,Mild ,- ,- ,- ,252,252,-
+46,Paras ,Paras ,SilverPowder SilverPowder ,X-Scissor ,Bullet Seed ,Screech ,Giga Drain ,Brave ,252,252,- ,- ,- ,-
+48,Venonat ,Venonat ,SilverPowder SilverPowder ,Signal Beam ,Sludge Bomb ,Agility ,Bug Bite ,Mild ,- ,- ,- ,252,- ,252
+50,Diglett ,Diglett ,Soft Sand Soft Sand ,Earthquake ,Slash ,Screech ,Sandstorm ,Adamant ,- ,252,- ,- ,- ,252
+52,Meowth ,Meowth ,Silk Scarf Silk Scarf ,Slash ,U-turn ,Fake Out ,Charm ,Adamant ,- ,252,- ,- ,- ,252
+54,Psyduck ,Psyduck ,Mystic Water Mystic Water ,Hydro Pump ,Fury Swipes ,Amnesia ,Brine ,Mild ,- ,252,- ,252,- ,-
+56,Mankey ,Mankey ,Black Belt Black Belt ,Cross Chop ,Screech ,Foresight ,Seismic Toss ,Adamant ,- ,252,- ,- ,- ,252
+60,Poliwag ,Poliwag ,Mystic Water Mystic Water ,Waterfall ,Return ,Bubble Beam ,Double Team ,Hasty ,- ,252,- ,- ,- ,252
+63,Abra ,Abra ,TwistedSpoon TwistedSpoon ,Psychic ,Facade ,Calm Mind ,Zen Headbutt ,Naive ,- ,- ,- ,252,- ,252
+66,Machop ,Machop ,Black Belt Black Belt ,Dynamic Punch ,Foresight ,Scary Face ,Brick Break ,Jolly ,- ,252,- ,- ,- ,252
+69,Bellsprout ,Bellsprout ,Miracle Seed Miracle Seed ,Razor Leaf ,Sludge Bomb ,Tickle ,Energy Ball ,Rash ,- ,252,- ,252,- ,-
+72,Tentacool ,Tentacool ,Mystic Water Mystic Water ,Waterfall ,Poison Jab ,Barrier ,Brine ,Mild ,- ,252,- ,252,- ,-
+74,Geodude ,Geodude ,Hard Stone Hard Stone ,Stone Edge ,Dig ,Rock Polish ,Ancient Power ,Brave ,- ,252,- ,- ,252,-
+79,Slowpoke ,Slowpoke ,TwistedSpoon TwistedSpoon ,Zen Headbutt ,Aqua Tail ,Amnesia ,Brine ,Sassy ,- ,252,- ,- ,252,-
+81,Magnemite ,Magnemite ,Metal Coat Metal Coat ,Flash Cannon ,Thunder ,Metal Sound ,Gyro Ball ,Rash ,- ,- ,252,252,- ,-
+84,Doduo ,Doduo ,Sharp Beak Sharp Beak ,Drill Peck ,Fury Attack ,Aerial Ace ,Acupressure ,Jolly ,- ,252,- ,- ,- ,252
+86,Seel ,Seel ,Mystic Water Mystic Water ,Waterfall ,Headbutt ,Aqua Jet ,Aqua Ring ,Jolly ,- ,252,- ,- ,- ,252
+88,Grimer ,Grimer ,Poison Barb Poison Barb ,Gunk Shot ,Frustration ,Screech ,Sludge Bomb ,Lonely ,252,252,- ,- ,- ,-
+90,Shellder ,Shellder ,Mystic Water Mystic Water ,Clamp ,Brine ,Take Down ,Iron Defense ,Sassy ,- ,- ,- ,252,252,-
+92,Gastly ,Gastly ,Spell Tag Spell Tag ,Shadow Ball ,Sludge Bomb ,Astonish ,Double Team ,Modest ,- ,252,- ,- ,- ,252
+96,Drowzee ,Drowzee ,TwistedSpoon TwistedSpoon ,Frustration ,Psychic ,Nasty Plot ,Future Sight ,Rash ,- ,- ,- ,252,- ,252
+98,Krabby ,Krabby ,Mystic Water Mystic Water ,Crabhammer ,Slam ,Swords Dance ,Brine ,Naughty ,- ,252,- ,- ,- ,252
+100,Voltorb ,Voltorb ,Magnet Magnet ,Thunderbolt ,Swift ,Double Team ,Shock Wave ,Modest ,- ,- ,- ,252,- ,252
+102,Exeggcute ,Exeggcute ,Miracle Seed Miracle Seed ,Leaf Storm ,Psychic ,Leech Seed ,Seed Bomb ,Quiet ,252,- ,- ,252,- ,-
+104,Cubone ,Cubone ,Soft Sand Soft Sand ,Bonemerang ,Facade ,Double-Edge ,Swords Dance ,Adamant ,- ,252,- ,- ,- ,252
+116,Horsea ,Horsea ,Mystic Water Mystic Water ,Waterfall ,Rain Dance ,Dragon Dance ,Return ,Jolly ,- ,252,- ,- ,- ,252
+118,Goldeen ,Goldeen ,Mystic Water Mystic Water ,Waterfall ,Fury Attack ,Agility ,Rain Dance ,Jolly ,- ,252,- ,- ,- ,252
+129,Magikarp ,Magikarp ,Scope Lens Scope Lens ,Tackle ,Flail ,Bounce ,- ,Jolly ,- ,252,- ,- ,- ,252
+132,Ditto ,Ditto ,Quick Powder Quick Powder ,Transform ,- ,- ,- ,Naive ,252,- ,- ,- ,- ,252
+133,Eevee ,Eevee ,Silk Scarf Silk Scarf ,Return ,Quick Attack ,Charm ,Shadow Ball ,Naughty ,- ,252,- ,- ,- ,252
+147,Dratini ,Dratini ,Dragon Fang Dragon Fang ,Dragon Rush ,Dragon Dance ,Slam ,Dragon Rage ,Jolly ,- ,252,- ,- ,- ,252
+152,Chikorita ,Chikorita ,Miracle Seed Miracle Seed ,Energy Ball ,Return ,Ingrain ,Razor Leaf ,Quiet ,252,- ,- ,252,- ,-
+155,Cyndaquil ,Cyndaquil ,Charcoal Charcoal ,Overheat ,Quick Attack ,Flare Blitz ,SmokeScreen ,Hasty ,- ,252,- ,- ,- ,252
+158,Totodile ,Totodile ,Mystic Water Mystic Water ,Aqua Tail ,Slash ,Scary Face ,Brine ,Lonely ,- ,252,- ,- ,- ,252
+161,Sentret ,Sentret ,Silk Scarf Silk Scarf ,Hyper Voice ,Charge Beam ,Quick Attack ,Charm ,Rash ,- ,- ,- ,252,- ,252
+163,Hoothoot ,Hoothoot ,Sharp Beak Sharp Beak ,Swift ,Air Slash ,Aerial Ace ,Feather Dance ,Mild ,- ,- ,- ,252,- ,252
+165,Ledyba ,Ledyba ,SilverPowder SilverPowder ,Bug Buzz ,Air Cutter ,Bug Bite ,Double Team ,Hasty ,- ,- ,- ,252,- ,252
+167,Spinarak ,Spinarak ,SilverPowder SilverPowder ,Pin Missile ,Poison Jab ,Agility ,Double Team ,Jolly ,- ,252,- ,- ,- ,252
+170,Chinchou ,Chinchou ,Mystic Water Mystic Water ,Discharge ,Brine ,Amnesia ,Aqua Ring ,Modest ,- ,- ,- ,252,- ,252
+172,Pichu ,Pichu ,Magnet Magnet ,Nasty Plot ,Thunderbolt ,Shock Wave ,Facade ,Naive ,- ,- ,- ,252,- ,252
+173,Cleffa ,Cleffa ,Silk Scarf Silk Scarf ,Return ,Magical Leaf ,Charm ,Amnesia ,Relaxed ,252,252,- ,- ,- ,-
+174,Igglybuff ,Igglybuff ,Silk Scarf Silk Scarf ,Return ,Feint Attack ,Charm ,Fake Tears ,Naughty ,- ,252,- ,- ,- ,252
+175,Togepi ,Togepi ,Silk Scarf Silk Scarf ,Return ,Zen Headbutt ,Charm ,Swift ,Naive ,- ,252,- ,- ,- ,252
+177,Natu ,Natu ,TwistedSpoon TwistedSpoon ,Psychic ,Air Cutter ,Feather Dance ,Future Sight ,Modest ,- ,- ,- ,252,- ,252
+179,Mareep ,Mareep ,Magnet Magnet ,Thunder ,Take Down ,Cotton Spore ,Screech ,Rash ,- ,- ,- ,252,- ,252
+183,Marill ,Marill ,Mystic Water Mystic Water ,Aqua Tail ,Bubble Beam ,Double-Edge ,Aqua Ring ,Lonely ,- ,252,- ,- ,- ,252
+187,Hoppip ,Hoppip ,Miracle Seed Miracle Seed ,Seed Bomb ,Bounce ,Amnesia ,Giga Drain ,Hasty ,- ,252,- ,- ,- ,252
+191,Sunkern ,Sunkern ,Miracle Seed Miracle Seed ,Seed Bomb ,Sunny Day ,Ingrain ,Facade ,Jolly ,- ,252,- ,- ,- ,252
+194,Wooper ,Wooper ,Mystic Water Mystic Water ,Aqua Tail ,Surf ,Amnesia ,Mud Shot ,Gentle ,- ,252,- ,- ,252,-
+201,Unown ,Unown ,Sitrus Berry Sitrus Berry ,Hidden Power ,- ,- ,- ,Hasty ,252,- ,- ,- ,- ,252
+204,Pineco ,Pineco ,SilverPowder SilverPowder ,Pin Missile ,Facade ,Iron Defense ,Swift ,Relaxed ,- ,252,252,- ,- ,-
+209,Snubbull ,Snubbull ,Silk Scarf Silk Scarf ,Return ,Fire Fang ,Charm ,Facade ,Naughty ,- ,252,- ,- ,- ,252
+216,Teddiursa ,Teddiursa ,Silk Scarf Silk Scarf ,Charm ,Slash ,Aerial Ace ,Facade ,Jolly ,- ,252,- ,- ,- ,252
+218,Slugma ,Slugma ,Charcoal Charcoal ,Heat Wave ,Acid Armor ,Amnesia ,Facade ,Hasty ,- ,- ,- ,252,- ,252
+220,Swinub ,Swinub ,NeverMeltIce NeverMeltIce ,Blizzard ,Earth Power ,Ice Shard ,Curse ,Quiet ,- ,252,- ,252,- ,-
+223,Remoraid ,Remoraid ,Mystic Water Mystic Water ,Octazooka ,Hyper Beam ,Focus Energy ,Double Team ,Timid ,- ,- ,- ,252,- ,252
+225,Delibird ,Delibird ,NeverMeltIce NeverMeltIce ,Ice Shard ,Double Team ,Ice Punch ,Aerial Ace ,Adamant ,- ,252,- ,- ,- ,252
+228,Houndour ,Houndour ,BlackGlasses BlackGlasses ,Dark Pulse ,Flamethrower ,Nasty Plot ,Sucker Punch ,Hasty ,- ,- ,- ,252,- ,252
+231,Phanpy ,Phanpy ,Soft Sand Soft Sand ,Earthquake ,Earth Power ,Facade ,Charm ,Naive ,- ,252,- ,- ,- ,252
+235,Smeargle ,Smeargle ,Silk Scarf Silk Scarf ,Hyper Voice ,Dragon Pulse ,Nasty Plot ,Quick Attack ,Timid ,- ,- ,- ,252,- ,252
+236,Tyrogue ,Tyrogue ,Black Belt Black Belt ,Mach Punch ,Foresight ,Bulk Up ,Brick Break ,Adamant ,- ,252,- ,- ,- ,252
+238,Smoochum ,Smoochum ,NeverMeltIce NeverMeltIce ,Blizzard ,Psychic ,Fake Tears ,Ice Punch ,Mild ,- ,- ,- ,252,- ,252
+246,Larvitar ,Larvitar ,Hard Stone Hard Stone ,Stone Edge ,Dig ,Screech ,Earth Power ,Lonely ,- ,252,- ,- ,- ,252
+252,Treecko ,Treecko ,Miracle Seed Miracle Seed ,Leaf Storm ,Crush Claw ,Quick Attack ,Screech ,Naive ,- ,252,- ,- ,- ,252
+255,Torchic ,Torchic ,Charcoal Charcoal ,Flamethrower ,Quick Attack ,Slash ,Swords Dance ,Hasty ,- ,252,- ,- ,- ,252
+258,Mudkip ,Mudkip ,Mystic Water Mystic Water ,Waterfall ,Facade ,Strength ,Curse ,Brave ,- ,252,- ,- ,252,-
+261,Poochyena ,Poochyena ,BlackGlasses BlackGlasses ,Crunch ,Dark Pulse ,Frustration ,Scary Face ,Naive ,- ,252,- ,- ,- ,252
+263,Zigzagoon ,Zigzagoon ,Silk Scarf Silk Scarf ,Mud-Slap ,Headbutt ,Tickle ,Facade ,Jolly ,- ,252,- ,- ,- ,252
+265,Wurmple ,Wurmple ,SilverPowder SilverPowder ,Tackle ,String Shot ,Bug Bite ,- ,Jolly ,- ,252,- ,- ,- ,252
+266,Silcoon ,Silcoon ,SilverPowder SilverPowder ,Tackle ,String Shot ,Bug Bite ,Iron Defense ,Impish ,- ,- ,252,- ,252,-
+268,Cascoon ,Cascoon ,SilverPowder SilverPowder ,Tackle ,String Shot ,Bug Bite ,Iron Defense ,Impish ,- ,- ,252,- ,252,-
+270,Lotad ,Lotad ,Miracle Seed Miracle Seed ,Energy Ball ,Bubble Beam ,Razor Leaf ,Rain Dance ,Hasty ,- ,- ,- ,252,- ,252
+273,Seedot ,Seedot ,Miracle Seed Miracle Seed ,Seed Bomb ,Nasty Plot ,Frustration ,Energy Ball ,Quiet ,- ,- ,- ,252,252,-
+276,Taillow ,Taillow ,Sharp Beak Sharp Beak ,Brave Bird ,Air Slash ,Quick Attack ,Double Team ,Lonely ,- ,252,- ,- ,- ,252
+278,Wingull ,Wingull ,Sharp Beak Sharp Beak ,Brine ,Air Slash ,Aqua Ring ,Agility ,Timid ,252,- ,- ,- ,- ,252
+280,Ralts ,Ralts ,TwistedSpoon TwistedSpoon ,Psychic ,Facade ,Charm ,Future Sight ,Mild ,- ,- ,- ,252,252,-
+281,Kirlia ,Kirlia ,TwistedSpoon TwistedSpoon ,Psychic ,Facade ,Calm Mind ,Future Sight ,Rash ,- ,- ,- ,252,- ,252
+283,Surskit ,Surskit ,SilverPowder SilverPowder ,Signal Beam ,Bubble Beam ,Agility ,Bug Bite ,Mild ,- ,- ,- ,252,- ,252
+285,Shroomish ,Shroomish ,Miracle Seed Miracle Seed ,Seed Bomb ,Headbutt ,Charm ,Giga Drain ,Rash ,- ,- ,252,252,- ,-
+287,Slakoth ,Slakoth ,Silk Scarf Silk Scarf ,Facade ,Night Slash ,Bulk Up ,Slash ,Adamant ,- ,252,- ,- ,- ,252
+290,Nincada ,Nincada ,SilverPowder SilverPowder ,X-Scissor ,Dig ,Mud-Slap ,Silver Wind ,Hasty ,- ,252,- ,- ,- ,252
+292,Shedinja ,Shedinja ,SilverPowder SilverPowder ,X-Scissor ,Shadow Claw ,Shadow Sneak ,Double Team ,Adamant ,- ,252,- ,- ,- ,252
+293,Whismur ,Whismur ,Silk Scarf Silk Scarf ,Hyper Voice ,Extrasensory ,Screech ,Facade ,Naughty ,- ,252,- ,- ,- ,252
+296,Makuhita ,Makuhita ,Black Belt Black Belt ,Close Combat ,Foresight ,Bulk Up ,Seismic Toss ,Adamant ,252,252,- ,- ,- ,-
+298,Azurill ,Azurill ,Silk Scarf Silk Scarf ,Waterfall ,Charm ,Return ,Tail Whip ,Mild ,- ,- ,- ,252,- ,252
+300,Skitty ,Skitty ,Silk Scarf Silk Scarf ,Return ,Iron Tail ,Charm ,Fake Out ,Jolly ,- ,252,- ,- ,- ,252
+304,Aron ,Aron ,Metal Coat Metal Coat ,Iron Head ,Iron Defense ,Rock Slide ,Screech ,Adamant ,- ,252,252,- ,- ,-
+307,Meditite ,Meditite ,Black Belt Black Belt ,Vacuum Wave ,Psychic ,Calm Mind ,Recover ,Rash ,- ,- ,- ,252,- ,252
+309,Electrike ,Electrike ,Magnet Magnet ,Thunder ,Swift ,Quick Attack ,Thunder Fang ,Rash ,- ,- ,- ,252,- ,252
+316,Gulpin ,Gulpin ,Poison Barb Poison Barb ,Gunk Shot ,Amnesia ,Frustration ,Acid Armor ,Brave ,252,252,- ,- ,- ,-
+318,Carvanha ,Carvanha ,Mystic Water Mystic Water ,Crunch ,Aqua Jet ,Screech ,Waterfall ,Adamant ,- ,252,- ,- ,- ,252
+322,Numel ,Numel ,Charcoal Charcoal ,Heat Wave ,Earth Power ,Amnesia ,Dig ,Mild ,- ,- ,- ,252,- ,252
+325,Spoink ,Spoink ,TwistedSpoon TwistedSpoon ,Extrasensory ,Psywave ,Facade ,Calm Mind ,Hasty ,- ,- ,- ,252,- ,252
+328,Trapinch ,Trapinch ,Soft Sand Soft Sand ,Earthquake ,Quick Attack ,Strength ,Double Team ,Jolly ,- ,252,- ,- ,- ,252
+331,Cacnea ,Cacnea ,Miracle Seed Miracle Seed ,Needle Arm ,Sandstorm ,Giga Drain ,Frustration ,Hasty ,- ,252,- ,- ,- ,252
+333,Swablu ,Swablu ,Sharp Beak Sharp Beak ,Aerial Ace ,Feather Dance ,Return ,Roost ,Lonely ,- ,252,- ,- ,- ,252
+339,Barboach ,Barboach ,Mystic Water Mystic Water ,Earth Power ,Aqua Tail ,Amnesia ,Hydro Pump ,Mild ,- ,- ,- ,252,- ,252
+341,Corphish ,Corphish ,Mystic Water Mystic Water ,Crabhammer ,Swords Dance ,Strength ,Iron Defense ,Jolly ,- ,252,- ,- ,- ,252
+343,Baltoy ,Baltoy ,Soft Sand Soft Sand ,Earth Power ,Cosmic Power ,Psychic ,Earthquake ,Mild ,- ,- ,- ,252,- ,252
+349,Feebas ,Feebas ,Mystic Water Mystic Water ,Waterfall ,Facade ,Tickle ,Flail ,Adamant ,- ,252,- ,- ,- ,252
+353,Shuppet ,Shuppet ,Spell Tag Spell Tag ,Shadow Sneak ,Frustration ,Double Team ,Screech ,Jolly ,- ,252,- ,- ,- ,252
+355,Duskull ,Duskull ,Spell Tag Spell Tag ,Frustration ,Shadow Ball ,Double Team ,Night Shade ,Mild ,- ,- ,- ,252,252,-
+360,Wynaut ,Wynaut ,Sitrus Berry Sitrus Berry ,Counter ,Mirror Coat ,Safeguard ,Charm ,Bold ,- ,- ,252,- ,252,-
+361,Snorunt ,Snorunt ,NeverMeltIce NeverMeltIce ,Avalanche ,Ice Shard ,Frustration ,Hail ,Brave ,- ,252,252,- ,- ,-
+363,Spheal ,Spheal ,NeverMeltIce NeverMeltIce ,Blizzard ,Ice Ball ,Waterfall ,Hail ,Rash ,- ,- ,- ,252,- ,252
+370,Luvdisc ,Luvdisc ,Mystic Water Mystic Water ,Aqua Ring ,Dive ,Return ,Brine ,Lonely ,- ,252,- ,- ,- ,252
+371,Bagon ,Bagon ,Dragon Fang Dragon Fang ,Headbutt ,Dragon Dance ,Dragon Claw ,Dragon Rage ,Jolly ,- ,252,- ,- ,- ,252
+374,Beldum ,Beldum ,Metal Coat Metal Coat ,Iron Head ,Zen Headbutt ,Iron Defense ,- ,Adamant ,- ,252,- ,- ,- ,252
+387,Turtwig ,Turtwig ,Miracle Seed Miracle Seed ,Seed Bomb ,Strength ,Tickle ,Mega Drain ,Lonely ,252,252,- ,- ,- ,-
+390,Chimchar ,Chimchar ,Charcoal Charcoal ,Rock Climb ,Nasty Plot ,Flame Wheel ,Swords Dance ,Mild ,- ,252,- ,252,- ,-
+393,Piplup ,Piplup ,Mystic Water Mystic Water ,Hydro Pump ,Growl ,Brine ,Facade ,Mild ,- ,- ,- ,252,- ,252
+396,Starly ,Starly ,Sharp Beak Sharp Beak ,Brave Bird ,Feather Dance ,Quick Attack ,Aerial Ace ,Adamant ,- ,252,- ,- ,- ,252
+399,Bidoof ,Bidoof ,Silk Scarf Silk Scarf ,Hyper Fang ,Aqua Tail ,Quick Attack ,Defense Curl ,Impish ,- ,252,- ,- ,- ,252
+401,Kricketot ,Kricketot ,SilverPowder SilverPowder ,Bug Bite ,Bide ,Growl ,Endeavor ,Impish ,- ,- ,252,- ,252,-
+403,Shinx ,Shinx ,Magnet Magnet ,Quick Attack ,Scary Face ,Thunder ,Thunder Fang ,Naughty ,- ,252,- ,252,- ,-
+406,Budew ,Budew ,Miracle Seed Miracle Seed ,Razor Leaf ,Sludge Bomb ,Protect ,Energy Ball ,Quiet ,- ,- ,- ,252,252,-
+412,Burmy ,Burmy ,SilverPowder SilverPowder ,Tackle ,Bug Bite ,- ,- ,Adamant ,- ,252,- ,- ,- ,252
+415,Combee ,Combee ,SilverPowder SilverPowder ,Bug Bite ,Gust ,- ,- ,Naughty ,- ,252,- ,- ,- ,252
+418,Buizel ,Buizel ,Mystic Water Mystic Water ,Aqua Jet ,Swift ,Agility ,Waterfall ,Hasty ,- ,252,- ,- ,- ,252
+420,Cherubi ,Cherubi ,Miracle Seed Miracle Seed ,Razor Leaf ,Magical Leaf ,Tickle ,Return ,Naughty ,- ,252,- ,- ,- ,252
+422,Shellos ,Shellos ,Mystic Water Mystic Water ,Brine ,Facade ,Amnesia ,Recover ,Gentle ,252,- ,- ,- ,252,-
+431,Glameow ,Glameow ,Silk Scarf Silk Scarf ,Slash ,U-turn ,Quick Attack ,Charm ,Adamant ,- ,252,- ,- ,- ,252
+433,Chingling ,Chingling ,TwistedSpoon TwistedSpoon ,Psychic ,Growl ,Recover ,Uproar ,Modest ,- ,- ,- ,252,- ,252
+434,Stunky ,Stunky ,Poison Barb Poison Barb ,Sludge Bomb ,Dark Pulse ,Scary Face ,SmokeScreen ,Modest ,- ,- ,- ,252,- ,252
+436,Bronzor ,Bronzor ,Metal Coat Metal Coat ,Flash Cannon ,Extrasensory ,Iron Defense ,Gyro Ball ,Quiet ,- ,- ,252,252,- ,-
+438,Bonsly ,Bonsly ,Hard Stone Hard Stone ,Double-Edge ,Rock Slide ,Flail ,Sandstorm ,Jolly ,- ,252,- ,- ,- ,252
+439,Mime Jr. ,Mime Jr. ,TwistedSpoon TwistedSpoon ,Psychic ,Facade ,Barrier ,Future Sight ,Calm ,- ,- ,252,- ,252,-
+440,Happiny ,Happiny ,Silk Scarf Silk Scarf ,Return ,Grass Knot ,Charm ,Double Team ,Lax ,252,- ,252,- ,- ,-
+443,Gible ,Gible ,Dragon Fang Dragon Fang ,Dragon Claw ,Dig ,Dragon Rage ,Scary Face ,Adamant ,- ,252,- ,- ,- ,252
+447,Riolu ,Riolu ,Black Belt Black Belt ,Quick Attack ,Low Kick ,Screech ,Foresight ,Jolly ,- ,252,- ,- ,- ,252
+449,Hippopotas ,Hippopotas ,Soft Sand Soft Sand ,Sand Tomb ,Double-Edge ,Mud-Slap ,Slack Off ,Careful ,- ,- ,252,- ,252,-
+451,Skorupi ,Skorupi ,SilverPowder SilverPowder ,Cross Poison ,Bug Bite ,Screech ,Scary Face ,Jolly ,- ,252,- ,- ,- ,252
+453,Croagunk ,Croagunk ,Black Belt Black Belt ,Nasty Plot ,Vacuum Wave ,Sludge Bomb ,Double Team ,Modest ,- ,- ,- ,252,- ,252
+456,Finneon ,Finneon ,Mystic Water Mystic Water ,Aqua Ring ,Brine ,Return ,Dive ,Gentle ,252,- ,- ,- ,252,-
+459,Snover ,Snover ,NeverMeltIce NeverMeltIce ,Wood Hammer ,Avalanche ,Ingrain ,Giga Drain ,Brave ,252,252,- ,- ,- ,-
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Group 2,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Pokémon in this group have base stat totals between 340 and 439 and may appear during a battle from Rank 3 to Rank 8 for a certain type.,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Argenta will randomly use one of the Pokémon listed here each time when challenged for the Silver Print if the player is also using a Pokémon with a base stat total between 340 and 439.,,,,,,,,,,,,,,
+# ,Pokémon ,Item ,Moves ,Nature ,EVs,,,,,,,,,
+HP ,Attack ,Defense ,Sp. Atk ,Sp. Def ,Speed,,,,,,,,,
+2,Ivysaur ,Ivysaur ,Miracle Seed Miracle Seed ,Sludge Bomb ,Giga Drain ,Poison Powder ,Protect ,Bold ,- ,- ,252,- ,252,-
+5,Charmeleon ,Charmeleon ,Charcoal Charcoal ,Will-O-Wisp ,Flare Blitz ,Protect ,Slash ,Hasty ,- ,252,- ,- ,- ,252
+8,Wartortle ,Wartortle ,Mystic Water Mystic Water ,Water Pulse ,Protect ,Aqua Ring ,Facade ,Calm ,- ,- ,252,- ,252,-
+12,Butterfree ,Butterfree ,SilverPowder SilverPowder ,Silver Wind ,Sleep Powder ,Air Cutter ,Double Team ,Timid ,- ,- ,- ,252,- ,252
+15,Beedrill ,Beedrill ,SilverPowder SilverPowder ,Poison Jab ,Toxic ,Bug Bite ,Double Team ,Jolly ,- ,252,- ,- ,- ,252
+17,Pidgeotto ,Pidgeotto ,Sharp Beak Sharp Beak ,Quick Attack ,Sand Attack ,Double Team ,Aerial Ace ,Adamant ,- ,252,- ,- ,- ,252
+20,Raticate ,Raticate ,Focus Band Focus Band ,Super Fang ,Endeavor ,Flame Wheel ,Quick Attack ,Jolly ,- ,252,- ,- ,- ,252
+24,Arbok ,Arbok ,Poison Barb Poison Barb ,Glare ,Gunk Shot ,Strength ,Screech ,Jolly ,- ,252,- ,- ,- ,252
+30,Nidorina ,Nidorina ,Poison Barb Poison Barb ,Poison Fang ,Attract ,Return ,Captivate ,Adamant ,- ,252,- ,- ,- ,252
+33,Nidorino ,Nidorino ,Poison Barb Poison Barb ,Poison Jab ,Attract ,Frustration ,Captivate ,Adamant ,- ,252,- ,- ,- ,252
+40,Wigglytuff ,Wigglytuff ,Silk Scarf Silk Scarf ,Sing ,Hyper Voice ,Icy Wind ,Fake Tears ,Modest ,- ,- ,252,252,- ,-
+44,Gloom ,Gloom ,Miracle Seed Miracle Seed ,Poison Powder ,Giga Drain ,Energy Ball ,Sludge Bomb ,Modest ,- ,- ,- ,252,- ,252
+47,Parasect ,Parasect ,SilverPowder SilverPowder ,X-Scissor ,Spore ,Giga Drain ,Double Team ,Hasty ,- ,252,- ,- ,- ,252
+51,Dugtrio ,Dugtrio ,Soft Sand Soft Sand ,Earthquake ,Slash ,Sandstorm ,Mud-Slap ,Jolly ,- ,252,- ,- ,- ,252
+58,Growlithe ,Growlithe ,Charcoal Charcoal ,Flare Blitz ,Return ,Will-O-Wisp ,Flame Wheel ,Adamant ,- ,252,- ,- ,- ,252
+61,Poliwhirl ,Poliwhirl ,Mystic Water Mystic Water ,Waterfall ,Body Slam ,Bubble Beam ,Double Team ,Lonely ,- ,252,- ,- ,- ,252
+64,Kadabra ,Kadabra ,TwistedSpoon TwistedSpoon ,Psychic ,Facade ,Calm Mind ,Thunder Wave ,Rash ,- ,- ,- ,252,- ,252
+67,Machoke ,Machoke ,Black Belt Black Belt ,Cross Chop ,Fire Punch ,Bulk Up ,Light Screen ,Jolly ,- ,252,- ,- ,- ,252
+70,Weepinbell ,Weepinbell ,Miracle Seed Miracle Seed ,Poison Powder ,Sludge Bomb ,Energy Ball ,Synthesis ,Modest ,252,- ,- ,252,- ,-
+75,Graveler ,Graveler ,Hard Stone Hard Stone ,Dig ,Stone Edge ,Rock Polish ,Double-Edge ,Adamant ,- ,252,- ,- ,- ,252
+77,Ponyta ,Ponyta ,Charcoal Charcoal ,Tail Whip ,Flare Blitz ,Will-O-Wisp ,Return ,Jolly ,- ,252,- ,- ,- ,252
+83,Farfetch'd ,Farfetch'd ,Stick Stick ,Slash ,Swords Dance ,Aerial Ace ,Swagger ,Adamant ,- ,252,- ,- ,- ,252
+93,Haunter ,Haunter ,Spell Tag Spell Tag ,Shadow Ball ,Sludge Bomb ,Confuse Ray ,Hypnosis ,Timid ,- ,- ,- ,252,- ,252
+95,Onix ,Onix ,Hard Stone Hard Stone ,Stone Edge ,Dig ,Sandstorm ,Protect ,Impish ,252,- ,252,- ,- ,-
+105,Marowak ,Marowak ,Soft Sand Soft Sand ,Bone Rush ,Swords Dance ,Double-Edge ,Earth Power ,Hasty ,- ,252,- ,- ,- ,252
+108,Lickitung ,Lickitung ,Silk Scarf Silk Scarf ,Body Slam ,Power Whip ,Curse ,Screech ,Adamant ,- ,252,252,- ,- ,-
+109,Koffing ,Koffing ,Poison Barb Poison Barb ,Smog ,Sludge Bomb ,Frustration ,SmokeScreen ,Timid ,- ,- ,- ,252,- ,252
+111,Rhyhorn ,Rhyhorn ,Soft Sand Soft Sand ,Stone Edge ,Dig ,Counter ,Curse ,Impish ,252,- ,252,- ,- ,-
+114,Tangela ,Tangela ,Miracle Seed Miracle Seed ,Giga Drain ,Stun Spore ,Energy Ball ,Wring Out ,Modest ,- ,- ,252,252,- ,-
+120,Staryu ,Staryu ,Mystic Water Mystic Water ,Water Pulse ,Swift ,Light Screen ,Cosmic Power ,Modest ,- ,- ,- ,252,- ,252
+137,Porygon ,Porygon ,Silk Scarf Silk Scarf ,Tri Attack ,Signal Beam ,Trick Room ,Recover ,Quiet ,252,- ,- ,252,- ,-
+138,Omanyte ,Omanyte ,Hard Stone Hard Stone ,Ancient Power ,Water Pulse ,Iron Defense ,Brine ,Rash ,252,- ,- ,252,- ,-
+140,Kabuto ,Kabuto ,Hard Stone Hard Stone ,Waterfall ,Rock Slide ,Confuse Ray ,Rock Tomb ,Jolly ,- ,252,- ,- ,- ,252
+148,Dragonair ,Dragonair ,Dragon Fang Dragon Fang ,Thunder Wave ,Dragon Rush ,Light Screen ,Return ,Jolly ,- ,252,- ,- ,- ,252
+153,Bayleef ,Bayleef ,Miracle Seed Miracle Seed ,Body Slam ,Reflect ,Ingrain ,Seed Bomb ,Adamant ,252,252,- ,- ,- ,-
+156,Quilava ,Quilava ,Charcoal Charcoal ,Will-O-Wisp ,Eruption ,Swift ,SmokeScreen ,Timid ,- ,- ,- ,252,- ,252
+159,Croconaw ,Croconaw ,Mystic Water Mystic Water ,Aqua Tail ,Mud Sport ,Slash ,Scary Face ,Adamant ,- ,252,- ,- ,- ,252
+162,Furret ,Furret ,Silk Scarf Silk Scarf ,Hyper Voice ,Mud-Slap ,Charm ,Double Team ,Rash ,- ,- ,- ,252,- ,252
+166,Ledian ,Ledian ,SilverPowder SilverPowder ,Bug Buzz ,Reflect ,Air Cutter ,Light Screen ,Timid ,252,- ,- ,- ,- ,252
+168,Ariados ,Ariados ,SilverPowder SilverPowder ,Poison Jab ,Bug Bite ,Double Team ,Disable ,Jolly ,- ,252,- ,- ,- ,252
+176,Togetic ,Togetic ,Silk Scarf Silk Scarf ,Return ,Aerial Ace ,Roost ,Yawn ,Jolly ,- ,252,- ,- ,- ,252
+180,Flaaffy ,Flaaffy ,Magnet Magnet ,Thunder ,Body Slam ,Reflect ,Flash ,Lax ,- ,- ,252,252,- ,-
+184,Azumarill ,Azumarill ,Mystic Water Mystic Water ,Water Pulse ,Aqua Ring ,Return ,Light Screen ,Gentle ,252,- ,- ,- ,252,-
+185,Sudowoodo ,Sudowoodo ,Hard Stone Hard Stone ,Double-Edge ,Stone Edge ,Sandstorm ,Mimic ,Impish ,- ,252,252,- ,- ,-
+188,Skiploom ,Skiploom ,Miracle Seed Miracle Seed ,Bounce ,Poison Powder ,Sunny Day ,Solar Beam ,Quiet ,- ,252,- ,252,- ,-
+190,Aipom ,Aipom ,Silk Scarf Silk Scarf ,Frustration ,Iron Tail ,Fake Out ,Swagger ,Adamant ,- ,252,- ,- ,- ,252
+192,Sunflora ,Sunflora ,Miracle Seed Miracle Seed ,Sunny Day ,Solar Beam ,Facade ,Leech Seed ,Quiet ,252,- ,- ,252,- ,-
+193,Yanma ,Yanma ,SilverPowder SilverPowder ,Bug Buzz ,Air Slash ,Double Team ,Supersonic ,Modest ,- ,- ,- ,252,- ,252
+195,Quagsire ,Quagsire ,Mystic Water Mystic Water ,Earth Power ,Muddy Water ,Yawn ,Endure ,Modest ,- ,- ,252,252,- ,-
+198,Murkrow ,Murkrow ,Sharp Beak Sharp Beak ,Confuse Ray ,Psycho Shift ,Drill Peck ,Feint Attack ,Adamant ,- ,252,- ,- ,- ,252
+200,Misdreavus ,Misdreavus ,Spell Tag Spell Tag ,Shadow Ball ,Frustration ,Pain Split ,Confuse Ray ,Hasty ,- ,- ,- ,252,- ,252
+202,Wobbuffet ,Wobbuffet ,Sitrus Berry Sitrus Berry ,Counter ,Mirror Coat ,Safeguard ,Charm ,Calm ,- ,- ,252,- ,252,-
+206,Dunsparce ,Dunsparce ,Silk Scarf Silk Scarf ,Ancient Power ,Headbutt ,Yawn ,Roost ,Jolly ,- ,252,- ,- ,- ,252
+207,Gligar ,Gligar ,Soft Sand Soft Sand ,Sandstorm ,Earthquake ,Aerial Ace ,Double Team ,Jolly ,- ,252,- ,- ,- ,252
+211,Qwilfish ,Qwilfish ,Mystic Water Mystic Water ,Poison Jab ,Dive ,Stockpile ,Minimize ,Careful ,- ,- ,252,- ,252,-
+215,Sneasel ,Sneasel ,BlackGlasses BlackGlasses ,Ice Shard ,Payback ,Punishment ,Ice Punch ,Jolly ,- ,252,- ,- ,- ,252
+219,Magcargo ,Magcargo ,Charcoal Charcoal ,Ancient Power ,Light Screen ,Recover ,Flamethrower ,Sassy ,252,- ,- ,- ,252,-
+222,Corsola ,Corsola ,Mystic Water Mystic Water ,Power Gem ,Brine ,Amnesia ,Aqua Ring ,Modest ,252,- ,- ,252,- ,-
+239,Elekid ,Elekid ,Magnet Magnet ,Thunder Punch ,Facade ,Thunder Wave ,Quick Attack ,Adamant ,- ,252,- ,- ,- ,252
+240,Magby ,Magby ,Charcoal Charcoal ,Fire Punch ,Will-O-Wisp ,Confuse Ray ,Return ,Jolly ,- ,252,- ,- ,- ,252
+247,Pupitar ,Pupitar ,Hard Stone Hard Stone ,Stone Edge ,Dig ,Sandstorm ,Protect ,Adamant ,- ,252,252,- ,- ,-
+253,Grovyle ,Grovyle ,Miracle Seed Miracle Seed ,Leaf Blade ,Crush Claw ,Swords Dance ,Swagger ,Jolly ,- ,252,- ,- ,- ,252
+256,Combusken ,Combusken ,Charcoal Charcoal ,Sky Uppercut ,Fire Punch ,Will-O-Wisp ,Bulk Up ,Jolly ,- ,252,- ,- ,- ,252
+259,Marshtomp ,Marshtomp ,Mystic Water Mystic Water ,Muddy Water ,Earth Power ,Dive ,Dig ,Mild ,- ,- ,- ,252,252,-
+262,Mightyena ,Mightyena ,BlackGlasses BlackGlasses ,Crunch ,Frustration ,Sand Attack ,Swagger ,Jolly ,- ,252,- ,- ,- ,252
+264,Linoone ,Linoone ,Silk Scarf Silk Scarf ,Slash ,Gunk Shot ,Charm ,Last Resort ,Jolly ,- ,252,- ,- ,- ,252
+267,Beautifly ,Beautifly ,SilverPowder SilverPowder ,Stun Spore ,Bug Buzz ,Air Cutter ,Roost ,Modest ,- ,- ,- ,252,- ,252
+269,Dustox ,Dustox ,SilverPowder SilverPowder ,Toxic ,Sludge Bomb ,Bug Buzz ,Roost ,Calm ,- ,- ,252,- ,252,-
+271,Lombre ,Lombre ,Mystic Water Mystic Water ,Rain Dance ,Giga Drain ,Water Pulse ,Leech Seed ,Bold ,- ,- ,252,252,- ,-
+274,Nuzleaf ,Nuzleaf ,Miracle Seed Miracle Seed ,Dark Pulse ,Nasty Plot ,Energy Ball ,Swagger ,Modest ,- ,- ,- ,252,- ,252
+277,Swellow ,Swellow ,Sharp Beak Sharp Beak ,Double Team ,Roost ,Facade ,Sky Attack ,Adamant ,- ,252,- ,- ,- ,252
+279,Pelipper ,Pelipper ,Sharp Beak Sharp Beak ,Air Slash ,Water Pulse ,Aqua Ring ,Hydro Pump ,Timid ,- ,- ,- ,252,- ,252
+284,Masquerain ,Masquerain ,SilverPowder SilverPowder ,Air Slash ,Bug Buzz ,Stun Spore ,Double Team ,Mild ,- ,- ,252,252,- ,-
+294,Loudred ,Loudred ,Silk Scarf Silk Scarf ,Hyper Voice ,Water Pulse ,Rest ,Snore ,Modest ,- ,- ,252,252,- ,-
+299,Nosepass ,Nosepass ,Hard Stone Hard Stone ,Stone Edge ,Double-Edge ,Thunder Wave ,Magnet Rise ,Impish ,- ,252,252,- ,- ,-
+301,Delcatty ,Delcatty ,Silk Scarf Silk Scarf ,Foresight ,Mud-Slap ,Charge Beam ,Ice Beam ,Modest ,- ,- ,- ,252,252,-
+302,Sableye ,Sableye ,Spell Tag Spell Tag ,Shadow Claw ,Torment ,Payback ,Double Team ,Gentle ,- ,252,- ,- ,252,-
+303,Mawile ,Mawile ,Metal Coat Metal Coat ,Iron Head ,Strength ,Sandstorm ,Tickle ,Impish ,- ,252,252,- ,- ,-
+305,Lairon ,Lairon ,Metal Coat Metal Coat ,Metal Burst ,Iron Tail ,Stone Edge ,Iron Defense ,Impish ,252,- ,252,- ,- ,-
+308,Medicham ,Medicham ,Black Belt Black Belt ,Psycho Cut ,Force Palm ,Recover ,Double Team ,Adamant ,- ,252,252,- ,- ,-
+311,Plusle ,Plusle ,Magnet Magnet ,Nasty Plot ,Swift ,Thunderbolt ,Thunder Wave ,Timid ,- ,- ,- ,252,- ,252
+312,Minun ,Minun ,Magnet Magnet ,Fake Tears ,Swift ,Thunderbolt ,Thunder Wave ,Timid ,- ,- ,- ,252,- ,252
+313,Volbeat ,Volbeat ,SilverPowder SilverPowder ,Bug Buzz ,Tail Glow ,Quick Attack ,Attract ,Rash ,- ,- ,- ,252,- ,252
+314,Illumise ,Illumise ,SilverPowder SilverPowder ,Bug Buzz ,Attract ,Charm ,Frustration ,Mild ,- ,- ,- ,252,- ,252
+315,Roselia ,Roselia ,Miracle Seed Miracle Seed ,Synthesis ,Giga Drain ,Sludge ,Ingrain ,Modest ,- ,- ,252,252,- ,-
+320,Wailmer ,Wailmer ,Mystic Water Mystic Water ,Water Spout ,Sleep Talk ,Body Slam ,Rest ,Modest ,252,- ,- ,252,- ,-
+327,Spinda ,Spinda ,Silk Scarf Silk Scarf ,Teeter Dance ,Zen Headbutt ,Frustration ,Fake Out ,Adamant ,- ,252,- ,- ,- ,252
+329,Vibrava ,Vibrava ,Soft Sand Soft Sand ,Outrage ,Earthquake ,Screech ,Sandstorm ,Adamant ,- ,252,- ,- ,- ,252
+345,Lileep ,Lileep ,Hard Stone Hard Stone ,Giga Drain ,Ancient Power ,Ingrain ,Confuse Ray ,Modest ,- ,- ,252,252,- ,-
+347,Anorith ,Anorith ,Hard Stone Hard Stone ,X-Scissor ,Protect ,Stone Edge ,Sandstorm ,Adamant ,- ,252,252,- ,- ,-
+351,Castform ,Castform ,Sitrus Berry Sitrus Berry ,Weather Ball ,Rain Dance ,Sunny Day ,Hail ,Modest ,- ,- ,- ,252,- ,252
+358,Chimecho ,Chimecho ,TwistedSpoon TwistedSpoon ,Psychic ,Calm Mind ,Yawn ,Double-Edge ,Hasty ,- ,- ,- ,252,- ,252
+364,Sealeo ,Sealeo ,NeverMeltIce NeverMeltIce ,Blizzard ,Waterfall ,Rest ,Snore ,Modest ,252,- ,- ,252,- ,-
+366,Clamperl ,Clamperl ,Mystic Water Mystic Water ,Mud Sport ,Aqua Ring ,Dive ,Body Slam ,Gentle ,252,- ,- ,- ,252,-
+372,Shelgon ,Shelgon ,Dragon Fang Dragon Fang ,Dragon Rush ,Double-Edge ,Iron Defense ,Swagger ,Adamant ,- ,252,252,- ,- ,-
+375,Metang ,Metang ,Metal Coat Metal Coat ,Flash Cannon ,Psychic ,Reflect ,Magnet Rise ,Timid ,- ,- ,- ,252,- ,252
+388,Grotle ,Grotle ,Miracle Seed Miracle Seed ,Leaf Storm ,Body Slam ,Seed Bomb ,Leech Seed ,Brave ,- ,252,252,- ,- ,-
+391,Monferno ,Monferno ,Charcoal Charcoal ,Flare Blitz ,Close Combat ,Mach Punch ,Will-O-Wisp ,Adamant ,- ,252,- ,- ,- ,252
+394,Prinplup ,Prinplup ,Mystic Water Mystic Water ,Swagger ,Brine ,Facade ,Aqua Ring ,Hasty ,- ,- ,- ,252,- ,252
+397,Staravia ,Staravia ,Sharp Beak Sharp Beak ,Brave Bird ,Facade ,Feather Dance ,Quick Attack ,Adamant ,- ,252,- ,- ,- ,252
+400,Bibarel ,Bibarel ,Silk Scarf Silk Scarf ,Super Fang ,Waterfall ,Yawn ,Amnesia ,Jolly ,- ,252,- ,- ,- ,252
+402,Kricketune ,Kricketune ,SilverPowder SilverPowder ,X-Scissor ,Slash ,Screech ,Sing ,Jolly ,- ,252,- ,- ,- ,252
+404,Luxio ,Luxio ,Magnet Magnet ,Thunder Fang ,Quick Attack ,Thunder Wave ,Double Team ,Adamant ,- ,252,- ,- ,- ,252
+408,Cranidos ,Cranidos ,Hard Stone Hard Stone ,Head Smash ,Headbutt ,Scary Face ,Stone Edge ,Jolly ,- ,252,- ,- ,- ,252
+410,Shieldon ,Shieldon ,Hard Stone Hard Stone ,Metal Burst ,Iron Head ,Stone Edge ,Taunt ,Careful ,- ,- ,252,- ,252,-
+413,Wormadam ,Wormadam ,SilverPowder SilverPowder ,Leaf Storm ,Razor Leaf ,Bug Bite ,Captivate ,Quiet ,- ,252,- ,252,- ,-
+413,Wormadam ,Wormadam ,SilverPowder SilverPowder ,Dig ,Bug Bite ,Earth Power ,Captivate ,Brave ,- ,252,- ,252,- ,-
+413,Wormadam ,Wormadam ,SilverPowder SilverPowder ,Iron Head ,Flash Cannon ,Bug Bite ,Captivate ,Relaxed ,- ,252,- ,252,- ,-
+414,Mothim ,Mothim ,SilverPowder SilverPowder ,Silver Wind ,Air Slash ,Poison Powder ,Roost ,Timid ,- ,- ,- ,252,- ,252
+417,Pachirisu ,Pachirisu ,Magnet Magnet ,Super Fang ,Swift ,Thunder ,Thunder Wave ,Modest ,- ,- ,- ,252,- ,252
+425,Drifloon ,Drifloon ,Spell Tag Spell Tag ,Ominous Wind ,Air Cutter ,Will-O-Wisp ,Substitute ,Modest ,- ,- ,- ,252,252,-
+427,Buneary ,Buneary ,Silk Scarf Silk Scarf ,Dizzy Punch ,Bounce ,Attract ,Charm ,Jolly ,- ,252,- ,- ,- ,252
+441,Chatot ,Chatot ,Sharp Beak Sharp Beak ,Hyper Voice ,Chatter ,Roost ,Nasty Plot ,Modest ,- ,- ,- ,252,- ,252
+444,Gabite ,Gabite ,Dragon Fang Dragon Fang ,Sandstorm ,Dig ,Dragon Claw ,Twister ,Jolly ,- ,252,- ,- ,- ,252
+446,Munchlax ,Munchlax ,Silk Scarf Silk Scarf ,Body Slam ,Rock Tomb ,Rest ,Sleep Talk ,Adamant ,- ,252,252,- ,- ,-
+458,Mantyke ,Mantyke ,Mystic Water Mystic Water ,Bounce ,Dive ,Aqua Ring ,Double Team ,Jolly ,- ,252,- ,- ,- ,252
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Group 3,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Pokémon from this list have a base stat total between 440 and 499 and will begin appearing after the player has reached Rank 6 of a matching type.,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Argenta will randomly use one of the Pokémon listed here each time when challenged for the Silver Print if the player is also using a Pokémon with a base stat total between 440 and 499.,,,,,,,,,,,,,,
+# ,Pokémon ,Item ,Moves ,Nature ,EVs,,,,,,,,,
+HP ,Attack ,Defense ,Sp. Atk ,Sp. Def ,Speed,,,,,,,,,
+18,Pidgeot ,Pidgeot ,Wise Glasses Wise Glasses ,Ominous Wind ,Heat Wave ,Air Slash ,Uproar ,Modest ,- ,- ,- ,252,- ,252
+22,Fearow ,Fearow ,Muscle Band Muscle Band ,Drill Peck ,U-turn ,Steel Wing ,Feint Attack ,Jolly ,- ,252,- ,- ,- ,252
+26,Raichu ,Raichu ,Muscle Band Muscle Band ,Thunder Punch ,Brick Break ,Iron Tail ,Quick Attack ,Adamant ,- ,252,- ,- ,- ,252
+28,Sandslash ,Sandslash ,BrightPowder BrightPowder ,Sandstorm ,Slash ,Night Slash ,Dig ,Adamant ,- ,252,- ,- ,- ,252
+31,Nidoqueen ,Nidoqueen ,Wise Glasses Wise Glasses ,Earth Power ,Sludge Bomb ,Attract ,Shadow Ball ,Modest ,- ,- ,252,252,- ,-
+34,Nidoking ,Nidoking ,Muscle Band Muscle Band ,Dig ,Poison Jab ,Attract ,Megahorn ,Adamant ,- ,252,252,- ,- ,-
+36,Clefable ,Clefable ,Lum Berry Lum Berry ,Return ,Ice Punch ,Fire Punch ,Thunder Punch ,Adamant ,- ,252,252,- ,- ,-
+42,Golbat ,Golbat ,Razor Fang Razor Fang ,Sludge Bomb ,Ominous Wind ,Giga Drain ,Air Slash ,Modest ,- ,- ,- ,252,- ,252
+45,Vileplume ,Vileplume ,Heat Rock Heat Rock ,Sludge Bomb ,Solar Beam ,Sunny Day ,Synthesis ,Modest ,- ,- ,- ,252,- ,252
+49,Venomoth ,Venomoth ,Choice Specs Choice Specs ,Bug Buzz ,Psychic ,Sludge Bomb ,Energy Ball ,Modest ,- ,- ,- ,252,- ,252
+53,Persian ,Persian ,King's Rock King's Rock ,Power Gem ,Water Pulse ,Swift ,Icy Wind ,Modest ,- ,- ,- ,252,- ,252
+57,Primeape ,Primeape ,Expert Belt Expert Belt ,Cross Chop ,Gunk Shot ,Seed Bomb ,Stone Edge ,Adamant ,- ,252,- ,- ,- ,252
+65,Alakazam ,Alakazam ,Expert Belt Expert Belt ,Psychic ,Focus Blast ,Energy Ball ,Signal Beam ,Timid ,- ,- ,- ,252,- ,252
+71,Victreebel ,Victreebel ,White Herb White Herb ,Leaf Storm ,Grass Knot ,Toxic ,Worry Seed ,Modest ,252,- ,- ,252,- ,-
+76,Golem ,Golem ,Quick Claw Quick Claw ,Stone Edge ,Earth Power ,Hammer Arm ,Sucker Punch ,Brave ,- ,252,- ,252,- ,-
+80,Slowbro ,Slowbro ,Sitrus Berry Sitrus Berry ,Water Pulse ,Psychic ,Ice Beam ,Flamethrower ,Modest ,252,- ,- ,252,- ,-
+82,Magneton ,Magneton ,Scope Lens Scope Lens ,Tri Attack ,Flash Cannon ,Thunderbolt ,Signal Beam ,Modest ,- ,- ,- ,252,- ,252
+85,Dodrio ,Dodrio ,Liechi Berry Liechi Berry ,Drill Peck ,Rest ,Steel Wing ,Tri Attack ,Jolly ,- ,252,- ,- ,- ,252
+87,Dewgong ,Dewgong ,Chesto Berry Chesto Berry ,Signal Beam ,Ice Beam ,Brine ,Rest ,Modest ,- ,- ,252,252,- ,-
+97,Hypno ,Hypno ,Zoom Lens Zoom Lens ,Hypnosis ,Focus Blast ,Psychic ,Nightmare ,Quiet ,252,- ,- ,252,- ,-
+99,Kingler ,Kingler ,Focus Sash Focus Sash ,Crabhammer ,X-Scissor ,Superpower ,Dig ,Adamant ,252,252,- ,- ,- ,-
+101,Electrode ,Electrode ,King's Rock King's Rock ,Swift ,Thunderbolt ,Rollout ,Signal Beam ,Naive ,- ,- ,- ,252,- ,252
+106,Hitmonlee ,Hitmonlee ,Salac Berry Salac Berry ,Endure ,Reversal ,High Jump Kick ,Bounce ,Jolly ,- ,252,- ,- ,- ,252
+107,Hitmonchan ,Hitmonchan ,Choice Band Choice Band ,Sky Uppercut ,Thunder Punch ,Fire Punch ,Ice Punch ,Adamant ,- ,252,- ,- ,- ,252
+110,Weezing ,Weezing ,Black Sludge Black Sludge ,Toxic ,Dark Pulse ,Flamethrower ,Thunderbolt ,Calm ,252,- ,- ,- ,252,-
+112,Rhydon ,Rhydon ,Sitrus Berry Sitrus Berry ,Dig ,Stone Edge ,Rock Slide ,Megahorn ,Adamant ,252,252,- ,- ,- ,-
+113,Chansey ,Chansey ,Zoom Lens Zoom Lens ,Blizzard ,Thunder ,Fire Blast ,Return ,Quiet ,252,- ,- ,252,- ,-
+115,Kangaskhan ,Kangaskhan ,Persim Berry Persim Berry ,Dizzy Punch ,Outrage ,Sucker Punch ,Rest ,Adamant ,252,252,- ,- ,- ,-
+117,Seadra ,Seadra ,Scope Lens Scope Lens ,Dragon Pulse ,Hydro Pump ,Flash Cannon ,Ice Beam ,Modest ,- ,- ,- ,252,- ,252
+119,Seaking ,Seaking ,BrightPowder BrightPowder ,Megahorn ,Waterfall ,Poison Jab ,Bounce ,Adamant ,- ,252,- ,- ,- ,252
+122,Mr. Mime ,Mr. Mime ,Sitrus Berry Sitrus Berry ,Power Swap ,Fire Punch ,Ice Punch ,Thunder Punch ,Adamant ,- ,252,- ,- ,- ,252
+124,Jynx ,Jynx ,BrightPowder BrightPowder ,Lovely Kiss ,Blizzard ,Dream Eater ,Energy Ball ,Timid ,- ,- ,- ,252,- ,252
+125,Electabuzz ,Electabuzz ,Sitrus Berry Sitrus Berry ,Thunder Punch ,Iron Tail ,Brick Break ,Thief ,Adamant ,- ,252,- ,- ,- ,252
+126,Magmar ,Magmar ,Sitrus Berry Sitrus Berry ,Fire Punch ,Iron Tail ,Brick Break ,Thief ,Adamant ,- ,252,- ,- ,- ,252
+128,Tauros ,Tauros ,Persim Berry Persim Berry ,Frustration ,Iron Tail ,Outrage ,Zen Headbutt ,Adamant ,- ,252,252,- ,- ,-
+139,Omastar ,Omastar ,Wise Glasses Wise Glasses ,Ancient Power ,Hydro Pump ,Ice Beam ,Earth Power ,Modest ,252,- ,- ,252,- ,-
+141,Kabutops ,Kabutops ,Muscle Band Muscle Band ,Night Slash ,Waterfall ,Stone Edge ,X-Scissor ,Adamant ,252,252,- ,- ,- ,-
+164,Noctowl ,Noctowl ,Leftovers Leftovers ,Extrasensory ,Air Slash ,Silver Wind ,Ominous Wind ,Modest ,252,- ,- ,252,- ,-
+171,Lanturn ,Lanturn ,Sitrus Berry Sitrus Berry ,Discharge ,Brine ,Signal Beam ,Ice Beam ,Modest ,252,- ,- ,252,- ,-
+178,Xatu ,Xatu ,Leftovers Leftovers ,Psychic ,Air Cutter ,Ominous Wind ,Silver Wind ,Modest ,- ,- ,- ,252,- ,252
+182,Bellossom ,Bellossom ,Big Root Big Root ,Leaf Blade ,Drain Punch ,Stun Spore ,Leaf Storm ,Brave ,- ,252,252,- ,- ,-
+189,Jumpluff ,Jumpluff ,BrightPowder BrightPowder ,Seed Bomb ,Leech Seed ,U-turn ,Bounce ,Adamant ,- ,252,- ,- ,- ,252
+199,Slowking ,Slowking ,Leftovers Leftovers ,Psychic ,Water Pulse ,Power Gem ,Shadow Ball ,Modest ,- ,- ,- ,252,252,-
+203,Girafarig ,Girafarig ,Lum Berry Lum Berry ,Crunch ,Zen Headbutt ,Return ,Mirror Coat ,Adamant ,- ,252,- ,- ,- ,252
+205,Forretress ,Forretress ,Lum Berry Lum Berry ,Gyro Ball ,Payback ,Bug Bite ,Counter ,Brave ,252,252,- ,- ,- ,-
+210,Granbull ,Granbull ,Focus Band Focus Band ,Return ,Crunch ,Close Combat ,Stone Edge ,Adamant ,- ,252,252,- ,- ,-
+221,Piloswine ,Piloswine ,BrightPowder BrightPowder ,Ice Fang ,Dig ,Body Slam ,Hail ,Adamant ,- ,252,252,- ,- ,-
+224,Octillery ,Octillery ,Scope Lens Scope Lens ,Octazooka ,Gunk Shot ,Rock Blast ,Seed Bomb ,Brave ,- ,252,- ,252,- ,-
+226,Mantine ,Mantine ,Expert Belt Expert Belt ,Signal Beam ,Earthquake ,Surf ,Aerial Ace ,Mild ,- ,- ,- ,252,- ,252
+227,Skarmory ,Skarmory ,Razor Claw Razor Claw ,Rock Slide ,Night Slash ,Steel Wing ,Drill Peck ,Adamant ,- ,252,- ,- ,- ,252
+234,Stantler ,Stantler ,King's Rock King's Rock ,Extrasensory ,Thunder ,Facade ,Shadow Ball ,Rash ,- ,- ,- ,252,- ,252
+237,Hitmontop ,Hitmontop ,Salac Berry Salac Berry ,Triple Kick ,Aerial Ace ,Thief ,Twister ,Adamant ,- ,252,- ,- ,- ,252
+241,Miltank ,Miltank ,Leftovers Leftovers ,Body Slam ,Zen Headbutt ,Hammer Arm ,Iron Tail ,Adamant ,- ,252,252,- ,- ,-
+272,Ludicolo ,Ludicolo ,Leftovers Leftovers ,Giga Drain ,Water Pulse ,Rain Dance ,Ice Beam ,Modest ,- ,- ,252,252,- ,-
+275,Shiftry ,Shiftry ,White Herb White Herb ,Leaf Storm ,Extrasensory ,Dark Pulse ,Focus Blast ,Modest ,- ,- ,- ,252,- ,252
+286,Breloom ,Breloom ,Expert Belt Expert Belt ,Sky Uppercut ,Seed Bomb ,Stone Edge ,Thunder Punch ,Adamant ,- ,252,- ,- ,- ,252
+288,Vigoroth ,Vigoroth ,Razor Claw Razor Claw ,Slash ,Night Slash ,Shadow Claw ,Thunder Punch ,Adamant ,- ,252,- ,- ,- ,252
+291,Ninjask ,Ninjask ,Liechi Berry Liechi Berry ,X-Scissor ,Aerial Ace ,Dig ,Slash ,Adamant ,- ,252,252,- ,- ,-
+295,Exploud ,Exploud ,Metronome Metronome ,Hyper Voice ,Water Pulse ,Flamethrower ,Ice Beam ,Modest ,- ,- ,252,252,- ,-
+297,Hariyama ,Hariyama ,Focus Band Focus Band ,Vital Throw ,Payback ,Fake Out ,Thunder Punch ,Brave ,252,252,- ,- ,- ,-
+310,Manectric ,Manectric ,Focus Sash Focus Sash ,Thunder ,Flamethrower ,Swift ,Signal Beam ,Modest ,- ,- ,- ,252,- ,252
+317,Swalot ,Swalot ,Expert Belt Expert Belt ,Toxic ,Ice Punch ,Fire Punch ,Thunder Punch ,Adamant ,252,252,- ,- ,- ,-
+319,Sharpedo ,Sharpedo ,Focus Sash Focus Sash ,Crunch ,Waterfall ,Ice Fang ,Zen Headbutt ,Adamant ,- ,252,- ,- ,- ,252
+323,Camerupt ,Camerupt ,Power Herb Power Herb ,Eruption ,Earth Power ,Ancient Power ,Solar Beam ,Modest ,- ,- ,- ,252,252,-
+324,Torkoal ,Torkoal ,White Herb White Herb ,Overheat ,Body Slam ,Earth Power ,Stone Edge ,Quiet ,- ,252,- ,252,- ,-
+326,Grumpig ,Grumpig ,Wise Glasses Wise Glasses ,Psychic ,Power Gem ,Energy Ball ,Focus Blast ,Modest ,- ,- ,- ,252,252,-
+332,Cacturne ,Cacturne ,Metronome Metronome ,Sucker Punch ,Needle Arm ,Drain Punch ,Thunder Punch ,Adamant ,- ,252,- ,- ,252,-
+334,Altaria ,Altaria ,Leftovers Leftovers ,Dragon Pulse ,Air Cutter ,Flamethrower ,Ominous Wind ,Modest ,- ,- ,- ,252,- ,252
+335,Zangoose ,Zangoose ,Razor Claw Razor Claw ,Crush Claw ,Shadow Claw ,Close Combat ,Fire Punch ,Adamant ,- ,252,- ,- ,- ,252
+336,Seviper ,Seviper ,Leftovers Leftovers ,Poison Fang ,Night Slash ,Aqua Tail ,Iron Tail ,Adamant ,- ,252,252,- ,- ,-
+337,Lunatone ,Lunatone ,Wise Glasses Wise Glasses ,Psychic ,Ancient Power ,Signal Beam ,Earth Power ,Modest ,- ,- ,- ,252,- ,252
+338,Solrock ,Solrock ,Muscle Band Muscle Band ,Stone Edge ,Zen Headbutt ,Earthquake ,Iron Head ,Adamant ,- ,252,- ,- ,- ,252
+340,Whiscash ,Whiscash ,Lax Incense Lax Incense ,Earth Power ,Water Pulse ,Future Sight ,Blizzard ,Quiet ,- ,- ,- ,252,252,-
+342,Crawdaunt ,Crawdaunt ,Quick Claw Quick Claw ,Crunch ,Crabhammer ,Body Slam ,Aerial Ace ,Adamant ,- ,252,252,- ,- ,-
+346,Cradily ,Cradily ,Big Root Big Root ,Ancient Power ,Giga Drain ,Sludge Bomb ,Earth Power ,Modest ,- ,- ,252,252,- ,-
+348,Armaldo ,Armaldo ,Razor Claw Razor Claw ,X-Scissor ,Stone Edge ,Aqua Tail ,Aerial Ace ,Adamant ,- ,252,252,- ,- ,-
+352,Kecleon ,Kecleon ,Expert Belt Expert Belt ,Dizzy Punch ,Drain Punch ,Shadow Claw ,Aerial Ace ,Jolly ,- ,252,- ,- ,- ,252
+354,Banette ,Banette ,Wise Glasses Wise Glasses ,Shadow Claw ,Sucker Punch ,Thunderbolt ,Icy Wind ,Lonely ,- ,252,- ,252,- ,-
+356,Dusclops ,Dusclops ,Quick Claw Quick Claw ,Shadow Punch ,Ice Punch ,Thunder Punch ,Fire Punch ,Adamant ,252,252,- ,- ,- ,-
+357,Tropius ,Tropius ,White Herb White Herb ,Leaf Storm ,Air Slash ,Twister ,Ominous Wind ,Modest ,252,- ,- ,252,- ,-
+359,Absol ,Absol ,Focus Sash Focus Sash ,Psycho Cut ,Night Slash ,Shadow Claw ,Slash ,Jolly ,- ,252,- ,- ,- ,252
+362,Glalie ,Glalie ,Lum Berry Lum Berry ,Ice Beam ,Dark Pulse ,Water Pulse ,Signal Beam ,Modest ,- ,- ,- ,252,- ,252
+367,Huntail ,Huntail ,Muscle Band Muscle Band ,Aqua Tail ,Crunch ,Body Slam ,Bounce ,Adamant ,- ,252,- ,- ,252,-
+368,Gorebyss ,Gorebyss ,Wise Glasses Wise Glasses ,Psychic ,Brine ,Signal Beam ,Shadow Ball ,Modest ,- ,- ,- ,252,252,-
+369,Relicanth ,Relicanth ,Shell Bell Shell Bell ,Head Smash ,Aqua Tail ,Earth Power ,Double-Edge ,Brave ,252,252,- ,- ,- ,-
+398,Staraptor ,Staraptor ,Liechi Berry Liechi Berry ,Brave Bird ,Close Combat ,Quick Attack ,U-turn ,Adamant ,- ,252,- ,- ,- ,252
+409,Rampardos ,Rampardos ,Shell Bell Shell Bell ,Head Smash ,Zen Headbutt ,Avalanche ,Fire Punch ,Adamant ,252,252,- ,- ,- ,-
+411,Bastiodon ,Bastiodon ,Quick Claw Quick Claw ,Metal Burst ,Blizzard ,Thunder ,Fire Blast ,Quiet ,252,- ,- ,252,- ,-
+416,Vespiquen ,Vespiquen ,BrightPowder BrightPowder ,Power Gem ,Attack Order ,Ominous Wind ,Air Cutter ,Brave ,- ,252,- ,252,- ,-
+419,Floatzel ,Floatzel ,Liechi Berry Liechi Berry ,Waterfall ,Crunch ,Ice Punch ,Brick Break ,Adamant ,- ,252,- ,- ,- ,252
+421,Cherrim ,Cherrim ,Heat Rock Heat Rock ,Sunny Day ,Solar Beam ,Synthesis ,Return ,Naive ,- ,- ,- ,252,- ,252
+423,Gastrodon ,Gastrodon ,Lax Incense Lax Incense ,Muddy Water ,Earth Power ,Blizzard ,Sludge Bomb ,Modest ,252,- ,- ,252,- ,-
+424,Ambipom ,Ambipom ,Expert Belt Expert Belt ,Double Hit ,Shock Wave ,Aerial Ace ,Water Pulse ,Naughty ,- ,252,- ,252,- ,-
+426,Drifblim ,Drifblim ,Petaya Berry Petaya Berry ,Shadow Ball ,Psychic ,Thunderbolt ,Air Cutter ,Modest ,- ,- ,- ,252,- ,252
+428,Lopunny ,Lopunny ,Sticky Barb Sticky Barb ,Switcheroo ,Dizzy Punch ,Bounce ,Protect ,Jolly ,- ,252,- ,- ,- ,252
+429,Mismagius ,Mismagius ,Petaya Berry Petaya Berry ,Shadow Ball ,Energy Ball ,Thunderbolt ,Psychic ,Modest ,- ,- ,- ,252,- ,252
+432,Purugly ,Purugly ,King's Rock King's Rock ,Body Slam ,Shadow Claw ,U-turn ,Iron Tail ,Adamant ,- ,252,252,- ,- ,-
+435,Skuntank ,Skuntank ,Expert Belt Expert Belt ,Flamethrower ,Poison Jab ,Dark Pulse ,Iron Tail ,Naughty ,- ,252,- ,252,- ,-
+442,Spiritomb ,Spiritomb ,Petaya Berry Petaya Berry ,Dark Pulse ,Ominous Wind ,Silver Wind ,Icy Wind ,Modest ,252,- ,- ,252,- ,-
+454,Toxicroak ,Toxicroak ,Liechi Berry Liechi Berry ,Poison Jab ,Revenge ,Bullet Punch ,X-Scissor ,Brave ,- ,252,252,- ,- ,-
+455,Carnivine ,Carnivine ,Leftovers Leftovers ,Power Whip ,Crunch ,Ingrain ,Leech Seed ,Adamant ,252,252,- ,- ,- ,-
+457,Lumineon ,Lumineon ,BrightPowder BrightPowder ,Silver Wind ,Ominous Wind ,Water Pulse ,Air Cutter ,Timid ,- ,- ,- ,252,- ,252
+460,Abomasnow ,Abomasnow ,Sitrus Berry Sitrus Berry ,Wood Hammer ,Avalanche ,Brick Break ,Iron Tail ,Adamant ,252,252,- ,- ,- ,-
+478,Froslass ,Froslass ,BrightPowder BrightPowder ,Hail ,Blizzard ,Ominous Wind ,Psychic ,Calm ,- ,- ,- ,252,- ,252
+479,Rotom ,Rotom ,Petaya Berry Petaya Berry ,Shadow Ball ,Thunderbolt ,Signal Beam ,Swift ,Timid ,- ,- ,- ,252,- ,252
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Group 4,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Pokémon from this list have a Base Stat Total of 500 or higher and will only start appearing at Rank 9.,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+"Argenta will randomly use one of the Pokémon listed here each time when challenged for the Silver Print if the player is also using a Pokémon with a base stat total of 500 or higher. Additionally, she will always use a Pokémon from this list when challenged for the Gold Print.",,,,,,,,,,,,,,
+# ,Pokémon ,Item ,Moves ,Nature ,EVs,,,,,,,,,
+HP ,Attack ,Defense ,Sp. Atk ,Sp. Def ,Speed,,,,,,,,,
+3,Venusaur ,Venusaur ,Focus Sash Focus Sash ,Toxic ,Frenzy Plant ,Sludge ,Protect ,Quiet ,- ,252,- ,252,- ,-
+6,Charizard ,Charizard ,Focus Sash Focus Sash ,Will-O-Wisp ,Air Slash ,Protect ,Blast Burn ,Quiet ,- ,252,- ,252,- ,-
+9,Blastoise ,Blastoise ,Focus Sash Focus Sash ,Yawn ,Hydro Cannon ,Return ,Protect ,Quiet ,- ,- ,- ,252,252,-
+38,Ninetales ,Ninetales ,White Herb White Herb ,Will-O-Wisp ,Confuse Ray ,Quick Attack ,Overheat ,Mild ,- ,- ,- ,252,- ,252
+55,Golduck ,Golduck ,Petaya Berry Petaya Berry ,Brine ,Aqua Jet ,Hydro Pump ,Return ,Mild ,- ,- ,- ,252,- ,252
+59,Arcanine ,Arcanine ,Razor Claw Razor Claw ,Extreme Speed ,Flare Blitz ,Facade ,Will-O-Wisp ,Adamant ,- ,252,- ,- ,- ,252
+62,Poliwrath ,Poliwrath ,Zoom Lens Zoom Lens ,Focus Blast ,Surf ,Hypnosis ,Vacuum Wave ,Quiet ,- ,- ,252,252,- ,-
+68,Machamp ,Machamp ,Focus Band Focus Band ,Dynamic Punch ,Vacuum Wave ,Foresight ,Revenge ,Brave ,- ,252,252,- ,- ,-
+73,Tentacruel ,Tentacruel ,BrightPowder BrightPowder ,Waterfall ,Poison Jab ,Toxic ,Dive ,Adamant ,- ,252,- ,- ,252,-
+78,Rapidash ,Rapidash ,Razor Fang Razor Fang ,Flare Blitz ,Quick Attack ,Stomp ,Overheat ,Lonely ,- ,252,- ,252,- ,-
+89,Muk ,Muk ,Black Sludge Black Sludge ,Gunk Shot ,Frustration ,Toxic ,Acid Armor ,Careful ,- ,- ,252,- ,252,-
+91,Cloyster ,Cloyster ,Scope Lens Scope Lens ,Ice Beam ,Iron Defense ,Spike Cannon ,Brine ,Rash ,- ,252,- ,252,- ,-
+94,Gengar ,Gengar ,Razor Fang Razor Fang ,Shadow Ball ,Sludge Bomb ,Hypnosis ,Nightmare ,Timid ,- ,- ,- ,252,- ,252
+103,Exeggutor ,Exeggutor ,Liechi Berry Liechi Berry ,Wood Hammer ,Zen Headbutt ,Rest ,Sleep Talk ,Adamant ,252,252,- ,- ,- ,-
+121,Starmie ,Starmie ,BrightPowder BrightPowder ,Hydro Pump ,Psychic ,Recover ,Double Team ,Timid ,- ,- ,- ,252,- ,252
+123,Scyther ,Scyther ,Focus Sash Focus Sash ,X-Scissor ,Aerial Ace ,Swords Dance ,Quick Attack ,Jolly ,- ,252,- ,- ,- ,252
+127,Pinsir ,Pinsir ,Salac Berry Salac Berry ,X-Scissor ,Giga Impact ,Swords Dance ,Quick Attack ,Jolly ,- ,252,- ,- ,- ,252
+130,Gyarados ,Gyarados ,Life Orb Life Orb ,Bounce ,Waterfall ,Dragon Dance ,Brine ,Lonely ,- ,252,- ,- ,- ,252
+131,Lapras ,Lapras ,Lum Berry Lum Berry ,Blizzard ,Surf ,Rest ,Sleep Talk ,Modest ,252,- ,- ,252,- ,-
+134,Vaporeon ,Vaporeon ,Expert Belt Expert Belt ,Surf ,Quick Attack ,Aqua Ring ,Yawn ,Mild ,252,- ,- ,252,- ,-
+135,Jolteon ,Jolteon ,Expert Belt Expert Belt ,Discharge ,Quick Attack ,Double Team ,Thunder Wave ,Rash ,- ,- ,- ,252,- ,252
+136,Flareon ,Flareon ,Expert Belt Expert Belt ,Lava Plume ,Quick Attack ,Protect ,Will-O-Wisp ,Mild ,- ,- ,- ,252,- ,-
+142,Aerodactyl ,Aerodactyl ,Leftovers Leftovers ,Stone Edge ,Aerial Ace ,Sandstorm ,Fly ,Adamant ,- ,252,- ,- ,- ,252
+143,Snorlax ,Snorlax ,Choice Band Choice Band ,Crunch ,Giga Impact ,Zen Headbutt ,Brick Break ,Brave ,- ,252,252,- ,- ,-
+144,Articuno ,Articuno ,Apicot Berry Apicot Berry ,Blizzard ,Air Cutter ,Reflect ,Roost ,Modest ,- ,- ,252,252,- ,-
+145,Zapdos ,Zapdos ,Ganlon Berry Ganlon Berry ,Thunder ,Air Cutter ,Light Screen ,Roost ,Modest ,- ,- ,- ,252,252,-
+146,Moltres ,Moltres ,Razor Claw Razor Claw ,Fire Blast ,Air Cutter ,Sky Attack ,Roost ,Modest ,- ,- ,252,252,- ,-
+149,Dragonite ,Dragonite ,Lum Berry Lum Berry ,Roost ,Outrage ,Aerial Ace ,Dragon Dance ,Adamant ,- ,252,- ,- ,- ,252
+154,Meganium ,Meganium ,Focus Sash Focus Sash ,Energy Ball ,Magical Leaf ,Body Slam ,Counter ,Quiet ,252,- ,- ,252,- ,-
+157,Typhlosion ,Typhlosion ,White Herb White Herb ,Eruption ,Quick Attack ,Overheat ,Swift ,Timid ,- ,- ,- ,252,- ,252
+160,Feraligatr ,Feraligatr ,Salac Berry Salac Berry ,Aqua Tail ,Slash ,Endure ,Rain Dance ,Naive ,- ,252,- ,- ,- ,252
+169,Crobat ,Crobat ,BrightPowder BrightPowder ,Brave Bird ,Cross Poison ,Double Team ,Toxic ,Jolly ,- ,252,- ,- ,- ,252
+181,Ampharos ,Ampharos ,Light Clay Light Clay ,Light Screen ,Rest ,Thunder ,Snore ,Quiet ,- ,- ,252,252,- ,-
+186,Politoed ,Politoed ,Lax Incense Lax Incense ,Hyper Voice ,Surf ,Rest ,Snore ,Modest ,- ,- ,- ,252,- ,252
+196,Espeon ,Espeon ,BrightPowder BrightPowder ,Psychic ,Swift ,Double Team ,Morning Sun ,Modest ,- ,- ,- ,252,- ,252
+197,Umbreon ,Umbreon ,Leftovers Leftovers ,Facade ,Sucker Punch ,Confuse Ray ,Moonlight ,Relaxed ,- ,- ,252,- ,252,-
+208,Steelix ,Steelix ,Iron Ball Iron Ball ,Gyro Ball ,Dig ,Sandstorm ,Curse ,Brave ,- ,252,252,- ,- ,-
+212,Scizor ,Scizor ,Focus Sash Focus Sash ,Swords Dance ,X-Scissor ,Counter ,Bullet Punch ,Brave ,252,252,- ,- ,- ,-
+213,Shuckle ,Shuckle ,Smooth Rock Smooth Rock ,Bug Bite ,Rollout ,Sandstorm ,Protect ,Careful ,252,- ,- ,- ,252,-
+214,Heracross ,Heracross ,Salac Berry Salac Berry ,Megahorn ,Close Combat ,Facade ,Reversal ,Jolly ,- ,252,- ,- ,- ,252
+217,Ursaring ,Ursaring ,Focus Band Focus Band ,Frustration ,Rest ,Sleep Talk ,Thunder Punch ,Adamant ,- ,252,252,- ,- ,-
+229,Houndoom ,Houndoom ,Choice Scarf Choice Scarf ,Dark Pulse ,Flamethrower ,Crunch ,Fire Fang ,Mild ,- ,252,- ,252,- ,-
+230,Kingdra ,Kingdra ,Scope Lens Scope Lens ,Dragon Pulse ,Hydro Pump ,Yawn ,Brine ,Modest ,- ,- ,- ,252,- ,252
+232,Donphan ,Donphan ,Leftovers Leftovers ,Earthquake ,Giga Impact ,Protect ,Sandstorm ,Adamant ,- ,252,252,- ,- ,-
+233,Porygon2 ,Porygon2 ,Quick Claw Quick Claw ,Tri Attack ,Return ,Psychic ,Zen Headbutt ,Rash ,- ,252,- ,252,- ,-
+242,Blissey ,Blissey ,Lum Berry Lum Berry ,Return ,Soft-Boiled ,Fire Blast ,Minimize ,Sassy ,- ,- ,252,- ,252,-
+243,Raikou ,Raikou ,Scope Lens Scope Lens ,Thunder ,Quick Attack ,Reflect ,Thunder Fang ,Naive ,- ,- ,- ,252,- ,252
+244,Entei ,Entei ,Quick Claw Quick Claw ,Eruption ,Rock Climb ,Flamethrower ,Fire Fang ,Rash ,- ,- ,- ,252,- ,252
+245,Suicune ,Suicune ,Sitrus Berry Sitrus Berry ,Mirror Coat ,Facade ,Hydro Pump ,Reflect ,Bold ,- ,- ,252,- ,252,-
+248,Tyranitar ,Tyranitar ,Quick Claw Quick Claw ,Stone Edge ,Crunch ,Dark Pulse ,Ancient Power ,Brave ,- ,252,- ,252,- ,-
+254,Sceptile ,Sceptile ,Scope Lens Scope Lens ,Leaf Blade ,Quick Attack ,Leaf Storm ,Grass Knot ,Naughty ,- ,252,- ,- ,- ,252
+257,Blaziken ,Blaziken ,Liechi Berry Liechi Berry ,Blaze Kick ,Sky Uppercut ,Focus Blast ,Quick Attack ,Lonely ,- ,252,- ,- ,- ,252
+260,Swampert ,Swampert ,BrightPowder BrightPowder ,Muddy Water ,Mud Bomb ,Substitute ,Rest ,Quiet ,- ,- ,- ,252,252,-
+282,Gardevoir ,Gardevoir ,Sticky Barb Sticky Barb ,Psychic ,Trick ,Swift ,Protect ,Timid ,- ,- ,- ,252,- ,252
+289,Slaking ,Slaking ,Leftovers Leftovers ,Encore ,Counter ,Frustration ,Feint Attack ,Adamant ,- ,252,252,- ,- ,-
+306,Aggron ,Aggron ,Zoom Lens Zoom Lens ,Stone Edge ,Iron Tail ,Metal Burst ,Sandstorm ,Adamant ,- ,252,252,- ,- ,-
+321,Wailord ,Wailord ,BrightPowder BrightPowder ,Water Spout ,Sleep Talk ,Body Slam ,Rest ,Quiet ,252,- ,- ,252,- ,-
+330,Flygon ,Flygon ,Wise Glasses Wise Glasses ,Earth Power ,Dragon Pulse ,Sandstorm ,Roost ,Modest ,- ,- ,- ,252,- ,252
+344,Claydol ,Claydol ,Choice Scarf Choice Scarf ,Earth Power ,Psychic ,Earthquake ,Zen Headbutt ,Rash ,- ,252,- ,252,- ,-
+350,Milotic ,Milotic ,Life Orb Life Orb ,Rest ,Sleep Talk ,Hydro Pump ,Facade ,Quiet ,- ,252,- ,252,- ,-
+365,Walrein ,Walrein ,Icy Rock Icy Rock ,Blizzard ,Dive ,Hail ,Brine ,Quiet ,252,- ,- ,252,- ,-
+488,Cresselia ,Cresselia ,Leftovers Leftovers ,Psychic ,Psycho Cut ,Slash ,Psycho Shift ,Lonely ,- ,252,- ,252,- ,-
+373,Salamence ,Salamence ,Liechi Berry Liechi Berry ,Dragon Claw ,Aerial Ace ,Frustration ,Roost ,Adamant ,- ,252,- ,- ,- ,252
+376,Metagross ,Metagross ,Quick Claw Quick Claw ,Meteor Mash ,Zen Headbutt ,Bullet Punch ,Light Screen ,Adamant ,- ,252,252,- ,- ,-
+377,Regirock ,Regirock ,Sitrus Berry Sitrus Berry ,Stone Edge ,Ancient Power ,Giga Impact ,Thunder Wave ,Brave ,- ,252,- ,252,- ,-
+378,Regice ,Regice ,Sitrus Berry Sitrus Berry ,Blizzard ,Avalanche ,Hyper Beam ,Thunder Wave ,Quiet ,- ,252,- ,252,- ,-
+379,Registeel ,Registeel ,Sitrus Berry Sitrus Berry ,Iron Head ,Flash Cannon ,Giga Impact ,Thunder Wave ,Brave ,- ,252,- ,252,- ,-
+380,Latias ,Latias ,Salac Berry Salac Berry ,Mist Ball ,Dragon Pulse ,Recover ,Captivate ,Modest ,- ,- ,- ,252,252,-
+381,Latios ,Latios ,Salac Berry Salac Berry ,Luster Purge ,Dragon Pulse ,Recover ,Captivate ,Modest ,- ,- ,- ,252,252,-
+389,Torterra ,Torterra ,Lax Incense Lax Incense ,Wood Hammer ,Mud-Slap ,Rest ,Sleep Talk ,Brave ,252,252,- ,- ,- ,-
+392,Infernape ,Infernape ,Life Orb Life Orb ,Close Combat ,Flare Blitz ,Mach Punch ,Fake Out ,Adamant ,- ,252,- ,- ,- ,252
+395,Empoleon ,Empoleon ,Petaya Berry Petaya Berry ,Flash Cannon ,Hydro Pump ,Aqua Jet ,Yawn ,Mild ,- ,- ,- ,252,252,-
+405,Luxray ,Luxray ,King's Rock King's Rock ,Spark ,Thunderbolt ,Quick Attack ,Thunder Wave ,Naive ,- ,252,- ,- ,- ,252
+407,Roserade ,Roserade ,White Herb White Herb ,Weather Ball ,Leaf Storm ,Protect ,Toxic ,Modest ,- ,- ,- ,252,- ,252
+430,Honchkrow ,Honchkrow ,Quick Claw Quick Claw ,Dark Pulse ,Night Slash ,Drill Peck ,Air Cutter ,Lonely ,- ,252,- ,252,- ,-
+437,Bronzong ,Bronzong ,Leftovers Leftovers ,Extrasensory ,Flash Cannon ,Trick Room ,Protect ,Quiet ,- ,- ,252,252,- ,-
+445,Garchomp ,Garchomp ,Persim Berry Persim Berry ,Outrage ,Sandstorm ,Dig ,Twister ,Adamant ,- ,252,- ,- ,- ,252
+448,Lucario ,Lucario ,Liechi Berry Liechi Berry ,Aura Sphere ,Focus Punch ,Extreme Speed ,Substitute ,Brave ,- ,252,- ,252,- ,-
+450,Hippowdon ,Hippowdon ,Liechi Berry Liechi Berry ,Double-Edge ,Earthquake ,Yawn ,Slack Off ,Adamant ,- ,252,252,- ,- ,-
+452,Drapion ,Drapion ,Razor Claw Razor Claw ,Cross Poison ,Night Slash ,Slash ,Acupressure ,Adamant ,- ,252,252,- ,- ,-
+461,Weavile ,Weavile ,Focus Sash Focus Sash ,Night Slash ,Ice Punch ,Ice Shard ,Quick Attack ,Adamant ,- ,252,- ,- ,- ,252
+462,Magnezone ,Magnezone ,Ganlon Berry Ganlon Berry ,Flash Cannon ,Tri Attack ,Thunder ,Mirror Coat ,Bold ,- ,- ,252,252,- ,-
+463,Lickilicky ,Lickilicky ,Expert Belt Expert Belt ,Thunder Punch ,Ice Punch ,Fire Punch ,Body Slam ,Adamant ,- ,252,252,- ,- ,-
+464,Rhyperior ,Rhyperior ,Quick Claw Quick Claw ,Rock Wrecker ,Earth Power ,Giga Impact ,Reversal ,Brave ,- ,252,252,- ,- ,-
+465,Tangrowth ,Tangrowth ,Lax Incense Lax Incense ,Wring Out ,Grass Knot ,Sunny Day ,Solar Beam ,Lonely ,252,- ,- ,252,- ,-
+466,Electivire ,Electivire ,Life Orb Life Orb ,Thunder Punch ,Giga Impact ,Discharge ,Quick Attack ,Naughty ,- ,252,- ,- ,- ,252
+467,Magmortar ,Magmortar ,Lax Incense Lax Incense ,Fire Blast ,Hyper Beam ,SmokeScreen ,Protect ,Mild ,- ,- ,- ,252,- ,252
+468,Togekiss ,Togekiss ,BrightPowder BrightPowder ,Air Slash ,Aura Sphere ,Thunder Wave ,Roost ,Modest ,- ,- ,- ,252,252,-
+469,Yanmega ,Yanmega ,Petaya Berry Petaya Berry ,Bug Buzz ,Air Slash ,Endure ,Reversal ,Rash ,- ,- ,252,252,- ,-
+470,Leafeon ,Leafeon ,Scope Lens Scope Lens ,Quick Attack ,Leaf Blade ,Grass Knot ,Razor Leaf ,Naughty ,- ,252,- ,- ,- ,252
+471,Glaceon ,Glaceon ,Icy Rock Icy Rock ,Hail ,Blizzard ,Ice Shard ,Swift ,Rash ,- ,- ,- ,252,- ,252
+472,Gliscor ,Gliscor ,Liechi Berry Liechi Berry ,Earthquake ,Sandstorm ,Aerial Ace ,Quick Attack ,Adamant ,- ,252,- ,- ,- ,252
+473,Mamoswine ,Mamoswine ,Leftovers Leftovers ,Blizzard ,Hail ,Earth Power ,Amnesia ,Modest ,252,- ,- ,252,- ,-
+474,Porygon-Z ,Porygon-Z ,Expert Belt Expert Belt ,Tri Attack ,Dark Pulse ,Psychic ,Signal Beam ,Modest ,- ,- ,- ,252,- ,252
+475,Gallade ,Gallade ,Salac Berry Salac Berry ,Psycho Cut ,Close Combat ,Swords Dance ,Vacuum Wave ,Adamant ,- ,252,- ,- ,- ,252
+476,Probopass ,Probopass ,Focus Band Focus Band ,Flash Cannon ,Power Gem ,Substitute ,Sandstorm ,Calm ,- ,- ,- ,252,252,-
+477,Dusknoir ,Dusknoir ,Quick Claw Quick Claw ,Rest ,Curse ,Shadow Punch ,Brick Break ,Careful ,- ,- ,252,- ,252,-
+480,Uxie ,Uxie ,Focus Band Focus Band ,Extrasensory ,Yawn ,Dream Eater ,Swift ,Bold ,- ,- ,252,- ,252,-
+481,Mesprit ,Mesprit ,Light Clay Light Clay ,Extrasensory ,Light Screen ,Reflect ,Swift ,Timid ,- ,- ,- ,252,- ,252
+482,Azelf ,Azelf ,Flame Orb Flame Orb ,Zen Headbutt ,Return ,Trick ,Facade ,Adamant ,- ,252,- ,- ,- ,252
+485,Heatran ,Heatran ,Focus Band Focus Band ,Magma Storm ,Flash Cannon ,Lava Plume ,Metal Sound ,Modest ,- ,- ,- ,252,252,-
+486,Regigigas ,Regigigas ,Lum Berry Lum Berry ,Zen Headbutt ,Confuse Ray ,Drain Punch ,Dizzy Punch ,Impish ,- ,252,252,- ,- ,-

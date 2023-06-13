@@ -1,0 +1,26 @@
+# 	Nature 	Japanese 	Increased stat 	Decreased stat 	Favorite flavor 	Disliked flavor
+0 	Hardy 	がんばりや 	— 	— 	— 	—
+1 	Lonely 	さみしがり 	Attack 	Defense 	Spicy 	Sour
+2 	Brave 	ゆうかん 	Attack 	Speed 	Spicy 	Sweet
+3 	Adamant 	いじっぱり 	Attack 	Sp. Attack 	Spicy 	Dry
+4 	Naughty 	やんちゃ 	Attack 	Sp. Defense 	Spicy 	Bitter
+5 	Bold 	ずぶとい 	Defense 	Attack 	Sour 	Spicy
+6 	Docile 	すなお 	— 	— 	— 	—
+7 	Relaxed 	のんき 	Defense 	Speed 	Sour 	Sweet
+8 	Impish 	わんぱく 	Defense 	Sp. Attack 	Sour 	Dry
+9 	Lax 	のうてんき 	Defense 	Sp. Defense 	Sour 	Bitter
+10 	Timid 	おくびょう 	Speed 	Attack 	Sweet 	Spicy
+11 	Hasty 	せっかち 	Speed 	Defense 	Sweet 	Sour
+12 	Serious 	まじめ 	— 	— 	— 	—
+13 	Jolly 	ようき 	Speed 	Sp. Attack 	Sweet 	Dry
+14 	Naive 	むじゃき 	Speed 	Sp. Defense 	Sweet 	Bitter
+15 	Modest 	ひかえめ 	Sp. Attack 	Attack 	Dry 	Spicy
+16 	Mild 	おっとり 	Sp. Attack 	Defense 	Dry 	Sour
+17 	Quiet 	れいせい 	Sp. Attack 	Speed 	Dry 	Sweet
+18 	Bashful 	てれや 	— 	— 	— 	—
+19 	Rash 	うっかりや 	Sp. Attack 	Sp. Defense 	Dry 	Bitter
+20 	Calm 	おだやか 	Sp. Defense 	Attack 	Bitter 	Spicy
+21 	Gentle 	おとなしい 	Sp. Defense 	Defense 	Bitter 	Sour
+22 	Sassy 	なまいき 	Sp. Defense 	Speed 	Bitter 	Sweet
+23 	Careful 	しんちょう 	Sp. Defense 	Sp. Attack 	Bitter 	Dry
+24 	Quirky 	きまぐれ 	— 	— 	— 	— 

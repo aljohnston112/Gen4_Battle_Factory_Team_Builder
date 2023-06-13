@@ -5,12 +5,12 @@ from os.path import exists
 
 import cattr
 
-from config import TYPE_FILE_ATTACKER_OUT, TYPE_FILE, TYPE_FILE_DEFENDER_OUT
+from config import FRESH_ATTACKER_TYPE_FILE, RAW_TYPE_FILE, FRESH_DEFENDER_TYPE_FILE
 from data_class.Type import get_type, PokemonType
 
 
 def parse_type_chart_for_attack():
-    with open(TYPE_FILE, "r", encoding="UTF-8") as f:
+    with open(RAW_TYPE_FILE, "r", encoding="UTF-8") as f:
         done = False
         defender = f.readline().split()
         super_eff = defaultdict(list)
@@ -35,16 +35,16 @@ def parse_type_chart_for_attack():
             if s == "":
                 done = True
             s = s.replace("×", "").replace("½", "0.5").split()
-        with open(TYPE_FILE_ATTACKER_OUT, "w") as fo:
+        with open(FRESH_ATTACKER_TYPE_FILE, "w") as fo:
             list_ = [no_eff, not_eff, normal_eff, super_eff]
             fo.write(json.dumps(cattr.unstructure(list_)))
 
 
 # [no_eff, not_eff, normal_eff, super_eff]
 def get_attack_type_dict() -> list[typing.DefaultDict[PokemonType, list[PokemonType]]]:
-    if not exists(TYPE_FILE_ATTACKER_OUT):
+    if not exists(FRESH_ATTACKER_TYPE_FILE):
         parse_type_chart_for_attack()
-    with open(TYPE_FILE_ATTACKER_OUT, "r") as fo:
+    with open(FRESH_ATTACKER_TYPE_FILE, "r") as fo:
         return cattr.structure(
             json.loads(fo.read()),
             typing.List[typing.DefaultDict[PokemonType, typing.List[PokemonType]]]
@@ -71,15 +71,20 @@ def parse_type_chart_for_defense():
         for v in vs:
             super_eff[v].append(k)
 
-    with open(TYPE_FILE_DEFENDER_OUT, "w") as fo:
+    with open(FRESH_DEFENDER_TYPE_FILE, "w") as fo:
         list_ = [no_eff, not_eff, normal_eff, super_eff]
         fo.write(json.dumps(cattr.unstructure(list_)))
 
 
 def get_defend_type_dict() -> list[typing.DefaultDict[PokemonType, list[PokemonType]]]:
-    if not exists(TYPE_FILE_DEFENDER_OUT):
+    if not exists(FRESH_DEFENDER_TYPE_FILE):
         parse_type_chart_for_defense()
-    with open(TYPE_FILE_DEFENDER_OUT, "r") as fo:
+    with open(FRESH_DEFENDER_TYPE_FILE, "r") as fo:
         return cattr.structure(
             json.loads(fo.read()),
             typing.List[typing.DefaultDict[PokemonType, typing.List[PokemonType]]])
+
+
+if __name__ == "__main__":
+    get_defend_type_dict()
+    get_attack_type_dict()

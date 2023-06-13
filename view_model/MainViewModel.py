@@ -5,10 +5,6 @@ class MainViewModel:
     def __init__(self):
         pass
 
-
-def do_round_three(team, choices):
-    pass
-
 # def do_round_one_two(player_pokemon_names, player_pokemon_moves):
 #     # Get opponent data_class names
 #     round_one_two_use_case = RoundOneTwoUseCase()

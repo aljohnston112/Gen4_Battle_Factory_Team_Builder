@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QComboBox
 
-from repository.PokemonRepository import pokemon
+from repository.PokemonRepository import all_battle_factory_pokemon
 
 
 class PokemonComboBox(QComboBox):
@@ -11,14 +11,14 @@ class PokemonComboBox(QComboBox):
         super().__init__()
 
         # No data_class has this string of letters in their name
-        previous_pokemon_name = "ZZZ"
+        name_set = set()
+        for pokemon_key in all_battle_factory_pokemon.keys():
+            pokemon_name = all_battle_factory_pokemon[pokemon_key].name
+            name_set.add(pokemon_name)
+
         self.addItem("")
-        for pokemon_name in sorted(pokemon.keys()):
-            if previous_pokemon_name not in pokemon_name:
-                self.addItem(pokemon_name)
-            else:
-                pokemon_name = previous_pokemon_name
-            previous_pokemon_name = pokemon_name
+        for name in sorted(name_set):
+            self.addItem(name)
 
         self.currentTextChanged.connect(self.text_changed)
 

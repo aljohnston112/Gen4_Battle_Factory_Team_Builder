@@ -110,9 +110,9 @@ class HintsLayout(QGridLayout):
         self.round_widgets = [
             Round1And2Layout(self.__team_use_case__),
             Round1And2Layout(self.__team_use_case__, is_round_2=True),
-            Round3Layout(),
-            Round4Layout(),
-            Round5Layout()
+            Round3Layout(self.__team_use_case__),
+            Round4Layout(self.__team_use_case__),
+            Round5Layout(self.__team_use_case__)
         ]
         for round_widget in self.round_widgets:
             self.stacked_rounds.addWidget(round_widget)

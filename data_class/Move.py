@@ -1,6 +1,6 @@
 from attr import frozen
 
-from data_class.Split import Split
+from data_class.Category import Category
 from data_class.Type import PokemonType
 
 
@@ -20,16 +20,9 @@ class Move:
     The type of the move
     """
 
-    split: Split
+    category: Category
     """
     Whether the move is special or physical
-    """
-
-
-@frozen
-class DetailedMove(Move):
-    """
-    Represents a detailed data_class move.
     """
 
     power: int
@@ -41,3 +34,12 @@ class DetailedMove(Move):
     """
     The accuracy of the move.
     """
+
+
+@frozen
+class LearnableMove:
+    name: str
+    level: int
+    is_move_tutor: bool
+    is_egg_move: bool
+    is_pre_evolution: bool

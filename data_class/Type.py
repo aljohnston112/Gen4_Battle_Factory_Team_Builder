@@ -48,6 +48,7 @@ __TYPE_DICT__ = {
 
 pokemon_types = [t for t in PokemonType]
 
+
 def get_type(pokemon_type: str) -> PokemonType:
     """
     Gets the enum representing a Pokemon type.
