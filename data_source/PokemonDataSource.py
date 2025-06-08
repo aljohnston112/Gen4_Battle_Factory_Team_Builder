@@ -1,56 +1,60 @@
 import json
 from os.path import exists
-from typing import List, TextIO, Dict
+from pprint import pp
 
 import cattr
 
 from config import RAW_FACTORY_POKEMON_FILE, FRESH_FACTORY_POKEMON_FILE
+from data_class.Move import Move
 from data_class.Pokemon import Pokemon
-from data_class.Stat import Stat, StatEnum
+from data_class.Stat import Stat, StatEnum, get_nature_enum
+from data_class.Type import PokemonType
 from data_source.ParseUtil import get_next_non_newline
-from repository.MoveRepository import get_all_moves
+from repository.MoveRepository import all_moves
 from repository.PokemonTypeRepository import all_pokemon_types
 
 
-def __parse_battle_factory_pokemon__() -> Dict[str, Pokemon]:
-    pokemon = {}
+def __parse_battle_factory_pokemon__() -> dict[str, Pokemon]:
+    pokemon: dict[str, Pokemon] = {}
+    counts: dict[str, int] = {}
     with open(RAW_FACTORY_POKEMON_FILE, "r", encoding='utf-8') as file:
         get_next_non_newline(file)
-        tokens = get_next_non_newline(file).strip().split("\t")
-        pokemon_types = all_pokemon_types
-        pokemon_moves = get_all_moves
+        tokens: list[str] = get_next_non_newline(file).strip().split("\t")
+        pokemon_types: dict[str, set[PokemonType]] = all_pokemon_types
+        pokemon_moves: dict[str, Move] = all_moves
 
         while tokens != ['']:
-            index = int(tokens[0])
-            set_number = (
+            index: int = int(tokens[0])
+            set_number: int = (
                 0 if (index < 151) else
                 1 if (index < 251) else
                 2 if (index < 351) else
                 3 if (index < 487) else
                 4 if (index < 623) else
                 5 if (index < 759) else
-                6 if (index < 951) else
+                6 if (index < 895) else
                 7
             )
-            assert set_number != 7
 
-            name = tokens[1].strip().replace("♂/♀", "").replace("♂", "").replace("♀", "")
-            nature = tokens[2].strip().lower()
-            item = tokens[3]
+            name: str = tokens[1].strip()  # .replace("♂/♀", "").replace("♂", "").replace("♀", "")
+            nature: str = tokens[2].strip().lower()
+            item: str = tokens[3]
 
             if name not in pokemon_types:
-                print(name + " is missing\n")
-            types = pokemon_types[name]
+                raise Exception(name + " is missing\n")
+            types: set[PokemonType] = pokemon_types[name]
 
-            moves = [
+            moves: list[Move] = [
                 pokemon_moves[tokens[4].strip()],
                 pokemon_moves[tokens[5].strip()],
                 pokemon_moves[tokens[6].strip()],
                 pokemon_moves[tokens[7].strip()]
             ]
-            evs = tokens[8].strip().split("/")
-            effort_values = []
-            default_ev = (512.0 / len(evs))
+            evs: list[str] = tokens[8].strip().split("/")
+            effort_values: list[Stat] = []
+            default_ev: int = 252 if len(evs) == 2 else 170
+            if default_ev == 170 and len(evs) != 3:
+                raise Exception("Wrong EVs")
             for ev in evs:
                 if ev == "HP":
                     effort_values.append(Stat(StatEnum.HEALTH, int(default_ev)))
@@ -67,10 +71,14 @@ def __parse_battle_factory_pokemon__() -> Dict[str, Pokemon]:
                 else:
                     assert False
 
-            pokemon[name + "_" + str(set_number)] = Pokemon(
+            base_key = f"{name}_{set_number}"
+            counts[base_key] = counts.get(base_key, 0) + 1
+            unique_key = f"{base_key}_{counts[base_key]}"
+            pokemon[unique_key]: Pokemon = Pokemon(
                 name=name,
-                nature=nature,
-                types=types,
+                unique_key=unique_key,
+                nature=get_nature_enum(nature),
+                types=list(types),
                 item=item,
                 moves=moves,
                 set_number=set_number,
@@ -78,25 +86,28 @@ def __parse_battle_factory_pokemon__() -> Dict[str, Pokemon]:
             )
 
             # Skip the png file line or get the end of file
-            tokens = get_next_non_newline(file).strip().split("\t")
-
+            tokens: list[str] = get_next_non_newline(file).strip().split("\t")
     return pokemon
 
 
-def get_battle_factory_pokemon() -> Dict[str, Pokemon]:
+def get_battle_factory_pokemon() -> dict[str, Pokemon]:
     """
-    Gets a name to Pokemon dict containing all possible battle factory Pokemon.
-    :return: The name to Pokemon dict containing all possible battle factory Pokemon.
+    Gets a name to Pokémon dict containing all possible battle factory Pokémon.
+    :return: The name to Pokémon dict containing all possible battle factory Pokémon.
     """
+    pokemon: dict[str, Pokemon] | None = None
     if not exists(FRESH_FACTORY_POKEMON_FILE):
-        pokemon = __parse_battle_factory_pokemon__()
+        pokemon: dict[str, Pokemon] = __parse_battle_factory_pokemon__()
         with open(FRESH_FACTORY_POKEMON_FILE, "w") as fo:
             fo.write(json.dumps(cattr.unstructure(pokemon)))
     else:
         with open(FRESH_FACTORY_POKEMON_FILE, "r") as fo:
-            pokemon = cattr.structure(json.loads(fo.read()), Dict[str, Pokemon])
+            pokemon: dict[str, Pokemon] = cattr.structure(json.loads(fo.read()), dict[str, Pokemon])
+    if pokemon is None:
+        raise Exception("Failed to load battle factory pokemon")
     return pokemon
 
 
 if __name__ == "__main__":
-    get_battle_factory_pokemon()
+    g_pokemon: dict[str, Pokemon] = get_battle_factory_pokemon()
+    pp(g_pokemon)

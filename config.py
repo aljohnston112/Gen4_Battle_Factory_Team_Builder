@@ -5,10 +5,6 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 RAW_FACTORY_POKEMON_FILE = ROOT + "/data/raw/battle_factory_pokemon_set"
 FRESH_FACTORY_POKEMON_FILE = ROOT + "/data/fresh/battle_factory_pokemon"
 
-RAW_FRONTIER_POKEMON_FILE = ROOT + "/data/raw/trainer_set_lists.txt"
-RAW_FRONTIER_TRAINER_FILE = ROOT + "/data/raw/trainers"
-FRESH_FRONTIER_POKEMON_FILE = ROOT + "/data/fresh/trainer_set_list.txt"
-
 RAW_POKEMON_TYPES_FILE = ROOT + "/data/raw/pokemon_types"
 FRESH_POKEMON_TYPES_FILE = ROOT + "/data/fresh/pokemon_types"
 
@@ -30,3 +26,5 @@ FRESH_MOVES_FILE = ROOT + "/data/fresh/detailed_moves"
 FRESH_LAST_POKEMON_MOVE_SET_INDEX_FILE = ROOT + "/data/fresh/last_pokemon_move_set_index"
 FRESH_POKEMON_MOVE_SET_FILE = ROOT + "/data/fresh/pokemon_move_sets"
 
+FRESH_POKEMON_RANK_FILE = ROOT + "/data/fresh/pokemon_ranks"
+FRESH_POKEMON_RANK_FILE_ACCURACY = ROOT + "/data/fresh/pokemon_ranks_accuracy"

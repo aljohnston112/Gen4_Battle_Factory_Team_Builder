@@ -4,8 +4,6 @@ from math import floor
 import attr
 from attr import frozen
 
-from repository.BaseStatRepository import all_pokemon_stats
-
 
 @unique
 class StatEnum(Enum):
@@ -22,12 +20,6 @@ class StatEnum(Enum):
     NO_STAT = "no_stat"
 
 
-@attr.define
-class Stat:
-    stat_type: StatEnum
-    value: int
-
-
 __STAT_DICT__ = {
     "health": StatEnum.HEALTH,
     "attack": StatEnum.ATTACK,
@@ -38,19 +30,27 @@ __STAT_DICT__ = {
 }
 
 
-def get_stat_enum(stat):
+def get_stat_enum(stat) -> StatEnum:
     return __STAT_DICT__[stat.lower()]
 
 
+@attr.define
+class Stat:
+    stat_type: StatEnum
+    value: int
+
+
 def get_iv_for_battle_factory(round_number: int) -> int:
-    iv = (round_number - 1) * 4
-    return iv if iv < 32 else 31
+    if round_number == 0:
+        return 0
+    iv: int = (round_number - 1) * 4
+    return iv if round_number < 8 else 31
 
 
 @unique
 class NatureEnum(Enum):
     """
-    Represents the Pokemon natures.
+    Represents the Pokémon natures.
     """
     HARDY = "hardy"
     LONELY = "lonely"
@@ -77,6 +77,13 @@ class NatureEnum(Enum):
     SASSY = "sassy"
     CAREFUL = "careful"
     QUIRKY = "quirky"
+
+
+def get_nature_enum(name: str) -> NatureEnum:
+    try:
+        return NatureEnum(name.lower())
+    except ValueError:
+        raise ValueError(f"Unknown nature: {name}")
 
 
 @frozen
@@ -115,67 +122,38 @@ __NATURE_DICT__ = {
 }
 
 
-def get_attack_multiplier(nature: str):
-    nature = __NATURE_DICT__[nature.lower()]
-    m = 1.0
-    if nature.up == StatEnum.ATTACK:
-        m = 1.1
-    elif nature.down == StatEnum.ATTACK:
-        m = 0.9
-    return m
+def get_natures() -> list[Nature]:
+    return [v for k, v in __NATURE_DICT__.items()]
 
 
-def get_special_attack_multiplier(nature: str):
-    nature = __NATURE_DICT__[nature.lower()]
-    m = 1.0
-    if nature.up == StatEnum.SPECIAL_ATTACK:
-        m = 1.1
-    elif nature.down == StatEnum.SPECIAL_ATTACK:
-        m = 0.9
-    return m
+__stat_to_nature_multipliers__ = {
+    StatEnum.ATTACK: {
+        "LONELY": 1.1, "BRAVE": 1.1, "ADAMANT": 1.1, "NAUGHTY": 1.1,
+        "BOLD": 0.9, "MODEST": 0.9, "CALM": 0.9, "TIMID": 0.9
+    },
+    StatEnum.DEFENSE: {
+        "BOLD": 1.1, "RELAXED": 1.1, "IMPISH": 1.1, "LAX": 1.1,
+        "LONELY": 0.9, "MILD": 0.9, "GENTLE": 0.9, "HASTY": 0.9
+    },
+    StatEnum.SPECIAL_ATTACK: {
+        "MODEST": 1.1, "MILD": 1.1, "QUIET": 1.1, "RASH": 1.1,
+        "ADAMANT": 0.9, "IMPISH": 0.9, "CAREFUL": 0.9, "JOLLY": 0.9
+    },
+    StatEnum.SPECIAL_DEFENSE: {
+        "CALM": 1.1, "GENTLE": 1.1, "SASSY": 1.1, "CAREFUL": 1.1,
+        "NAUGHTY": 0.9, "LAX": 0.9, "NAIVE": 0.9, "RASH": 0.9
+    },
+    StatEnum.SPEED: {
+        "TIMID": 1.1, "HASTY": 1.1, "JOLLY": 1.1, "NAIVE": 1.1,
+        "BRAVE": 0.9, "RELAXED": 0.9, "QUIET": 0.9, "SASSY": 0.9
+    }
+}
+
+def get_nature_multiplier(stat_type: StatEnum, nature: NatureEnum) -> float:
+    return __stat_to_nature_multipliers__.get(stat_type, {}).get(nature.name, 1.0)
 
 
-def get_defense_multiplier(nature: str):
-    nature = __NATURE_DICT__[nature.lower()]
-    m = 1.0
-    if nature.up == StatEnum.DEFENSE:
-        m = 1.1
-    elif nature.down == StatEnum.DEFENSE:
-        m = 0.9
-    return m
-
-
-def get_special_defense_multiplier(nature: str):
-    nature = __NATURE_DICT__[nature.lower()]
-    m = 1.0
-    if nature.up == StatEnum.SPECIAL_DEFENSE:
-        m = 1.1
-    elif nature.down == StatEnum.SPECIAL_DEFENSE:
-        m = 0.9
-    return m
-
-
-def get_speed_multiplier(nature):
-    nature = __NATURE_DICT__[nature.lower()]
-    m = 1.0
-    if nature.up == StatEnum.SPEED:
-        m = 1.1
-    elif nature.down == StatEnum.SPEED:
-        m = 0.9
-    return m
-
-
-def get_nature_multiplier(stat_type, nature):
-    if stat_type == StatEnum.NO_STAT or stat_type == StatEnum.HEALTH:
-        assert False
-    return get_attack_multiplier(nature) if stat_type == StatEnum.ATTACK else \
-        get_defense_multiplier(nature) if stat_type == StatEnum.DEFENSE else \
-        get_special_attack_multiplier(nature) if stat_type == StatEnum.SPECIAL_ATTACK else \
-        get_speed_multiplier(nature) if stat_type == StatEnum.SPEED else \
-        get_special_defense_multiplier(nature)
-
-
-def get_non_health_stat(base, iv, ev, nature, level, stat_type):
+def get_non_health_stat(base: int, iv: int, ev: int, nature: NatureEnum, level: int, stat_type: StatEnum) -> int:
     return floor(
         (floor(
             ((2.0 * base + iv + floor(ev / 4.0)) * level) / 100.0
@@ -183,70 +161,5 @@ def get_non_health_stat(base, iv, ev, nature, level, stat_type):
     )
 
 
-def get_health_stat(base, iv, ev, level):
+def get_health_stat(base: int, iv: int, ev: int, level: int) -> int:
     return floor((((2.0 * base + iv + floor(ev / 4.0)) * level) / 100.0)) + level + 10
-
-
-def get_natures() -> list[Nature]:
-    return [v for k, v in __NATURE_DICT__.items()]
-
-
-def get_stat_for_battle_factory_pokemon(pokemon, level, stat_type):
-    if stat_type == StatEnum.HEALTH:
-        stat = get_health_stat(
-            base=get_base_stat(pokemon, stat_type),
-            iv=get_iv_for_battle_factory(pokemon.set_number),
-            ev=get_ev(pokemon, stat_type),
-            level=level
-        )
-    else:
-        stat = get_non_health_stat(
-            base=get_base_stat(pokemon, stat_type),
-            iv=get_iv_for_battle_factory(pokemon.set_number),
-            ev=get_ev(pokemon, stat_type),
-            nature=pokemon.nature,
-            level=level
-        )
-    return stat
-
-
-def get_iv_for_battle_frontier(set_number):
-    return (set_number + 2) * 3
-
-
-def get_base_stat(pokemon, stat_type):
-    base_stats = all_pokemon_stats[pokemon.name]
-    return base_stats.health if stat_type == StatEnum.HEALTH else \
-        base_stats.attack if stat_type == StatEnum.ATTACK else \
-            base_stats.defense if stat_type == StatEnum.DEFENSE else \
-                base_stats.special_attack if stat_type == StatEnum.SPECIAL_DEFENSE else \
-                    base_stats.special_defense if stat_type == StatEnum.SPECIAL_DEFENSE else \
-                        base_stats.speed
-
-
-def get_ev(pokemon, stat_type):
-    ev = 0
-    for stat in pokemon.effort_values:
-        if stat.stat_type == stat_type:
-            ev = stat.value
-    return ev
-
-
-def get_stat_for_battle_frontier_pokemon(set_number, pokemon, level, stat_type):
-    if stat_type == StatEnum.HEALTH:
-        stat = get_health_stat(
-            base=get_base_stat(pokemon, stat_type),
-            iv=get_iv_for_battle_frontier(set_number),
-            ev=get_ev(pokemon, stat_type),
-            level=level
-        )
-    else:
-        stat = get_non_health_stat(
-            base=get_base_stat(pokemon, stat_type),
-            iv=get_iv_for_battle_frontier(set_number),
-            ev=get_ev(pokemon, stat_type),
-            nature=pokemon.nature,
-            level=level,
-            stat_type=stat_type
-        )
-    return stat

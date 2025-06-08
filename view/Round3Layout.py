@@ -31,6 +31,7 @@ class Round3Layout(QWidget):
         label_move = QLabel(string_move)
         pokemon_and_move_layout.addWidget(label_move)
         move = MoveComboBox()
+        move.currentTextChanged.connect(self.text_changed)
         pokemon_and_move_layout.addWidget(move)
         self.moveComboBox = move
         root_layout.addLayout(pokemon_and_move_layout)

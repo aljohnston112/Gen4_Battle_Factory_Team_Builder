@@ -1,7 +1,7 @@
 import typing
 
 
-def get_next_non_newline(file: typing.IO):
+def get_next_non_newline(file: typing.IO) -> str:
     """
     Gets the next line that is not a new line from a file.
 
