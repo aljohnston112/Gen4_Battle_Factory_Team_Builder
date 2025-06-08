@@ -1,5 +1,3 @@
-from typing import List
-
 from data_class.Pokemon import Pokemon
 from view.PokemonPickerDialog import PokemonPickerDialog
 
@@ -14,7 +12,7 @@ class PokemonPickerUseCase:
     def got_pokemon_choices_from_user(
             self,
             num_pokemon: int,
-            pokemon: List[Pokemon]
+            pokemon: list[Pokemon]
     ):
         pokemon_names = [poke.name for poke in pokemon]
         chosen = []

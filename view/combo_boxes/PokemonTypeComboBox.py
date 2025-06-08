@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QComboBox, QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QComboBox
 
 from data_class.Type import pokemon_types
 

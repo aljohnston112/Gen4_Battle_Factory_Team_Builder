@@ -9,7 +9,7 @@ class Round1And2Layout(QWidget):
     """
     Allows the user to enter the hints given during round one and two of battle factory.
     """
-    def __init__(self, team_use_case, is_round_2=False):
+    def __init__(self, team_use_case,  is_round_2=False):
         super().__init__()
         num_pokemon = 2 if is_round_2 else 3
         self.__view_model__ = Round1And2ViewModel(team_use_case, is_round_2=is_round_2)

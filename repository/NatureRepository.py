@@ -1,4 +1,3 @@
-from data_class.Nature import get_natures, Nature
-from data_class.Stat import Stat
+from data_class.Stat import Nature, get_natures
 
 all_natures: list[Nature] = get_natures()

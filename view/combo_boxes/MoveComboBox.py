@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QComboBox
 
-from repository.MoveRepository import get_all_moves
+from repository.MoveRepository import all_moves
 
 
 class MoveComboBox(QComboBox):
@@ -10,5 +10,5 @@ class MoveComboBox(QComboBox):
     def __init__(self):
         super().__init__()
         self.addItem("")
-        for move in sorted(get_all_moves):
+        for move in sorted(all_moves):
             self.addItem(move)

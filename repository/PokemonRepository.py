@@ -1,60 +1,69 @@
-from typing import Dict, List
+from typing import Collection
 
+from data_class.Move import Move
 from data_class.Pokemon import Pokemon
+from data_class.Type import PokemonType
 from data_source.PokemonDataSource import get_battle_factory_pokemon
 
-all_battle_factory_pokemon: Dict[str, Pokemon] = get_battle_factory_pokemon()
+all_battle_factory_pokemon: dict[str, Pokemon] = get_battle_factory_pokemon()
 
 
-def find_pokemon_with_type(pokemon_type) -> List[Pokemon]:
-    p = []
+def find_pokemon_with_type(pokemon_type: PokemonType | None) -> Collection[Pokemon]:
+    p: list[Pokemon] = []
     if pokemon_type is not None:
         for poke in all_battle_factory_pokemon.values():
+            poke: Pokemon
             if pokemon_type in poke.types:
+                pokemon_type: PokemonType
                 p.append(poke)
+        return p
     else:
-        p = all_battle_factory_pokemon.values()
-    return p
+        return all_battle_factory_pokemon.values()
 
 
-def find_pokemon_with_move(
-        move_name: str
-) -> List[Pokemon]:
-    p = []
+def find_pokemon_with_move(move_name: str) -> list[Pokemon]:
+    p: list[Pokemon] = []
     for poke in all_battle_factory_pokemon.values():
+        poke: Pokemon
         if move_name == poke.moves[0].name:
             p.append(poke)
     return p
 
 
 def find_pokemon(
-        pokemon_names: List[str],
-        move_names: List[str] = None
-) -> List[Pokemon]:
+        pokemon_names: list[str],
+        move_names: list[str] | None = None
+) -> list[Pokemon]:
     """
-    Finds the Pokemon objects with the given names and moves.
+    Finds the Pokémon objects with the given names and moves.
     :param pokemon_names: The names of the data_class.
     :param move_names: The corresponding move names of the data_class.
+                       If an empty string is given or move_name is None,
+                       all Pokémon with the given corresponding name will be returned.
     :return:
-    A list of Pokemon objects that match the given names and moves.
+    A list of Pokémon objects that match the given names and moves.
     """
     the_pokemon = []
     for i, name in enumerate(pokemon_names):
+        i :int
+        name: str
         if name != "":
-            found = False
+            found: bool = False
             for poke in all_battle_factory_pokemon.values():
+                poke: Pokemon
+                could_be: bool = False
                 if name in poke.name:
-                    could_be = False
                     if move_names is not None and move_names[i] != "":
-                        move_name = move_names[i]
+                        move_name: str = move_names[i]
                         for detailed_move in poke.moves:
+                            detailed_move: Move
                             if move_name == detailed_move.name:
-                                could_be = True
+                                could_be: bool = True
                     else:
                         could_be = True
-                    if could_be:
-                        the_pokemon.append(poke)
-                        found = True
+                if could_be:
+                    the_pokemon.append(poke)
+                    found: bool = True
             if not found:
                 print("Pokemon not found: " + name + "\n")
     return the_pokemon
