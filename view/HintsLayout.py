@@ -65,17 +65,7 @@ class HintsLayout(QGridLayout):
         :param new_round: The index of the radio button that the user selected.
         """
         self.stacked_rounds.setCurrentWidget(self.round_widgets[new_round])
-        match new_round:
-            case 0:
-                self.__current_round_use_case__.set_current_round(Round.ONE)
-            case 1:
-                self.__current_round_use_case__.set_current_round(Round.TWO)
-            case 2:
-                self.__current_round_use_case__.set_current_round(Round.THREE)
-            case 3:
-                self.__current_round_use_case__.set_current_round(Round.FOUR)
-            case 4:
-                self.__current_round_use_case__.set_current_round(Round.FIVE)
+        self.__current_round_use_case__.set_current_round(new_round)
 
     def __round_checked__(self, checked):
         """

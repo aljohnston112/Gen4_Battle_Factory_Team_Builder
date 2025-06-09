@@ -67,3 +67,23 @@ def find_pokemon(
             if not found:
                 print("Pokemon not found: " + name + "\n")
     return the_pokemon
+
+
+def is_valid_round(pokemon: Pokemon, round_number: int) -> bool:
+    parts = pokemon.unique_key.split('_')
+    return int(parts[1]) == round_number
+
+
+def get_pokemon_from_set(set_number: int, is_last_battle):
+    pokemon_list: list[Pokemon] = [p for p in
+                                   all_battle_factory_pokemon.values() if
+                                   is_valid_round(p, set_number)]
+    if is_last_battle:
+        pokemon_list += [poke for poke in
+                         all_battle_factory_pokemon.values() if
+                         is_valid_round(poke, set_number + 1)]
+    elif set_number > 0:
+        pokemon_list += [poke for poke in
+                         all_battle_factory_pokemon.values() if
+                         is_valid_round(poke, set_number - 1)]
+    return pokemon_list

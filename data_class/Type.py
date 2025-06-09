@@ -1,4 +1,10 @@
+from collections import defaultdict
+from copy import deepcopy
+from typing import Mapping
 from enum import Enum, unique
+from types import MappingProxyType
+
+from attrs import frozen
 
 
 @unique
@@ -55,3 +61,25 @@ def get_type(pokemon_type: str) -> PokemonType:
     :return: The enum representing pokemon_type.
     """
     return __TYPE_DICT__[pokemon_type.lower()]
+
+
+@frozen
+class TypeMatchups:
+    type_to_super_effective: Mapping[PokemonType, list[PokemonType]]
+    type_to_normal_effective: Mapping[PokemonType, list[PokemonType]]
+    type_to_not_effective: Mapping[PokemonType, list[PokemonType]]
+    type_to_no_effect: Mapping[PokemonType, list[PokemonType]]
+
+
+def build_type_matchups(
+        type_to_super_effective: defaultdict[PokemonType, list[PokemonType]],
+        type_to_normal_effective: defaultdict[PokemonType, list[PokemonType]],
+        type_to_not_effective: defaultdict[PokemonType, list[PokemonType]],
+        type_to_no_effect: defaultdict[PokemonType, list[PokemonType]]
+) -> TypeMatchups:
+    return TypeMatchups(
+        type_to_super_effective=MappingProxyType(type_to_super_effective),
+        type_to_normal_effective=MappingProxyType(type_to_normal_effective),
+        type_to_not_effective=MappingProxyType(type_to_not_effective),
+        type_to_no_effect=MappingProxyType(type_to_no_effect)
+    )

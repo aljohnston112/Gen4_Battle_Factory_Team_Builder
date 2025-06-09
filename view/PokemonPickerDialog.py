@@ -8,7 +8,7 @@ from view.buttons.StringButton import StringButton
 
 class PokemonPickerDialog(QDialog):
     """
-    A dialog that asks the user to pick a pokemon.
+    A dialog that asks the user to pick a Pokémon.
     """
 
     def __init__(self, pokemon_names: List[str], callback_picked):

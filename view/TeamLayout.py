@@ -33,7 +33,9 @@ class TeamLayout(QGridLayout):
         # Add first battle checkbox
         last_battle_check_box = QCheckBox(string_last_battle)
         last_battle_check_box.setChecked(False)
-        last_battle_check_box.stateChanged.connect(self.check_box_last_battle_state_changed)
+        last_battle_check_box.stateChanged.connect(
+            self.check_box_last_battle_state_changed
+        )
         self.addWidget(last_battle_check_box, 3, 0)
 
         # [0:3] are the team data_class; [3:6] are the choices.
@@ -44,14 +46,18 @@ class TeamLayout(QGridLayout):
         label_team = QLabel(string_team)
         self.addWidget(label_team, 1, 0, alignment=Qt.AlignTop)
         for i in range(0, 3):
-            self.pokemon.append(PokemonAndMoveLayout(pokemon_use_cases[i], self.__on_new_data__))
+            self.pokemon.append(
+                PokemonAndMoveLayout(pokemon_use_cases[i], self.__on_new_data__)
+            )
             team.addWidget(self.pokemon[i])
         self.addLayout(team, 1, 1)
 
         # Add choices layout
         choices = QHBoxLayout()
         for i in range(3, 6):
-            self.pokemon.append(PokemonAndMoveLayout(pokemon_use_cases[i], self.__on_new_data__))
+            self.pokemon.append(
+                PokemonAndMoveLayout(pokemon_use_cases[i], self.__on_new_data__)
+            )
             choices.addWidget(self.pokemon[i])
         self.addLayout(choices, 2, 1)
 
