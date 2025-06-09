@@ -1,16 +1,16 @@
-import os
 from collections import defaultdict
 from itertools import combinations
 from typing import List
 
-from algorithm.FrontierTeamBuilder import print_sorted_winners_from_list, load_pokemon_ranks_accuracy, \
+from algorithm.FrontierTeamBuilder import print_sorted_winners_from_list, \
     load_pokemon_ranks
 from data_class.Pokemon import Pokemon
-from repository.PokemonRepository import find_pokemon, all_battle_factory_pokemon
+from repository.PokemonRepository import find_pokemon, \
+    get_pokemon_from_set, is_valid_round
 from use_case.TeamUseCase import TeamUseCase
-from view_model.TeamViewmodel import ask_user_to_pick_pokemon, is_valid_round, \
+from view_model.TeamViewmodel import ask_user_to_pick_pokemon, \
     get_num_hits_attackers_need_do_to_defenders, aggregate_hit_info, \
-    get_potential_threats_and_print_win_rates
+    get_potential_threats_and_print_win_rates, print_coverage
 
 
 def do_round_two(
@@ -27,18 +27,20 @@ def do_round_two(
         .difference(set(chosen_pokemon))
     )
 
-    pokemon_list: list[Pokemon] = [p for p in all_battle_factory_pokemon.values() if is_valid_round(p, 1)]
-    if is_last_battle:
-        pokemon_list += [poke for poke in all_battle_factory_pokemon.values() if is_valid_round(poke, 2)]
-    else:
-        pokemon_list += [poke for poke in all_battle_factory_pokemon.values() if is_valid_round(poke, 0)]
-
+    pokemon_list = get_pokemon_from_set(1, is_last_battle)
     get_potential_threats_and_print_win_rates(chosen_pokemon, level, pokemon_list, remaining_pokemon)
+
+    set_numbers = [1]
+    if is_last_battle:
+        set_numbers.append(2)
+    else:
+        set_numbers.append(0)
+    print_coverage(opponent_pokemon, remaining_pokemon, set_numbers)
 
 
 def do_round_one(
-        pokemon: List[Pokemon],
-        opponent_pokemon_in: List[Pokemon],
+        player_pokemon: list[Pokemon],
+        opponent_pokemon_in: list[Pokemon],
         level,
         set_number: int,
         is_last_battle: bool
@@ -46,7 +48,7 @@ def do_round_one(
     """
     Given a list of Pokémon, a list of opponents, and their level,
     Pokémon are ranked by how likely they are to beat each opponent.
-    :param pokemon:
+    :param player_pokemon:
     :param opponent_pokemon_in:
     :param level:
     :param set_number:
@@ -54,81 +56,60 @@ def do_round_one(
     :return:
     """
 
-    opponent_pokemon = [poke for poke in opponent_pokemon_in if is_valid_round(poke, set_number)]
+    opponent_pokemon = \
+        [p for p in opponent_pokemon_in if is_valid_round(p, set_number)]
     if is_last_battle:
-        opponent_pokemon += [poke for poke in opponent_pokemon_in if is_valid_round(poke, set_number + 1)]
+        opponent_pokemon += \
+            [p for p in opponent_pokemon_in if is_valid_round(p, set_number + 1)]
     elif set_number > 0:
-        opponent_pokemon += [poke for poke in opponent_pokemon_in if is_valid_round(poke, set_number - 1)]
+        opponent_pokemon += \
+            [p for p in opponent_pokemon_in if is_valid_round(p, set_number - 1)]
 
     opponent_to_pokemon_to_hits: defaultdict[Pokemon, dict[Pokemon, float]] = \
         get_num_hits_attackers_need_do_to_defenders(
-            opponent_pokemon,
-            pokemon,
-            level,
-            True
+            attackers=opponent_pokemon,
+            defenders=player_pokemon,
+            level=level,
+            is_opponent=True
         )
 
     pokemon_to_opponent_to_hits: defaultdict[Pokemon, dict[Pokemon, float]] = \
         get_num_hits_attackers_need_do_to_defenders(
-            pokemon,
-            opponent_pokemon,
-            level,
-            False
+            attackers=player_pokemon,
+            defenders=opponent_pokemon,
+            level=level,
+            is_opponent=False
         )
 
-    sorted_opponent_to_pokemon_to_rank = aggregate_hit_info(opponent_to_pokemon_to_hits, pokemon_to_opponent_to_hits)
+    sorted_opponent_to_pokemon_to_rank = aggregate_hit_info(
+        opponent_to_pokemon_to_hits=opponent_to_pokemon_to_hits,
+        pokemon_to_opponent_to_hits=pokemon_to_opponent_to_hits
+    )
 
     print("Team pokemon ranks")
     for opponent, pokemon_to_hits in sorted_opponent_to_pokemon_to_rank.items():
         print(f"\n--- Against {opponent.unique_key} ---")
         print(f"{'Pokémon':<20} {'Hits to KO':>12} {'Hits to be KOed':>18}")
-        for poke, (hits_to_ko_opponent, hits_to_get_koed) in pokemon_to_hits.items():
+        for poke, hits in pokemon_to_hits.items():
+            hits_to_ko_opponent = hits.hits_given
+            hits_to_get_koed = hits.hits_taken
             print(f"{poke.unique_key:<20} {hits_to_ko_opponent:>12.2f} {hits_to_get_koed:>18.2f}")
     print()
 
-    print_sorted_winners_from_list(pokemon + opponent_pokemon)
+    print_sorted_winners_from_list(player_pokemon + opponent_pokemon)
     print()
 
     set_numbers = [set_number]
-    opponent_pokemon = [poke for poke in all_battle_factory_pokemon.values() if is_valid_round(poke, set_number)]
     if is_last_battle:
-        opponent_pokemon += [poke for poke in all_battle_factory_pokemon.values() if is_valid_round(poke, set_number + 1)]
         set_numbers.append(set_number + 1)
     elif set_number > 0:
-        opponent_pokemon += [poke for poke in all_battle_factory_pokemon.values() if is_valid_round(poke, set_number - 1)]
         set_numbers.append(set_number - 1)
+    opponent_pokemon = get_pokemon_from_set(set_number, is_last_battle)
 
-    results = []
-    for triple in combinations(pokemon, 3):
-        for set_number in set_numbers:
-            all_opponents = set(op.unique_key for op in opponent_pokemon)
+    print_coverage(opponent_pokemon, player_pokemon, set_numbers)
 
-            # Union of wins
-            union_wins = set()
-            for poke in triple:
-                union_wins |= set(load_pokemon_ranks()[set_number].get(poke.unique_key, []))
-            union_remaining = [op.unique_key for op in opponent_pokemon if op.unique_key not in union_wins]
 
-            # Intersection of wins
-            intersect_wins = all_opponents
-            for poke in triple:
-                intersect_wins &= set(load_pokemon_ranks()[set_number].get(poke.unique_key, []))
-            intersect_remaining = [op.unique_key for op in opponent_pokemon if op.unique_key not in intersect_wins]
 
-            results.append(
-                (triple, len(union_remaining), union_remaining, len(intersect_remaining), intersect_remaining))
-
-    # Sort by fewest union misses
-    results.sort(key=lambda x: x[1])
-
-    # Print
-    for triple, union_count, union_list, intersect_count, intersect_list in results:
-        names = [p.unique_key for p in triple]
-        print(f"{names}")
-        print(f"  Opponents not covered (union):     {union_count}")
-        print(f"  Remaining (union):     {union_list}")
-        print(f"  Opponents not covered (intersect): {intersect_count}")
-        print(f"  Remaining (intersect): {intersect_list}\n")
 
 
 class Round1And2ViewModel:

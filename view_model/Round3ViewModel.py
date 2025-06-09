@@ -1,13 +1,9 @@
-from collections import defaultdict
-from itertools import combinations
-
-from algorithm.FrontierTeamBuilder import load_pokemon_ranks
 from data_class.Pokemon import Pokemon
-from repository.PokemonRepository import find_pokemon, all_battle_factory_pokemon
+from repository.PokemonRepository import find_pokemon, get_pokemon_from_set
 from use_case.TeamUseCase import TeamUseCase
-from view_model.Round1And2ViewModel import do_round_one, get_num_hits_attackers_need_do_to_defenders
-from view_model.TeamViewmodel import ask_user_to_pick_pokemon, is_valid_round, get_potential_threats, \
-    aggregate_and_print_win_rates, get_potential_threats_and_print_win_rates
+from view_model.Round1And2ViewModel import do_round_one
+from view_model.TeamViewmodel import ask_user_to_pick_pokemon, \
+    get_potential_threats_and_print_win_rates, print_coverage
 
 
 def do_round_three(
@@ -18,13 +14,7 @@ def do_round_three(
 ):
     do_round_one(pokemon, opponent_pokemon_in, level, 2, is_last_battle)
 
-    opponent_pokemon = [poke for poke in all_battle_factory_pokemon.values() if is_valid_round(poke, 2)]
-    if is_last_battle:
-        opponent_pokemon += [poke for poke in all_battle_factory_pokemon.values() if is_valid_round(poke, 3)]
-    else:
-        opponent_pokemon += [poke for poke in all_battle_factory_pokemon.values() if is_valid_round(poke, 1)]
-
-
+    opponent_pokemon = get_pokemon_from_set(2, is_last_battle)
 
     chosen_pokemon: list[Pokemon] = ask_user_to_pick_pokemon(1, pokemon)
     remaining_pokemon: list[Pokemon] = list(
@@ -40,7 +30,12 @@ def do_round_three(
     )
     get_potential_threats_and_print_win_rates(chosen_pokemon, level, opponent_pokemon, remaining_pokemon)
 
-
+    set_numbers = [2]
+    if is_last_battle:
+        set_numbers.append(3)
+    else:
+        set_numbers.append(1)
+    print_coverage(opponent_pokemon, remaining_pokemon, set_numbers)
 
 
 

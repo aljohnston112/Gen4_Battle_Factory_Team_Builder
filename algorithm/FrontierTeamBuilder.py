@@ -6,7 +6,7 @@ import cattr
 
 from config import FRESH_POKEMON_RANK_FILE, FRESH_POKEMON_RANK_FILE_ACCURACY
 from data_class.Pokemon import Pokemon, get_stat_for_battle_factory_pokemon, \
-    get_max_damage_frontier_pokemon_can_do_to_defender
+    get_max_damage_attacker_can_do_to_defender
 from data_class.Stat import StatEnum
 from data_source.PokemonDataSource import get_battle_factory_pokemon, get_number_of_pokemon_in_set
 
@@ -83,14 +83,14 @@ def get_pokemon_to_pokemon_they_can_beat(
                 level,
                 StatEnum.HEALTH,
             )
-            opponent_attack_damage: int = get_max_damage_frontier_pokemon_can_do_to_defender(
+            opponent_attack_damage: int = get_max_damage_attacker_can_do_to_defender(
                 attacker=opponent_pokemon,
                 defender=player_pokemon,
                 level=level,
                 random=1.0,
                 accuracy=0
             )
-            player_attack_damage: int = get_max_damage_frontier_pokemon_can_do_to_defender(
+            player_attack_damage: int = get_max_damage_attacker_can_do_to_defender(
                 attacker=player_pokemon,
                 defender=opponent_pokemon,
                 level=level,
