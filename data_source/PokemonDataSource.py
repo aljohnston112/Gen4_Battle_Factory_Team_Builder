@@ -14,6 +14,13 @@ from repository.MoveRepository import all_moves
 from repository.PokemonTypeRepository import all_pokemon_types
 
 
+def get_number_of_pokemon_in_set(set_number: int):
+    return (150 if set_number == 0 else
+            100 if set_number in [1, 2] else
+            136 if set_number in [3, 4, 5, 6] else
+            56)
+
+
 def __parse_battle_factory_pokemon__() -> dict[str, Pokemon]:
     pokemon: dict[str, Pokemon] = {}
     counts: dict[str, int] = {}
