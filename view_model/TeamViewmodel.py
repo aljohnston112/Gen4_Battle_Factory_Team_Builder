@@ -9,6 +9,35 @@ from data_class.Stat import StatEnum
 from use_case.PokemonPickerUseCase import PokemonPickerUseCase
 
 
+def get_potential_threats_and_print_win_rates(
+        chosen_pokemon,
+        level,
+        all_set_pokemon,
+        remaining_pokemon
+):
+    potential_threats = get_potential_threats(chosen_pokemon, level, all_set_pokemon)
+    opponent_to_pokemon_to_hits: defaultdict[Pokemon, dict[Pokemon, float]] = \
+        get_num_hits_attackers_need_do_to_defenders(
+            potential_threats,
+            remaining_pokemon,
+            level,
+            True
+        )
+    pokemon_to_opponent_to_hits: defaultdict[Pokemon, dict[Pokemon, float]] = \
+        get_num_hits_attackers_need_do_to_defenders(
+            remaining_pokemon,
+            potential_threats,
+            level,
+            False
+        )
+    aggregate_and_print_win_rates(
+        opponent_to_pokemon_to_hits,
+        pokemon_to_opponent_to_hits
+    )
+    print_sorted_winners_from_list(chosen_pokemon + remaining_pokemon)
+
+
+
 def get_pokemon_health(pokemon: list[Pokemon], level: int) -> dict[Pokemon, int]:
     pokemon_to_health: dict[Pokemon, int] = dict()
     for poke in pokemon:
@@ -44,9 +73,7 @@ def aggregate_hit_info(
 
 
 def aggregate_and_print_win_rates(
-        opponent_pokemon,
         opponent_to_pokemon_to_hits,
-        pokemon,
         pokemon_to_opponent_to_hits
 ):
     sorted_opponent_to_pokemon_to_rank = aggregate_hit_info(opponent_to_pokemon_to_hits, pokemon_to_opponent_to_hits)
@@ -67,7 +94,6 @@ def aggregate_and_print_win_rates(
         total = total_counts[poke]
         rate = (wins / total) * 100 if total > 0 else 0
         print(f"{poke.unique_key:<20} {rate:>15.2f}")
-    print_sorted_winners_from_list(pokemon + opponent_pokemon)
 
 
 def get_max_damage_attackers_can_do_to_defenders(
