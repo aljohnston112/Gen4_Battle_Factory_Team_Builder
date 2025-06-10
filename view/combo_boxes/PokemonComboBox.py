@@ -1,8 +1,6 @@
 from PyQt5.QtWidgets import QComboBox
 
-from repository.PokemonRepository import all_battle_factory_pokemon, \
-    get_pokemon_from_set
-
+from repository.PokemonRepository import all_battle_factory_pokemon
 
 class PokemonComboBox(QComboBox):
     """

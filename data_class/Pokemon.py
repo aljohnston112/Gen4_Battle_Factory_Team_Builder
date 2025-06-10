@@ -135,11 +135,11 @@ def get_max_attack_power_for_list(attackers: list[Pokemon]) -> defaultdict[
 def get_pokemon_health(
         pokemon: list[Pokemon],
         level: int
-) -> dict[Pokemon, int]:
-    pokemon_to_health: dict[Pokemon, int] = dict()
+) -> dict[str, int]:
+    pokemon_to_health: dict[str, int] = dict()
     for poke in pokemon:
         poke: Pokemon
-        pokemon_to_health[poke]: int = get_stat_for_battle_factory_pokemon(
+        pokemon_to_health[poke.unique_key]: int = get_stat_for_battle_factory_pokemon(
             poke,
             level,
             StatEnum.HEALTH
@@ -397,7 +397,7 @@ def get_num_hits_attackers_need_do_to_defenders(
             level=level,
             is_opponent=is_opponent
         )
-    pokemon_to_health: dict[Pokemon, int] = get_pokemon_health(
+    pokemon_to_health: dict[str, int] = get_pokemon_health(
         pokemon=attackers + defenders,
         level=level
     )
@@ -411,10 +411,8 @@ def get_num_hits_attackers_need_do_to_defenders(
             defender: Pokemon
             max_damage: int
             if max_damage != 0:
-                hits: float = pokemon_to_health[defender] / max_damage
-                if hits < 1:
-                    hits: float = 1
+                hits: float = pokemon_to_health[defender.unique_key] / max_damage
             else:
-                hits = 9999
+                hits = 0
             attacker_to_defender_to_hits[attacker][defender]: float = hits
     return attacker_to_defender_to_hits
