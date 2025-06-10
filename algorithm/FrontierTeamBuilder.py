@@ -1,5 +1,6 @@
 import json
 from collections import defaultdict
+from itertools import combinations
 from os.path import exists
 
 import cattr
@@ -11,13 +12,79 @@ from data_class.Stat import StatEnum
 from data_source.PokemonDataSource import get_battle_factory_pokemon, get_number_of_pokemon_in_set
 
 
-def print_sorted_winners_from_list(pokemon_list: list[Pokemon]):
+def print_top_result(results, sorted_by: str, key_func):
+    results.sort(key=key_func)
+    if results:
+        triple, union_count, union_list, intersect_count, intersect_list = results[0]
+        names = [p.unique_key for p in triple]
+        print(f"Top result by {sorted_by}:")
+        print(f"{names}")
+        print(f"  Opponents not covered (union):     {union_count}")
+        print(f"  Remaining (union):     {union_list}")
+        print(f"  Opponents not covered (intersect): {intersect_count}")
+        print(f"  Remaining (intersect): {intersect_list}\n")
+
+
+def print_coverage(
+        opponent_pokemon: list[Pokemon],
+        chosen_pokemon: list[Pokemon],
+        player_pokemon: list[Pokemon],
+        set_numbers: list[int]
+):
+    results: list[tuple[tuple[Pokemon, Pokemon, Pokemon], int, list[str], int, list[str]]] = []
+    for triple in combinations(player_pokemon + chosen_pokemon, 3):
+        triple: tuple[Pokemon, Pokemon, Pokemon]
+
+        # only consider triples with the chosen Pokémon
+        is_good: bool = True
+        for poke in chosen_pokemon:
+            if poke not in triple:
+                is_good = False
+        if not is_good:
+            continue
+
+        for set_number in set_numbers:
+            set_number: int
+            all_opponents: set[str] = set(op.unique_key for op in opponent_pokemon)
+
+            # Union of wins
+            union_wins: set[str] = set()
+            ranks: dict[int, dict[str, list[str]]] = load_pokemon_ranks_accuracy()
+            set_ranks: dict[str, list[str]] = ranks[set_number]
+            for poke in triple:
+                poke: Pokemon
+                union_wins |= set(set_ranks.get(poke.unique_key, []))
+            union_remaining = [op.unique_key for op in opponent_pokemon if
+                               op.unique_key not in union_wins]
+
+            # Intersection of wins
+            intersect_wins = all_opponents
+            for poke in triple:
+                poke: Pokemon
+                intersect_wins &= set(set_ranks.get(poke.unique_key, []))
+            intersect_remaining = [op.unique_key for op in opponent_pokemon if
+                                   op.unique_key not in intersect_wins]
+
+            results.append(
+                (
+                    triple,
+                    len(union_remaining),
+                    union_remaining,
+                    len(intersect_remaining),
+                    intersect_remaining
+                )
+            )
+    print_top_result(results, "Union", key_func=lambda x: x[1])
+    print_top_result(results, "Intersection", key_func=lambda x: x[3])
+
+
+def print_sorted_win_rates(pokemon_list: list[Pokemon], n: int):
     if len(all_sets_winners) == 0:
         load_pokemon_ranks()
     if len(all_sets_winners_accuracy) == 0:
         load_pokemon_ranks_accuracy()
-    filtered_scores: dict[str, list[str]] = {}
-    filtered_scores_accuracy: dict[str, list[str]] = {}
+    filtered_winners: dict[str, list[str]] = {}
+    filtered_winners_accuracy: dict[str, list[str]] = {}
     for pokemon in pokemon_list:
         pokemon: Pokemon
         pokemon_id: str = pokemon.unique_key
@@ -25,24 +92,25 @@ def print_sorted_winners_from_list(pokemon_list: list[Pokemon]):
         set_number: int = int(parts[1])
         winners: dict[str, list[str]] = all_sets_winners[set_number]
         winners_accuracy: dict[str, list[str]] = all_sets_winners_accuracy[set_number]
-        filtered_scores[pokemon_id]: list[str] = winners.get(pokemon_id, [])
-        filtered_scores_accuracy[pokemon_id]: list[str] = winners_accuracy.get(pokemon_id, [])
+        filtered_winners[pokemon_id]: list[str] = winners.get(pokemon_id, [])
+        filtered_winners_accuracy[pokemon_id]: list[str] = winners_accuracy.get(pokemon_id, [])
     sorted_scores: dict[str, float] = dict(
         sorted(
-            ((k, len(v) / get_number_of_pokemon_in_set(int(k.split('_')[1]))) for k, v in filtered_scores.items()),
+            ((unique_key, len(defeated_list) / n)
+             for unique_key, defeated_list in filtered_winners.items()),
             key=lambda e: e[1],
             reverse=True
         )
     )
     sorted_scores_accuracy: dict[str, float] = dict(
         sorted(
-            ((k, len(v) / get_number_of_pokemon_in_set(int(k.split('_')[1]))) for k, v in
-             filtered_scores_accuracy.items()),
+            ((unique_key, len(defeated_list) / n)
+             for unique_key, defeated_list in
+             filtered_winners_accuracy.items()),
             key=lambda e: e[1],
             reverse=True
         )
     )
-
     print(sorted_scores)
     print(sorted_scores_accuracy)
 
@@ -54,7 +122,8 @@ def get_pokemon_to_pokemon_they_can_beat(
 ) -> dict[str, list[str]]:
     frontier_pokemon: dict[str, Pokemon] = get_battle_factory_pokemon()
     winner_to_defeated: dict[str, list[str]] = defaultdict(lambda: [])
-    set_pokemon = {k: v for k, v in frontier_pokemon.items() if v.set_number == set_number}
+    set_numbers: list[int] = [set_number - 1, set_number, set_number + 1]
+    set_pokemon = {k: v for k, v in frontier_pokemon.items() if v.set_number in set_numbers}
     for opponent_pokemon_id, opponent_pokemon in set_pokemon.items():
         opponent_pokemon_id: str
         opponent_pokemon: Pokemon
