@@ -1,6 +1,6 @@
 from typing import Callable
 
-from PyQt5.QtWidgets import QPushButton, QDialog
+from PyQt5.QtWidgets import QPushButton
 
 
 class StringButton(QPushButton):

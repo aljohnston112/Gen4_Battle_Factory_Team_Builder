@@ -1,6 +1,5 @@
 from typing import Collection
 
-from data_class.Move import Move
 from data_class.Pokemon import Pokemon
 from data_class.Type import PokemonType
 from data_source.PokemonDataSource import get_battle_factory_pokemon
@@ -32,18 +31,18 @@ def find_pokemon_with_move(move_name: str) -> list[Pokemon]:
 
 def find_pokemon(
         pokemon_names: list[str],
-        move_names: list[str] | None = None
+        move_names: list[str] | None
 ) -> list[Pokemon]:
     """
     Finds the Pokémon objects with the given names and moves.
-    :param pokemon_names: The names of the data_class.
-    :param move_names: The corresponding move names of the data_class.
-                       If an empty string is given or move_name is None,
+    :param pokemon_names: The names of the Pokémon objects.
+    :param move_names: The corresponding move names of the Pokémon objects.
+                       If an empty string is given or move_names is None,
                        all Pokémon with the given corresponding name will be returned.
     :return:
     A list of Pokémon objects that match the given names and moves.
     """
-    the_pokemon = []
+    found_pokemon: list[Pokemon] = []
     for i, name in enumerate(pokemon_names):
         i :int
         name: str
@@ -54,23 +53,21 @@ def find_pokemon(
                 could_be: bool = False
                 if name in poke.name:
                     if move_names is not None and move_names[i] != "":
-                        move_name: str = move_names[i]
-                        for detailed_move in poke.moves:
-                            detailed_move: Move
-                            if move_name == detailed_move.name:
-                                could_be: bool = True
+                        move_name: str = move_names[i].lower()
+                        could_be = any(move_name == move.name.lower()
+                                       for move in poke.moves)
                     else:
-                        could_be = True
+                        could_be: bool = True
                 if could_be:
-                    the_pokemon.append(poke)
+                    found_pokemon.append(poke)
                     found: bool = True
             if not found:
                 print("Pokemon not found: " + name + "\n")
-    return the_pokemon
+    return found_pokemon
 
 
 def is_valid_round(pokemon: Pokemon, round_number: int) -> bool:
-    parts = pokemon.unique_key.split('_')
+    parts = pokemon.unique_id.split('_')
     return int(parts[1]) == round_number
 
 

@@ -1,9 +1,10 @@
 from collections import defaultdict
-from math import ceil
+from math import ceil, inf
 from typing import List
 
-from algorithm.FrontierTeamBuilder import print_sorted_win_rates, print_coverage
-from data_class.Hits import Hits
+from algorithm.FrontierTeamBuilder import print_sorted_win_rates, \
+    print_coverage, load_pokemon_ranks_accuracy
+from data_class.BattleResult import BattleResult
 from data_class.Pokemon import Pokemon, get_stat_for_battle_factory_pokemon, \
     get_num_hits_attackers_need_do_to_defenders
 from data_class.Stat import StatEnum
@@ -63,7 +64,8 @@ def get_potential_threats_and_print_win_rates_and_coverage(
         chosen_pokemon: list[Pokemon],
         level: int,
         factory_pokemon: list[Pokemon],
-        remaining_pokemon: list[Pokemon],
+        player_pokemon: list[Pokemon],
+        choice_pokemon: list[Pokemon],
         set_numbers: list[int]
 ):
     potential_threats = get_potential_threats(
@@ -71,99 +73,54 @@ def get_potential_threats_and_print_win_rates_and_coverage(
         level,
         factory_pokemon
     )
-    opponent_to_pokemon_to_hits: defaultdict[Pokemon, dict[Pokemon, float]] = \
-        get_num_hits_attackers_need_do_to_defenders(
-            potential_threats,
-            remaining_pokemon,
-            level,
-            True
-        )
-    pokemon_to_opponent_to_hits: defaultdict[Pokemon, dict[Pokemon, float]] = \
-        get_num_hits_attackers_need_do_to_defenders(
-            remaining_pokemon,
-            potential_threats,
-            level,
-            False
-        )
-    aggregate_and_print_win_rates(
-        opponent_to_pokemon_to_hits,
-        pokemon_to_opponent_to_hits,
-        level
+    print_win_rates(
+        choice_pokemon + [p for p in player_pokemon if p not in chosen_pokemon],
+        potential_threats,
+        set_numbers
     )
     print()
-    print_sorted_win_rates(chosen_pokemon + remaining_pokemon, len(factory_pokemon))
+    print_sorted_win_rates(choice_pokemon + [p for p in player_pokemon if p not in chosen_pokemon])
     print()
-    print_coverage(factory_pokemon, chosen_pokemon, remaining_pokemon, set_numbers)
+    print_coverage(factory_pokemon, chosen_pokemon, player_pokemon,
+                   choice_pokemon, set_numbers)
 
 
-def aggregate_hit_info(
-        opponent_to_pokemon_to_hits: defaultdict[Pokemon, dict[Pokemon, float]],
-        pokemon_to_opponent_to_hits: defaultdict[Pokemon, dict[Pokemon, float]]
-) -> dict[Pokemon, dict[Pokemon, Hits]]:
-    opponent_to_pokemon_to_hit_tuple: \
-        defaultdict[Pokemon, dict[Pokemon, Hits]] = defaultdict(lambda: dict())
-    for opponent_pokemon, pokemon_to_hits in opponent_to_pokemon_to_hits.items():
-        opponent_pokemon: Pokemon
-        pokemon_to_hits: dict[Pokemon, float]
-        for player_pokemon, hits_taken in pokemon_to_hits.items():
-            player_pokemon: Pokemon
-            hits_taken: float
-            hits_given: float = \
-                pokemon_to_opponent_to_hits[player_pokemon][opponent_pokemon]
-            opponent_to_pokemon_to_hit_tuple[opponent_pokemon][player_pokemon]: \
-                Hits = Hits(hits_given=hits_given, hits_taken=hits_taken)
-    sorted_opponent_to_pokemon_to_hits: \
-        dict[Pokemon, dict[Pokemon, Hits]] = {
-        opponent: dict(sorted(pokemon_to_hit_tuple.items(),
-                              key=lambda x: 0 if x[1].hits_taken == 0 else x[1].hits_given / x[1].hits_taken))
-        for opponent, pokemon_to_hit_tuple in opponent_to_pokemon_to_hit_tuple.items()
-    }
-    return sorted_opponent_to_pokemon_to_hits
-
-
-def aggregate_and_print_win_rates(
-        opponent_to_pokemon_to_hits,
-        pokemon_to_opponent_to_hits,
-        level: int
+def print_win_rates(
+        pokemon: list[Pokemon],
+        potential_threats: list[Pokemon],
+        set_numbers: list[int]
 ):
-    sorted_opponent_to_pokemon_to_rank = aggregate_hit_info(
-        opponent_to_pokemon_to_hits,
-        pokemon_to_opponent_to_hits
-    )
-    win_counts: dict[str, int] = defaultdict(int)
-    total_counts: dict[str, int] = defaultdict(int)
+    set_to_battle_results = dict()
+    ranks_accuracy = load_pokemon_ranks_accuracy()
+    for set_number in set_numbers:
+        set_to_battle_results[set_number] = ranks_accuracy[set_number]
 
-    for opponent, pokemon_to_hits in \
-            sorted_opponent_to_pokemon_to_rank.items():
-        for poke, hits in pokemon_to_hits.items():
-            hits_given = hits.hits_given
-            hits_taken = hits.hits_taken
-            total_counts[poke.unique_key] += 1
-            player_speed: int = get_stat_for_battle_factory_pokemon(
-                poke,
-                level,
-                StatEnum.SPEED
-            )
-            opponent_speed: int = get_stat_for_battle_factory_pokemon(
-                opponent,
-                level,
-                StatEnum.SPEED
-            )
-            if hits_given != 0 and (ceil(hits_given) < ceil(hits_taken) or
-                                    ((ceil(hits_taken) == ceil(hits_given) and
-                                      player_speed > opponent_speed))):
-                win_counts[poke.unique_key] += 1
+    total_counts: dict[str, int] = {}
+    win_counts: dict[str, int] = {}
+    for poke in pokemon:
+        total_counts[poke.unique_id] = 0
+        win_counts[poke.unique_id] = 0
+        for set_number in set_numbers:
+            battle_result: BattleResult = \
+                set_to_battle_results[set_number].get(poke.unique_id, None)
+            if battle_result:
+                beatable_ids = {res_tuple for res_tuple in battle_result.results}
+                for threat in potential_threats:
+                    if threat.unique_id in beatable_ids:
+                        win_counts[poke.unique_id] += 1
+                    total_counts[poke.unique_id] += 1
 
-    print("\n=== Win Rate Summary Over Potential Threats ===")
+
+    print("=== Win Rate Summary Over Potential Threats ===")
     print(f"{'Pokémon':<20} {'Win Rate (%)':>15}")
-    for poke_key in sorted(
-            total_counts.keys(), key=lambda x: win_counts[x] / total_counts[x],
+    for poke_id in sorted(
+            total_counts.keys(), key=lambda x: win_counts[x] / float(total_counts[x] if total_counts[x] > 0 else inf) ,
             reverse=True
     ):
-        wins = win_counts[poke_key]
-        total = total_counts[poke_key]
+        wins = win_counts[poke_id]
+        total = total_counts[poke_id]
         rate = (wins / total) * 100 if total > 0 else 0
-        print(f"{poke_key:<20} {rate:>15.2f}")
+        print(f"{poke_id:<20} {rate:>15.2f}")
 
 
 def ask_user_to_pick_pokemon(
@@ -197,8 +154,7 @@ class TeamViewModel:
             poke for pokemon_use_case in self.__pokemon_use_cases__[3:]
             for poke in pokemon_use_case.get_pokemon()
         ]
-        team_pokemon.extend(choice_pokemon)
-        self.__team_use_case__.set_pokemon(team_pokemon, [])
+        self.__team_use_case__.set_pokemon(team_pokemon, choice_pokemon)
 
     def is_last_battle(self, is_last_battle):
         self.__team_use_case__.set_is_last_battle(is_last_battle)

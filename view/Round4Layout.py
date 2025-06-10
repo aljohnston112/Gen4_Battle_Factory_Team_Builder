@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout, QPushButton
+from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton
 
 from data.Strings import string_move, string_confirm
 from view.combo_boxes.MoveComboBox import MoveComboBox
@@ -7,7 +7,7 @@ from view_model.Round4ViewModel import Round4ViewModel
 
 class Round4Layout(QWidget):
     """
-    Allows the user to enter hints for round four of battle factory
+    Allows the user to enter hints for round four of the battle factory
     """
     def __init__(self, team_use_case):
         super().__init__()

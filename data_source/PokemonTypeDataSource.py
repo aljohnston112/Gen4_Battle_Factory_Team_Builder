@@ -39,7 +39,7 @@ def get_pokemon_types() -> dict[str, set[PokemonType]]:
         pokemon_to_types: dict[str, set[PokemonType]] = __parse_pokemon_types__()
         with open(FRESH_POKEMON_TYPES_FILE, "w") as fo:
             serializable = {k: list(v) for k, v in pokemon_to_types.items()}
-            fo.write(json.dumps(cattr.unstructure(serializable)))
+            fo.write(json.dumps(cattr.unstructure(serializable), indent=2))
     else:
         with open(FRESH_POKEMON_TYPES_FILE, "r") as fo:
             pokemon_to_types: dict[str, set[PokemonType]] = \

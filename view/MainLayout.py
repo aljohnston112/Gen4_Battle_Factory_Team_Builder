@@ -6,6 +6,8 @@ from data.Strings import string_title
 from view.HintsLayout import HintsLayout
 
 
+__LEVEL__ = 50
+
 def run_main_app() -> None:
     """
     Creates and runs the main application.
@@ -15,7 +17,7 @@ def run_main_app() -> None:
     # All top level widgets create a window
     window: QWidget = QWidget()
     window.setWindowTitle(string_title)
-    window.setLayout(MainLayout())
+    window.setLayout(MainLayout(__LEVEL__))
     window.show()
 
     sys.exit(app.exec())
@@ -26,9 +28,9 @@ class MainLayout(QGridLayout):
     The top-level layout.
     """
 
-    def __init__(self):
+    def __init__(self, level: int):
         super().__init__()
 
         # Set up the layout that provides the hints
-        self.__hints__ = HintsLayout()
+        self.__hints__ = HintsLayout(level=level)
         self.addLayout(self.__hints__, 0, 0)

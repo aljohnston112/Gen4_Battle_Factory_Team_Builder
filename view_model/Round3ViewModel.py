@@ -5,13 +5,15 @@ from view_model.Round1And2ViewModel import do_round_two
 
 
 def do_round_three(
-        pokemon: list[Pokemon],
+        player_pokemon: list[Pokemon],
+        choice_pokemon: list[Pokemon],
         opponent_pokemon_in: list[Pokemon],
         level: int,
         is_last_battle: bool
 ):
     do_round_two(
-        pokemon,
+        player_pokemon,
+        choice_pokemon,
         opponent_pokemon_in,
         level,
         is_last_battle,
@@ -35,7 +37,8 @@ class Round3ViewModel:
 
     def confirm_clicked(self) -> None:
         do_round_three(
-            self.__team_use_case__.get_team_pokemon() + self.__team_use_case__.get_choice_pokemon(),
+            self.__team_use_case__.get_team_pokemon(),
+            self.__team_use_case__.get_choice_pokemon(),
             self.__opponent_pokemon__,
             self.__level__,
             self.__team_use_case__.is_last_battle()

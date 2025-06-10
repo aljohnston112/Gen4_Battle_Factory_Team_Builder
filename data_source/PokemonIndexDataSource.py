@@ -28,7 +28,7 @@ def get_pokemon_indices() -> dict[int, str]:
     if not exists(FRESH_POKEMON_INDICES_FILE):
         index_to_pokemon: dict[int, str] = __parse_pokemon_indices__()
         with open(FRESH_POKEMON_INDICES_FILE, "w") as fo:
-            fo.write(json.dumps(cattr.unstructure(index_to_pokemon)))
+            fo.write(json.dumps(cattr.unstructure(index_to_pokemon), indent=2))
     else:
         with open(FRESH_POKEMON_INDICES_FILE, "r") as fo:
             index_to_pokemon = cattr.structure(json.loads(fo.read()), dict[int, str])

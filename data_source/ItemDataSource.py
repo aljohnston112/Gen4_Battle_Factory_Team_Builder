@@ -21,7 +21,7 @@ def __parse_items__():
             else:
                 done: bool = True
         with open(FRESH_HOLD_ITEMS, "w") as fo:
-            fo.write(json.dumps(cattr.unstructure(items)))
+            fo.write(json.dumps(cattr.unstructure(items), indent=2))
 
 
 def get_items() -> dict[str, str]:
@@ -32,5 +32,5 @@ def get_items() -> dict[str, str]:
 
 
 if __name__ == "__main__":
-    items: dict[str, str] = get_items()
-    pp(items)
+    g_items: dict[str, str] = get_items()
+    pp(g_items)
