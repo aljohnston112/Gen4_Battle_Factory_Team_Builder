@@ -1,22 +1,25 @@
 import json
-from collections import defaultdict
 from itertools import combinations
+from math import inf
 from os.path import exists
 
 import cattr
 
 from config import FRESH_POKEMON_RANK_FILE, FRESH_POKEMON_RANK_FILE_ACCURACY
+from data_class.BattleResult import BattleResult
+from data_class.Hits import Hits
 from data_class.Pokemon import Pokemon, get_stat_for_battle_factory_pokemon, \
     get_max_damage_attacker_can_do_to_defender
 from data_class.Stat import StatEnum
-from data_source.PokemonDataSource import get_battle_factory_pokemon, get_number_of_pokemon_in_set
+from data_source.PokemonDataSource import get_battle_factory_pokemon
 
 
 def print_top_result(results, sorted_by: str, key_func):
     results.sort(key=key_func)
     if results:
-        triple, union_count, union_list, intersect_count, intersect_list = results[0]
-        names = [p.unique_key for p in triple]
+        triple, union_count, union_list, intersect_count, intersect_list = \
+            results[0]
+        names = [p.unique_id for p in triple]
         print(f"Top result by {sorted_by}:")
         print(f"{names}")
         print(f"  Opponents not covered (union):     {union_count}")
@@ -29,9 +32,11 @@ def print_coverage(
         opponent_pokemon: list[Pokemon],
         chosen_pokemon: list[Pokemon],
         player_pokemon: list[Pokemon],
+        choice_pokemon: list[Pokemon],
         set_numbers: list[int]
 ):
-    results: list[tuple[tuple[Pokemon, Pokemon, Pokemon], int, list[str], int, list[str]]] = []
+    results: list[tuple[
+        tuple[Pokemon, Pokemon, Pokemon], int, list[str], int, list[str]]] = []
     for triple in combinations(player_pokemon + chosen_pokemon, 3):
         triple: tuple[Pokemon, Pokemon, Pokemon]
 
@@ -43,27 +48,46 @@ def print_coverage(
         if not is_good:
             continue
 
+        # only consider triple with max of 1 choice Pokémon
+        is_good: bool = True
+        count: int = 0
+        for poke in choice_pokemon:
+            if poke in triple:
+                count += 1
+        if count > 1:
+            is_good = False
+        if not is_good:
+            continue
+
         for set_number in set_numbers:
             set_number: int
-            all_opponents: set[str] = set(op.unique_key for op in opponent_pokemon)
+            all_opponents: set[str] = set(
+                op.unique_id for op in opponent_pokemon)
 
             # Union of wins
             union_wins: set[str] = set()
-            ranks: dict[int, dict[str, list[str]]] = load_pokemon_ranks_accuracy()
-            set_ranks: dict[str, list[str]] = ranks[set_number]
+            ranks_accuracy: dict[int, dict[str, BattleResult]] = \
+                load_pokemon_ranks_accuracy()
+            set_ranks: dict[str, BattleResult] = ranks_accuracy[set_number]
             for poke in triple:
                 poke: Pokemon
-                union_wins |= set(set_ranks.get(poke.unique_key, []))
-            union_remaining = [op.unique_key for op in opponent_pokemon if
-                               op.unique_key not in union_wins]
+                battle_result: BattleResult = set_ranks.get(poke.unique_id)
+                if battle_result:
+                    union_wins |= set(
+                        results for results in battle_result.results)
+            union_remaining = [op.unique_id for op in opponent_pokemon if
+                               op.unique_id not in union_wins]
 
             # Intersection of wins
             intersect_wins = all_opponents
             for poke in triple:
                 poke: Pokemon
-                intersect_wins &= set(set_ranks.get(poke.unique_key, []))
-            intersect_remaining = [op.unique_key for op in opponent_pokemon if
-                                   op.unique_key not in intersect_wins]
+                battle_result: BattleResult = set_ranks.get(poke.unique_id)
+                if battle_result:
+                    intersect_wins &= set(
+                        results for results in battle_result.results)
+            intersect_remaining = [op.unique_id for op in opponent_pokemon if
+                                   op.unique_id not in intersect_wins]
 
             results.append(
                 (
@@ -78,34 +102,36 @@ def print_coverage(
     print_top_result(results, "Intersection", key_func=lambda x: x[3])
 
 
-def print_sorted_win_rates(pokemon_list: list[Pokemon], n: int):
+def print_sorted_win_rates(pokemon_list: list[Pokemon]):
     if len(all_sets_winners) == 0:
         load_pokemon_ranks()
     if len(all_sets_winners_accuracy) == 0:
         load_pokemon_ranks_accuracy()
-    filtered_winners: dict[str, list[str]] = {}
-    filtered_winners_accuracy: dict[str, list[str]] = {}
+    filtered_winners: dict[str, BattleResult] = {}
+    filtered_winners_accuracy: dict[str, BattleResult] = {}
     for pokemon in pokemon_list:
         pokemon: Pokemon
-        pokemon_id: str = pokemon.unique_key
+        pokemon_id: str = pokemon.unique_id
         parts: list[str] = pokemon_id.split('_')
         set_number: int = int(parts[1])
-        winners: dict[str, list[str]] = all_sets_winners[set_number]
-        winners_accuracy: dict[str, list[str]] = all_sets_winners_accuracy[set_number]
-        filtered_winners[pokemon_id]: list[str] = winners.get(pokemon_id, [])
-        filtered_winners_accuracy[pokemon_id]: list[str] = winners_accuracy.get(pokemon_id, [])
+        winners: dict[str, BattleResult] = all_sets_winners[set_number]
+        winners_accuracy: dict[str, BattleResult] = all_sets_winners_accuracy[
+            set_number]
+        filtered_winners[pokemon_id]: BattleResult = winners.get(pokemon_id, [])
+        filtered_winners_accuracy[
+            pokemon_id]: BattleResult = winners_accuracy.get(pokemon_id, [])
     sorted_scores: dict[str, float] = dict(
         sorted(
-            ((unique_key, len(defeated_list) / n)
-             for unique_key, defeated_list in filtered_winners.items()),
+            ((unique_key, battle_results.win_rate)
+             for unique_key, battle_results in filtered_winners.items()),
             key=lambda e: e[1],
             reverse=True
         )
     )
     sorted_scores_accuracy: dict[str, float] = dict(
         sorted(
-            ((unique_key, len(defeated_list) / n)
-             for unique_key, defeated_list in
+            ((unique_key, battle_results.win_rate)
+             for unique_key, battle_results in
              filtered_winners_accuracy.items()),
             key=lambda e: e[1],
             reverse=True
@@ -119,36 +145,38 @@ def get_pokemon_to_pokemon_they_can_beat(
         set_number: int,
         level: int,
         worst_case: bool
-) -> dict[str, list[str]]:
+) -> dict[str, BattleResult]:
     frontier_pokemon: dict[str, Pokemon] = get_battle_factory_pokemon()
-    winner_to_defeated: dict[str, list[str]] = defaultdict(lambda: [])
+    winner_to_defeated: dict[str, BattleResult] = dict()
     set_numbers: list[int] = [set_number - 1, set_number, set_number + 1]
-    set_pokemon = {k: v for k, v in frontier_pokemon.items() if v.set_number in set_numbers}
-    for opponent_pokemon_id, opponent_pokemon in set_pokemon.items():
-        opponent_pokemon_id: str
-        opponent_pokemon: Pokemon
-        opponent_speed_stat: int = get_stat_for_battle_factory_pokemon(
-            opponent_pokemon,
+    set_pokemon = {k: v for k, v in frontier_pokemon.items() if
+                   v.set_number in set_numbers}
+    for player_pokemon_id, player_pokemon in set_pokemon.items():
+        player_pokemon_id: str
+        player_pokemon: Pokemon
+        player_speed_stat: int = get_stat_for_battle_factory_pokemon(
+            player_pokemon,
             level,
             StatEnum.SPEED
         )
-        opponent_max_health: int = get_stat_for_battle_factory_pokemon(
-            opponent_pokemon,
+        player_max_health: int = get_stat_for_battle_factory_pokemon(
+            player_pokemon,
             level,
             StatEnum.HEALTH
         )
-        for player_pokemon_id, player_pokemon in set_pokemon.items():
-            player_pokemon_id: str
-            player_pokemon: Pokemon
+        battle_results: dict[str, Hits] = dict()
+        for opponent_pokemon_id, opponent_pokemon in set_pokemon.items():
+            opponent_pokemon_id: str
+            opponent_pokemon: Pokemon
             # Who is faster?
-            player_speed_stat: int = get_stat_for_battle_factory_pokemon(
-                player_pokemon,
+            opponent_speed_stat: int = get_stat_for_battle_factory_pokemon(
+                opponent_pokemon,
                 level,
                 StatEnum.SPEED,
             )
             player_first: bool = player_speed_stat > opponent_speed_stat
-            player_health: int = get_stat_for_battle_factory_pokemon(
-                player_pokemon,
+            opponent_health: int = get_stat_for_battle_factory_pokemon(
+                opponent_pokemon,
                 level,
                 StatEnum.HEALTH,
             )
@@ -166,7 +194,17 @@ def get_pokemon_to_pokemon_they_can_beat(
                 random=0.85 if worst_case else 1.0,
                 accuracy=100 if worst_case else 0
             )
-            opponent_health: int = opponent_max_health
+
+            hits_taken: float = inf
+            if opponent_attack_damage != 0:
+                hits_taken: float = player_max_health / opponent_attack_damage
+
+            hits_given = inf
+            if player_attack_damage != 0:
+                hits_given: float = opponent_health / player_attack_damage
+            hits: Hits = Hits(hits_taken=hits_taken, hits_given=hits_given)
+
+            player_health: int = player_max_health
             if opponent_attack_damage != 0 or player_attack_damage != 0:
                 while player_health > 0 and opponent_health > 0:
                     player_health: int = player_health - opponent_attack_damage
@@ -175,68 +213,106 @@ def get_pokemon_to_pokemon_they_can_beat(
                 player_health: int = 0
             if player_health > 0 or \
                     (
-                            player_health == 0 and
-                            opponent_max_health == 0 and
+                            player_health <= 0 and
+                            opponent_health <= 0 and
                             player_first
                     ):
-                winner_to_defeated[player_pokemon_id].append(opponent_pokemon_id)
+                battle_results[opponent_pokemon_id] = hits
+        winner_to_defeated[player_pokemon_id]: BattleResult = \
+            BattleResult(
+                winner_id=player_pokemon_id,
+                win_rate=len(battle_results) / len(set_pokemon),
+                results=battle_results
+            )
     return winner_to_defeated
 
 
-all_sets_winners: dict[int, dict[str, list[str]]] = {}
+all_sets_winners: dict[int, dict[str, BattleResult]] = {}
 
 
-def load_pokemon_ranks() -> dict[int, dict[str, list[str]]]:
+def load_pokemon_ranks() -> dict[int, dict[str, BattleResult]]:
     global all_sets_winners
     if len(all_sets_winners) != 0:
         return all_sets_winners
     if not exists(FRESH_POKEMON_RANK_FILE):
         level: int = 50
-        data: dict[int, dict[str, list[str]]] = {}
+        data: dict[int, dict[str, BattleResult]] = {}
         for set_number in range(8):
-            winners: dict[str, list[str]] = get_pokemon_to_pokemon_they_can_beat(
+            winners: dict[
+                str, BattleResult] = get_pokemon_to_pokemon_they_can_beat(
                 set_number=set_number,
                 level=level,
                 worst_case=False
             )
-            sorted_winners: dict[str, list[str]] = \
-                {k: v for k, v in sorted(winners.items(), key=lambda e: e[1], reverse=True)}
-            data[set_number]: dict[str, list[str]] = sorted_winners
+            for winner, battle_results in winners.items():
+                if len(battle_results.results) > 0:
+                    sorted_battle_result_results = dict(
+                        sorted(
+                            battle_results.results.items(),
+                            key=lambda item:
+                            item[1].hits_taken / item[1].hits_given
+                        )
+                    )
+                    battle_results.results = sorted_battle_result_results
+
+            sorted_winners: dict[str, BattleResult] = \
+                {k: v for k, v in
+                 sorted(winners.items(), key=lambda e: e[1].win_rate,
+                        reverse=True)}
+            data[set_number]: dict[str, BattleResult] = sorted_winners
         with open(FRESH_POKEMON_RANK_FILE, 'w') as f:
-            json.dump(cattr.unstructure(data), f, indent=2)
+            json.dump(cattr.unstructure(data), f, indent=4)
         all_sets_winners = data
     else:
         with open(FRESH_POKEMON_RANK_FILE, "r") as f:
-            all_sets_winners = cattr.structure(json.load(f), dict[int, dict[str, list[str]]])
+            all_sets_winners = cattr.structure(
+                json.load(f),
+                dict[int, dict[str, BattleResult]]
+            )
     return all_sets_winners
 
 
-all_sets_winners_accuracy: dict[int, dict[str, list[str]]] = {}
+all_sets_winners_accuracy: dict[int, dict[str, BattleResult]] = {}
 
 
-def load_pokemon_ranks_accuracy() -> dict[int, dict[str, list[str]]]:
+def load_pokemon_ranks_accuracy() -> dict[int, dict[str, BattleResult]]:
     global all_sets_winners_accuracy
     if len(all_sets_winners_accuracy) != 0:
         return all_sets_winners_accuracy
 
     if not exists(FRESH_POKEMON_RANK_FILE_ACCURACY):
         level: int = 50
-        data: dict[int, dict[str, list[str]]] = {}
+        data: dict[int, dict[str, BattleResult]] = {}
         for set_number in range(8):
-            winners: dict[str, list[str]] = get_pokemon_to_pokemon_they_can_beat(
+            winners: dict[
+                str, BattleResult] = get_pokemon_to_pokemon_they_can_beat(
                 set_number=set_number,
                 level=level,
                 worst_case=True
             )
-            sorted_winners: dict[str, list[str]] = \
-                {k: v for k, v in sorted(winners.items(), key=lambda e: e[1], reverse=True)}
-            data[set_number]: dict[str, list[str]] = sorted_winners
+            for winner, battle_results in winners.items():
+                if len(battle_results.results) > 0:
+                    sorted_battle_result_results = dict(
+                        sorted(
+                            battle_results.results.items(),
+                            key=lambda item:
+                            item[1].hits_taken / item[1].hits_given
+                        )
+                    )
+                    battle_results.results = sorted_battle_result_results
+
+            sorted_winners: dict[str, BattleResult] = \
+                {k: v for k, v in
+                 sorted(winners.items(), key=lambda e: e[1].win_rate,
+                        reverse=True)}
+            data[set_number]: dict[str, BattleResult] = sorted_winners
         with open(FRESH_POKEMON_RANK_FILE_ACCURACY, 'w') as f:
-            json.dump(cattr.unstructure(data), f, indent=2)
+            json.dump(cattr.unstructure(data), f, indent=4)
         all_sets_winners_accuracy = data
     else:
         with open(FRESH_POKEMON_RANK_FILE_ACCURACY, "r") as f:
-            all_sets_winners_accuracy = cattr.structure(json.load(f), dict[int, dict[str, list[str]]])
+            all_sets_winners_accuracy = cattr.structure(json.load(f), dict[
+                int, dict[str, BattleResult]])
     return all_sets_winners_accuracy
 
 
@@ -247,5 +323,7 @@ if __name__ == "__main__":
         print("Set " + str(g_set_number) + ":")
         g_winners = all_winners[g_set_number]
         g_winners_accuracy = all_winners_accuracy[g_set_number]
-        print({k: v for k, v in sorted(g_winners.items(), reverse=True, key=lambda e: e[1])})
-        print({k: v for k, v in sorted(g_winners_accuracy.items(), reverse=True, key=lambda e: e[1])})
+        print({k: v for k, v in
+               sorted(g_winners.items(), reverse=True, key=lambda e: e[0])})
+        print({k: v for k, v in sorted(g_winners_accuracy.items(), reverse=True,
+                                       key=lambda e: e[1])})

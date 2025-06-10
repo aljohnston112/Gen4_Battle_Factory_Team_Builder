@@ -36,7 +36,10 @@ class PokemonAndMoveLayout(QWidget):
         """
         self.move_combo_box.clear()
 
-        selected_pokemon = find_pokemon([pokemon_name])
+        selected_pokemon = find_pokemon(
+            pokemon_names=[pokemon_name],
+            move_names=None
+        )
         if len(selected_pokemon) > 1:
 
             # Get the unique moves that each data_class with the name can know

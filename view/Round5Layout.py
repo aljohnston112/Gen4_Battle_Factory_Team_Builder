@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QVBoxLayout, QPushButton
+from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton
 
 from data.Strings import string_type, string_confirm
 from view.combo_boxes.PokemonTypeComboBox import PokemonTypeComboBox

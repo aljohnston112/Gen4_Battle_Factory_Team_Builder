@@ -39,7 +39,7 @@ def get_base_stats() -> dict[str, BaseStats]:
     if not exists(FRESH_POKEMON_BASE_STATS):
         pokemon_stats: dict[str, BaseStats] = __parse_pokemon_stats__()
         with open(FRESH_POKEMON_BASE_STATS, "w") as fo:
-            fo.write(json.dumps(cattr.unstructure(pokemon_stats)))
+            fo.write(json.dumps(cattr.unstructure(pokemon_stats), indent=2))
     else:
         with open(FRESH_POKEMON_BASE_STATS, "r") as fo:
             pokemon_stats: dict[str, BaseStats] = cattr.structure(json.loads(fo.read()), dict[str, BaseStats])

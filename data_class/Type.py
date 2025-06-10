@@ -1,5 +1,4 @@
 from collections import defaultdict
-from copy import deepcopy
 from typing import Mapping
 from enum import Enum, unique
 from types import MappingProxyType

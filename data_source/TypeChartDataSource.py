@@ -53,7 +53,7 @@ def parse_type_chart_for_attack():
             type_to_no_effect=type_to_no_effect
         )
         with open(FRESH_ATTACKER_TYPE_FILE, "w") as fo:
-            fo.write(json.dumps(cattr.unstructure(type_matchups)))
+            fo.write(json.dumps(cattr.unstructure(type_matchups), indent=2))
 
 
 def get_attack_type_dict() -> TypeMatchups:
@@ -105,7 +105,7 @@ def parse_type_chart_for_defense():
             type_to_no_effect=type_to_no_effect
         )
         with open(FRESH_DEFENDER_TYPE_FILE, "w") as fo:
-            fo.write(json.dumps(cattr.unstructure(type_matchups)))
+            fo.write(json.dumps(cattr.unstructure(type_matchups), indent=2))
 
 
 def get_defend_type_dict() -> TypeMatchups:

@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QLabel, QHBoxLayout, QGridLayout, QCheckBox
 
-from data.Strings import string_last_battle, string_team, string_choices
+from data.Strings import string_last_battle, string_team
 from use_case.PokemonUseCase import PokemonUseCase
 from view.PokemonAndMoveLayout import PokemonAndMoveLayout
 from view_model.TeamViewmodel import TeamViewModel

@@ -1,8 +1,10 @@
-from PyQt5.QtWidgets import QGridLayout, QGroupBox, QHBoxLayout, QRadioButton, QStackedWidget, QWidget
+from PyQt5.QtWidgets import QGridLayout, QGroupBox, QHBoxLayout, QRadioButton, \
+    QStackedWidget, QWidget
 
-from data.Strings import string_round_4, string_round_5_up, string_round_3, string_round_1, \
+from data.Strings import string_round_4, string_round_5_up, string_round_3, \
+    string_round_1, \
     string_round_2
-from use_case.RoundUseCase import Round, RoundUseCase
+from use_case.RoundUseCase import RoundUseCase
 from use_case.TeamUseCase import TeamUseCase
 from view.Round1And2Layout import Round1And2Layout
 from view.Round3Layout import Round3Layout
@@ -40,15 +42,23 @@ class HintsLayout(QGridLayout):
         self.addWidget(group_box_rb, 1, 0, 1, 4)
         self.radio_buttons_rounds[0].click()
 
-    def __set_up_stacked_rounds__(self):
+    def __set_up_stacked_rounds__(self, level: int):
         """
         Adds all round widgets to the layout.
         They are stacked so only one appears at a time.
         """
         self.stacked_rounds: QStackedWidget = QStackedWidget()
         self.round_widgets: list[QWidget] = [
-            Round1And2Layout(self.__team_use_case__),
-            Round1And2Layout(self.__team_use_case__, is_round_2=True),
+            Round1And2Layout(
+                team_use_case=self.__team_use_case__,
+                level=level,
+                is_round_2=False
+            ),
+            Round1And2Layout(
+                team_use_case=self.__team_use_case__,
+                level=level,
+                is_round_2=True
+            ),
             Round3Layout(self.__team_use_case__),
             Round4Layout(self.__team_use_case__),
             Round5Layout(self.__team_use_case__)
@@ -85,7 +95,7 @@ class HintsLayout(QGridLayout):
         elif self.radio_buttons_rounds[4].isChecked():
             self.__round_changed__(4)
 
-    def __init__(self):
+    def __init__(self, level: int):
         """
         Creates the hints UI.
         The three Pokémon the user has, and the three they have to choose from are input to the Team UI.
@@ -106,7 +116,7 @@ class HintsLayout(QGridLayout):
 
         self.round_widgets = None
         self.stacked_rounds = None
-        self.__set_up_stacked_rounds__()
+        self.__set_up_stacked_rounds__(level=level)
 
         self.radio_buttons_rounds = None
         self.__set_up_radio_buttons__()

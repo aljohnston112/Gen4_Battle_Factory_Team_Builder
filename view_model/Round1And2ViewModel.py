@@ -1,110 +1,133 @@
-from collections import defaultdict
-from typing import List
-
+from algorithm.FrontierTeamBuilder import load_pokemon_ranks_accuracy
+from data_class.BattleResult import BattleResult
 from data_class.Hits import Hits
 from data_class.Pokemon import Pokemon
 from repository.PokemonRepository import find_pokemon, \
     get_pokemon_from_set, is_valid_round
 from use_case.TeamUseCase import TeamUseCase
 from view_model.TeamViewmodel import ask_user_to_pick_pokemon, \
-    get_num_hits_attackers_need_do_to_defenders, aggregate_hit_info, \
     get_potential_threats_and_print_win_rates_and_coverage
 
 
 def do_round_two(
-        pokemon: list[Pokemon],
+        player_pokemon: list[Pokemon],
+        choice_pokemon: list[Pokemon],
         opponent_pokemon: list[Pokemon],
         level: int,
         is_last_battle: bool,
         set_number: int
 ):
-    do_round_one(pokemon, opponent_pokemon, level, set_number, is_last_battle)
+    do_round_one(player_pokemon, choice_pokemon, opponent_pokemon, level, set_number, is_last_battle)
+
 
 def do_round_one(
         player_pokemon: list[Pokemon],
+        choice_pokemon: list[Pokemon],
         opponent_pokemon_in: list[Pokemon],
-        level,
+        level: int,
         set_number: int,
         is_last_battle: bool
 ) -> None:
-    """
-    Given a list of Pokémon, a list of opponents, and their level,
-    Pokémon are ranked by how likely they are to beat each opponent.
-    :param player_pokemon:
-    :param opponent_pokemon_in:
-    :param level:
-    :param set_number:
-    :param is_last_battle:
-    :return:
-    """
-
     opponent_pokemon = \
         [p for p in opponent_pokemon_in if is_valid_round(p, set_number)]
     if is_last_battle:
         opponent_pokemon += \
-            [p for p in opponent_pokemon_in if is_valid_round(p, set_number + 1)]
+            [p for p in opponent_pokemon_in if
+             is_valid_round(p, set_number + 1)]
     elif set_number > 0:
         opponent_pokemon += \
-            [p for p in opponent_pokemon_in if is_valid_round(p, set_number - 1)]
+            [p for p in opponent_pokemon_in if
+             is_valid_round(p, set_number - 1)]
 
-    opponent_to_pokemon_to_hits: defaultdict[Pokemon, dict[Pokemon, float]] = \
-        get_num_hits_attackers_need_do_to_defenders(
-            attackers=opponent_pokemon,
-            defenders=player_pokemon,
-            level=level,
-            is_opponent=True
-        )
-
-    pokemon_to_opponent_to_hits: defaultdict[Pokemon, dict[Pokemon, float]] = \
-        get_num_hits_attackers_need_do_to_defenders(
-            attackers=player_pokemon,
-            defenders=opponent_pokemon,
-            level=level,
-            is_opponent=False
-        )
-
-    sorted_opponent_to_pokemon_to_rank: dict[Pokemon, dict[Pokemon, Hits]] = aggregate_hit_info(
-        opponent_to_pokemon_to_hits=opponent_to_pokemon_to_hits,
-        pokemon_to_opponent_to_hits=pokemon_to_opponent_to_hits
-    )
+    opponent_to_pokemon_to_hits: dict[Pokemon, dict[Pokemon, Hits]] = {}
+    set_numbers = [set_number, set_number + 1]
+    all_ranks_accuracy = load_pokemon_ranks_accuracy()
+    for opponent in opponent_pokemon:
+        pokemon_to_hits = {}
+        for set_number in set_numbers:
+            ranks_accuracy = all_ranks_accuracy[set_number]
+            battle_result: BattleResult = ranks_accuracy.get(opponent.unique_id)
+            for poke in player_pokemon + choice_pokemon:
+                if battle_result and poke.unique_id in battle_result.results:
+                    hits = battle_result.results[poke.unique_id]
+                    pokemon_to_hits[poke] = Hits(
+                        hits_taken=hits.hits_given,
+                        hits_given=hits.hits_taken
+                    )
+                else:
+                    other_battle_result: BattleResult = ranks_accuracy.get(poke.unique_id)
+                    if other_battle_result and opponent.unique_id in other_battle_result.results:
+                        hits = other_battle_result.results[opponent.unique_id]
+                        pokemon_to_hits[poke] = hits
+        opponent_to_pokemon_to_hits[opponent] = {
+            k: v for k, v in sorted(
+                pokemon_to_hits.items(),
+                key=lambda item: item[1].hits_given / item[1].hits_taken
+            )
+        }
 
     print("Team pokemon ranks")
-    for opponent, pokemon_to_hits in sorted_opponent_to_pokemon_to_rank.items():
+    for opponent, pokemon_to_hits in opponent_to_pokemon_to_hits.items():
         opponent: Pokemon
         pokemon_to_hits: dict[Pokemon, Hits]
-        print(f"\n--- Against {opponent.unique_key} ---")
+        print(f"--- Against {opponent.unique_id} ---")
         print(f"{'Pokémon':<20} {'Hits to KO':>12} {'Hits to be KOed':>18}")
         for poke, hits in sorted(
                 pokemon_to_hits.items(),
-                key=lambda item: 9999 if item[1].hits_taken == 0 or item[1].hits_given == 0
+                key=lambda item: 9999 if item[1].hits_taken == 0 or item[
+                    1].hits_given == 0
                 else item[1].hits_given / item[1].hits_taken
         ):
             poke: Pokemon
             hits: Hits
             hits_to_ko_opponent: float = hits.hits_given
             hits_to_get_koed: float = hits.hits_taken
-            print(f"{poke.unique_key:<20} {hits_to_ko_opponent:>12.2f} {hits_to_get_koed:>18.2f}")
+            print(
+                f"{poke.unique_id:<20} "
+                f"{hits_to_ko_opponent:>12.2f} "
+                f"{hits_to_get_koed:>18.2f}"
+            )
+        print()
 
     factory_pokemon = get_pokemon_from_set(set_number)
-    set_numbers = [set_number, set_number + 1]
     if set_number > 0:
         set_numbers.append(set_number - 1)
-    get_potential_threats_and_print_win_rates_and_coverage([], level, factory_pokemon, player_pokemon, set_numbers)
+    get_potential_threats_and_print_win_rates_and_coverage(
+        [],
+        level,
+        factory_pokemon,
+        player_pokemon,
+        choice_pokemon,
+        set_numbers
+    )
 
     chosen_pokemon: list[Pokemon] = ask_user_to_pick_pokemon(1, player_pokemon)
     remaining_pokemon: list[Pokemon] = list(
         set(player_pokemon)
         .difference(set(chosen_pokemon))
     )
-    get_potential_threats_and_print_win_rates_and_coverage(chosen_pokemon, level, factory_pokemon, remaining_pokemon, set_numbers)
-
+    get_potential_threats_and_print_win_rates_and_coverage(
+        chosen_pokemon,
+        level,
+        factory_pokemon,
+        remaining_pokemon,
+        [p for p in choice_pokemon if p not in chosen_pokemon],
+        set_numbers
+    )
 
     chosen_pokemon += ask_user_to_pick_pokemon(1, remaining_pokemon)
     remaining_pokemon: list[Pokemon] = list(
         set(player_pokemon)
         .difference(set(chosen_pokemon))
     )
-    get_potential_threats_and_print_win_rates_and_coverage(chosen_pokemon, level, factory_pokemon, remaining_pokemon, set_numbers)
+    get_potential_threats_and_print_win_rates_and_coverage(
+        chosen_pokemon,
+        level,
+        factory_pokemon,
+        remaining_pokemon,
+        [p for p in choice_pokemon if p not in chosen_pokemon],
+        set_numbers
+    )
 
 
 class Round1And2ViewModel:
@@ -112,26 +135,28 @@ class Round1And2ViewModel:
     def __init__(
             self,
             team_use_case: TeamUseCase,
-            is_round_2=False,
-            level=50
+            is_round_2: bool,
+            level: int
     ) -> None:
-        self.__is_round_2 = is_round_2
-        self.__team_use_case__ = team_use_case
-        self.__opponent_pokemon__ = []
-        self.__level__ = level
+        self.__is_round_2: bool = is_round_2
+        self.__team_use_case__: TeamUseCase = team_use_case
+        self.__opponent_pokemon__: list[Pokemon] = []
+        self.__level__: int = level
 
     def set_opponent_pokemon_names(
             self,
-            opponent_pokemon_names: List[str]
+            opponent_pokemon_names: list[str]
     ) -> None:
-        self.__opponent_pokemon__ = find_pokemon(opponent_pokemon_names)
+        self.__opponent_pokemon__ = find_pokemon(
+            pokemon_names=opponent_pokemon_names,
+            move_names=None
+        )
 
     def confirm_clicked(self) -> None:
-        pokemon = self.__team_use_case__.get_team_pokemon() + \
-                  self.__team_use_case__.get_choice_pokemon()
         if not self.__is_round_2:
             do_round_one(
-                pokemon,
+                self.__team_use_case__.get_team_pokemon(),
+                self.__team_use_case__.get_choice_pokemon(),
                 self.__opponent_pokemon__,
                 self.__level__,
                 0,
@@ -139,7 +164,8 @@ class Round1And2ViewModel:
             )
         else:
             do_round_two(
-                pokemon,
+                self.__team_use_case__.get_team_pokemon(),
+                self.__team_use_case__.get_choice_pokemon(),
                 self.__opponent_pokemon__,
                 self.__level__,
                 self.__team_use_case__.is_last_battle(),

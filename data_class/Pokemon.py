@@ -21,7 +21,7 @@ from repository.TypeChartRepository import type_chart_attack, type_chart_defend
 @attr.define
 class Pokemon:
     name: str
-    unique_key: str
+    unique_id: str
     nature: NatureEnum
     types: list[PokemonType]
     item: str
@@ -30,10 +30,10 @@ class Pokemon:
     effort_values: list[Stat]
 
     def __hash__(self) -> int:
-        return hash(self.unique_key)
+        return hash(self.unique_id)
 
     def repr(self) -> str:
-        return self.unique_key
+        return self.unique_id
 
 
 __defense_matchups__: dict[str, defaultdict[PokemonType, float]] = {}
@@ -139,7 +139,7 @@ def get_pokemon_health(
     pokemon_to_health: dict[str, int] = dict()
     for poke in pokemon:
         poke: Pokemon
-        pokemon_to_health[poke.unique_key]: int = get_stat_for_battle_factory_pokemon(
+        pokemon_to_health[poke.unique_id]: int = get_stat_for_battle_factory_pokemon(
             poke,
             level,
             StatEnum.HEALTH
@@ -331,6 +331,9 @@ def get_max_damage_attacker_can_do_to_defender(
         if pokemon_move.accuracy < accuracy:
             continue
 
+        if pokemon_move.name in ["Sky Attack", "Solarbeam"]:
+            continue
+
         if pokemon_move.power == 0:
             damage: int = 0
         else:
@@ -411,7 +414,7 @@ def get_num_hits_attackers_need_do_to_defenders(
             defender: Pokemon
             max_damage: int
             if max_damage != 0:
-                hits: float = pokemon_to_health[defender.unique_key] / max_damage
+                hits: float = pokemon_to_health[defender.unique_id] / max_damage
             else:
                 hits = 0
             attacker_to_defender_to_hits[attacker][defender]: float = hits

@@ -83,7 +83,7 @@ def __parse_battle_factory_pokemon__() -> dict[str, Pokemon]:
             unique_key = f"{base_key}_{counts[base_key]}"
             pokemon[unique_key]: Pokemon = Pokemon(
                 name=name,
-                unique_key=unique_key,
+                unique_id=unique_key,
                 nature=get_nature_enum(nature),
                 types=list(types),
                 item=item,
@@ -106,10 +106,11 @@ def get_battle_factory_pokemon() -> dict[str, Pokemon]:
     if not exists(FRESH_FACTORY_POKEMON_FILE):
         pokemon: dict[str, Pokemon] = __parse_battle_factory_pokemon__()
         with open(FRESH_FACTORY_POKEMON_FILE, "w") as fo:
-            fo.write(json.dumps(cattr.unstructure(pokemon)))
+            fo.write(json.dumps(cattr.unstructure(pokemon), indent=4))
     else:
         with open(FRESH_FACTORY_POKEMON_FILE, "r") as fo:
-            pokemon: dict[str, Pokemon] = cattr.structure(json.loads(fo.read()), dict[str, Pokemon])
+            pokemon: dict[str, Pokemon] = \
+                cattr.structure(json.loads(fo.read()), dict[str, Pokemon])
     if pokemon is None:
         raise Exception("Failed to load battle factory pokemon")
     return pokemon
