@@ -1,6 +1,6 @@
 from data_class.Pokemon import Pokemon
 from repository.PokemonRepository import find_pokemon
-from use_case.TeamUseCase import TeamUseCase
+from use_case.TeamUseCase import TeamUseCase, RoundStage
 from view_model.Round1And2ViewModel import do_round_two
 
 
@@ -41,5 +41,5 @@ class Round3ViewModel:
             self.__team_use_case__.get_choice_pokemon(),
             self.__opponent_pokemon__,
             self.__level__,
-            self.__team_use_case__.is_last_battle()
+            self.__team_use_case__.get_round_stage() == RoundStage.LAST_BATTLE
         )

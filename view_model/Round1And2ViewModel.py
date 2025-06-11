@@ -4,7 +4,7 @@ from data_class.Hits import Hits
 from data_class.Pokemon import Pokemon
 from repository.PokemonRepository import find_pokemon, \
     get_pokemon_from_set, is_valid_round
-from use_case.TeamUseCase import TeamUseCase
+from use_case.TeamUseCase import TeamUseCase, RoundStage
 from view_model.TeamViewmodel import ask_user_to_pick_pokemon, \
     get_potential_threats_and_print_win_rates_and_coverage
 
@@ -41,6 +41,8 @@ def do_round_one(
 
     opponent_to_pokemon_to_hits: dict[Pokemon, dict[Pokemon, Hits]] = {}
     set_numbers = [set_number, set_number + 1]
+    if set_number > 0:
+        set_numbers.append(set_number - 1)
     all_ranks_accuracy = load_pokemon_ranks_accuracy()
     for opponent in opponent_pokemon:
         pokemon_to_hits = {}
@@ -90,15 +92,13 @@ def do_round_one(
         print()
 
     factory_pokemon = get_pokemon_from_set(set_number)
-    if set_number > 0:
-        set_numbers.append(set_number - 1)
     get_potential_threats_and_print_win_rates_and_coverage(
-        [],
         level,
+        set_numbers,
         factory_pokemon,
         player_pokemon,
         choice_pokemon,
-        set_numbers
+        []
     )
 
     chosen_pokemon: list[Pokemon] = ask_user_to_pick_pokemon(1, player_pokemon)
@@ -107,12 +107,12 @@ def do_round_one(
         .difference(set(chosen_pokemon))
     )
     get_potential_threats_and_print_win_rates_and_coverage(
-        chosen_pokemon,
         level,
+        set_numbers,
         factory_pokemon,
-        remaining_pokemon,
         [p for p in choice_pokemon if p not in chosen_pokemon],
-        set_numbers
+        remaining_pokemon,
+        chosen_pokemon
     )
 
     chosen_pokemon += ask_user_to_pick_pokemon(1, remaining_pokemon)
@@ -121,12 +121,12 @@ def do_round_one(
         .difference(set(chosen_pokemon))
     )
     get_potential_threats_and_print_win_rates_and_coverage(
-        chosen_pokemon,
         level,
+        set_numbers,
         factory_pokemon,
-        remaining_pokemon,
         [p for p in choice_pokemon if p not in chosen_pokemon],
-        set_numbers
+        remaining_pokemon,
+        chosen_pokemon
     )
 
 
@@ -160,7 +160,7 @@ class Round1And2ViewModel:
                 self.__opponent_pokemon__,
                 self.__level__,
                 0,
-                self.__team_use_case__.is_last_battle()
+                self.__team_use_case__.get_round_stage() == RoundStage.LAST_BATTLE
             )
         else:
             do_round_two(
@@ -168,6 +168,6 @@ class Round1And2ViewModel:
                 self.__team_use_case__.get_choice_pokemon(),
                 self.__opponent_pokemon__,
                 self.__level__,
-                self.__team_use_case__.is_last_battle(),
+                self.__team_use_case__.get_round_stage() == RoundStage.LAST_BATTLE,
                 1
             )

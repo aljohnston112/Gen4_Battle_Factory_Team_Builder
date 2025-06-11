@@ -5,8 +5,11 @@ from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout
 from data.Strings import string_title
 from view.HintsLayout import HintsLayout
 
-
 __LEVEL__ = 50
+"""
+The level of the battle factory Pokemon.
+"""
+
 
 def run_main_app() -> None:
     """
@@ -14,7 +17,7 @@ def run_main_app() -> None:
     """
     app: QApplication = QApplication([])
 
-    # All top level widgets create a window
+    # All top-level widgets create a window
     window: QWidget = QWidget()
     window.setWindowTitle(string_title)
     window.setLayout(MainLayout(__LEVEL__))
@@ -31,6 +34,6 @@ class MainLayout(QGridLayout):
     def __init__(self, level: int):
         super().__init__()
 
-        # Set up the layout that provides the hints
         self.__hints__ = HintsLayout(level=level)
+        # row, column
         self.addLayout(self.__hints__, 0, 0)

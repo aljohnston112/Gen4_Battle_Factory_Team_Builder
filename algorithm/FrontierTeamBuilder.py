@@ -1,5 +1,4 @@
 import json
-from itertools import combinations
 from math import inf
 from os.path import exists
 
@@ -12,94 +11,6 @@ from data_class.Pokemon import Pokemon, get_stat_for_battle_factory_pokemon, \
     get_max_damage_attacker_can_do_to_defender
 from data_class.Stat import StatEnum
 from data_source.PokemonDataSource import get_battle_factory_pokemon
-
-
-def print_top_result(results, sorted_by: str, key_func):
-    results.sort(key=key_func)
-    if results:
-        triple, union_count, union_list, intersect_count, intersect_list = \
-            results[0]
-        names = [p.unique_id for p in triple]
-        print(f"Top result by {sorted_by}:")
-        print(f"{names}")
-        print(f"  Opponents not covered (union):     {union_count}")
-        print(f"  Remaining (union):     {union_list}")
-        print(f"  Opponents not covered (intersect): {intersect_count}")
-        print(f"  Remaining (intersect): {intersect_list}\n")
-
-
-def print_coverage(
-        opponent_pokemon: list[Pokemon],
-        chosen_pokemon: list[Pokemon],
-        player_pokemon: list[Pokemon],
-        choice_pokemon: list[Pokemon],
-        set_numbers: list[int]
-):
-    results: list[tuple[
-        tuple[Pokemon, Pokemon, Pokemon], int, list[str], int, list[str]]] = []
-    for triple in combinations(player_pokemon + chosen_pokemon, 3):
-        triple: tuple[Pokemon, Pokemon, Pokemon]
-
-        # only consider triples with the chosen Pokémon
-        is_good: bool = True
-        for poke in chosen_pokemon:
-            if poke not in triple:
-                is_good = False
-        if not is_good:
-            continue
-
-        # only consider triple with max of 1 choice Pokémon
-        is_good: bool = True
-        count: int = 0
-        for poke in choice_pokemon:
-            if poke in triple:
-                count += 1
-        if count > 1:
-            is_good = False
-        if not is_good:
-            continue
-
-        for set_number in set_numbers:
-            set_number: int
-            all_opponents: set[str] = set(
-                op.unique_id for op in opponent_pokemon)
-
-            # Union of wins
-            union_wins: set[str] = set()
-            ranks_accuracy: dict[int, dict[str, BattleResult]] = \
-                load_pokemon_ranks_accuracy()
-            set_ranks: dict[str, BattleResult] = ranks_accuracy[set_number]
-            for poke in triple:
-                poke: Pokemon
-                battle_result: BattleResult = set_ranks.get(poke.unique_id)
-                if battle_result:
-                    union_wins |= set(
-                        results for results in battle_result.results)
-            union_remaining = [op.unique_id for op in opponent_pokemon if
-                               op.unique_id not in union_wins]
-
-            # Intersection of wins
-            intersect_wins = all_opponents
-            for poke in triple:
-                poke: Pokemon
-                battle_result: BattleResult = set_ranks.get(poke.unique_id)
-                if battle_result:
-                    intersect_wins &= set(
-                        results for results in battle_result.results)
-            intersect_remaining = [op.unique_id for op in opponent_pokemon if
-                                   op.unique_id not in intersect_wins]
-
-            results.append(
-                (
-                    triple,
-                    len(union_remaining),
-                    union_remaining,
-                    len(intersect_remaining),
-                    intersect_remaining
-                )
-            )
-    print_top_result(results, "Union", key_func=lambda x: x[1])
-    print_top_result(results, "Intersection", key_func=lambda x: x[3])
 
 
 def print_sorted_win_rates(pokemon_list: list[Pokemon]):
@@ -146,6 +57,8 @@ def get_pokemon_to_pokemon_they_can_beat(
         level: int,
         worst_case: bool
 ) -> dict[str, BattleResult]:
+
+    # TODO Chikorita v Aron does not have a recorded battle result
     frontier_pokemon: dict[str, Pokemon] = get_battle_factory_pokemon()
     winner_to_defeated: dict[str, BattleResult] = dict()
     set_numbers: list[int] = [set_number - 1, set_number, set_number + 1]
