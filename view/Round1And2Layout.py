@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QHBoxLayout, QPushButton, \
-    QVBoxLayout
+from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, \
+    QSizePolicy, QGridLayout, QSpacerItem
 
 from data.Strings import string_opponents, string_confirm
 from use_case.TeamUseCase import TeamUseCase
@@ -26,21 +26,59 @@ class Round1And2Layout(QWidget):
             level=level
         )
 
-        layout = QVBoxLayout()
+        layout = QGridLayout()
         self.setLayout(layout)
 
-        fields_layout = QHBoxLayout()
-        fields_layout.addWidget(QLabel(string_opponents))
-        self.pokemonComboBoxes = []
-        for i in range(0, num_pokemon):
-            self.pokemonComboBoxes.append(PokemonComboBox())
-        for pokemonComboBox in self.pokemonComboBoxes:
-            pokemonComboBox.currentTextChanged.connect(self.__text_changed__)
-            fields_layout.addWidget(pokemonComboBox)
+        layout.addItem(
+            QSpacerItem(0, 0, QSizePolicy.Expanding, QSizePolicy.Minimum),
+            0,
+            0
+        )
+        layout.addWidget(QLabel(string_opponents), 0, 1)
+        layout.addItem(
+            QSpacerItem(0, 0, QSizePolicy.Expanding, QSizePolicy.Minimum),
+            0,
+            2
+        )
 
-        layout.addLayout(fields_layout)
+        self.pokemonComboBoxes = []
+
+        col = 3
+        for i in range(num_pokemon):
+            combo = PokemonComboBox()
+            combo.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+            combo.currentTextChanged.connect(self.__text_changed__)
+            self.pokemonComboBoxes.append(combo)
+            layout.addWidget(combo, 0, col)
+            col += 1
+            if i < num_pokemon - 1:
+                layout.addItem(
+                    QSpacerItem(
+                        0,
+                        0,
+                        QSizePolicy.Expanding,
+                        QSizePolicy.Minimum
+                    ),
+                    0,
+                    col
+                )
+                col += 1
+        layout.addItem(
+            QSpacerItem(
+                0,
+                0,
+                QSizePolicy.Expanding,
+                QSizePolicy.Minimum
+            ),
+            0,
+            col
+        )
+
         button_confirm = QPushButton(string_confirm)
-        layout.addWidget(button_confirm)
+        if is_round_2:
+            layout.addWidget(button_confirm, 1, 1, 1, 5)
+        else:
+            layout.addWidget(button_confirm, 1, 1, 1, 7)
         button_confirm.clicked.connect(self.__view_model__.confirm_clicked)
 
     def __text_changed__(self):

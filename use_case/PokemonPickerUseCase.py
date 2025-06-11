@@ -1,3 +1,5 @@
+from PyQt5.QtCore import QEventLoop
+
 from data_class.Pokemon import Pokemon
 from view.PokemonPickerDialog import PokemonPickerDialog
 
@@ -19,7 +21,15 @@ class PokemonPickerUseCase:
         if len(pokemon_names) != 0:
             while num_pokemon > 0:
                 picker = PokemonPickerDialog(pokemon_names, self.picked)
-                picker.exec()
+                loop = QEventLoop()
+
+                def on_done():
+                    loop.quit()
+
+                picker.finished.connect(on_done)
+                picker.show()
+                loop.exec_()
+
                 if self.pokemon_picked is not None:
                     pokemon_names.remove(self.pokemon_picked)
                     chosen.append(self.pokemon_picked)
