@@ -77,7 +77,8 @@ def get_pokemon_to_pokemon_they_can_beat(
             level,
             StatEnum.HEALTH
         )
-        battle_results: dict[str, Hits] = dict()
+        win_results: dict[str, Hits] = dict()
+        lose_results: dict[str, Hits] = dict()
         for opponent_pokemon_id, opponent_pokemon in set_pokemon.items():
             opponent_pokemon_id: str
             opponent_pokemon: Pokemon
@@ -130,12 +131,15 @@ def get_pokemon_to_pokemon_they_can_beat(
                             opponent_health <= 0 and
                             player_first
                     ):
-                battle_results[opponent_pokemon_id] = hits
+                win_results[opponent_pokemon_id] = hits
+            else :
+                lose_results[opponent_pokemon_id] = hits
         winner_to_defeated[player_pokemon_id]: BattleResult = \
             BattleResult(
                 winner_id=player_pokemon_id,
-                win_rate=len(battle_results) / len(set_pokemon),
-                results=battle_results
+                win_rate=len(win_results) / len(set_pokemon),
+                win_results=win_results,
+                lose_results=lose_results,
             )
     return winner_to_defeated
 
@@ -158,15 +162,15 @@ def load_pokemon_ranks() -> dict[int, dict[str, BattleResult]]:
                 worst_case=False
             )
             for winner, battle_results in winners.items():
-                if len(battle_results.results) > 0:
+                if len(battle_results.win_results) > 0:
                     sorted_battle_result_results = dict(
                         sorted(
-                            battle_results.results.items(),
+                            battle_results.win_results.items(),
                             key=lambda item:
                             item[1].hits_taken / item[1].hits_given
                         )
                     )
-                    battle_results.results = sorted_battle_result_results
+                    battle_results.win_results = sorted_battle_result_results
 
             sorted_winners: dict[str, BattleResult] = \
                 {k: v for k, v in
@@ -204,15 +208,15 @@ def load_pokemon_ranks_accuracy() -> dict[int, dict[str, BattleResult]]:
                 worst_case=True
             )
             for winner, battle_results in winners.items():
-                if len(battle_results.results) > 0:
+                if len(battle_results.win_results) > 0:
                     sorted_battle_result_results = dict(
                         sorted(
-                            battle_results.results.items(),
+                            battle_results.win_results.items(),
                             key=lambda item:
                             item[1].hits_taken / item[1].hits_given
                         )
                     )
-                    battle_results.results = sorted_battle_result_results
+                    battle_results.win_results = sorted_battle_result_results
 
             sorted_winners: dict[str, BattleResult] = \
                 {k: v for k, v in
