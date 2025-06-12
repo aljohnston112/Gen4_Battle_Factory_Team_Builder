@@ -10,9 +10,21 @@ class Round5Layout(QWidget):
     """
     Allows the user to enter hints for round five of the battle factory
     """
-    def __init__(self, team_use_case, current_round_use_case, level):
+
+    def __init__(
+            self,
+            team_use_case,
+            print_use_case,
+            current_round_use_case,
+            level
+    ):
         super().__init__()
-        self.__view_model__ = Round5ViewModel(team_use_case, current_round_use_case, level)
+        self.__view_model__ = Round5ViewModel(
+            team_use_case=team_use_case,
+            print_use_case=print_use_case,
+            current_round_use_case=current_round_use_case,
+            level=level
+        )
         layout = QGridLayout()
         self.setLayout(layout)
 
@@ -25,7 +37,8 @@ class Round5Layout(QWidget):
         label_type = QLabel(string_type)
         layout.addWidget(label_type, 0, 1)
         pokemon_type = PokemonTypeComboBox()
-        pokemon_type.currentTextChanged.connect(self.__view_model__.set_pokemon_type)
+        pokemon_type.currentTextChanged.connect(
+            self.__view_model__.set_pokemon_type)
         layout.addItem(
             QSpacerItem(0, 1, QSizePolicy.Expanding, QSizePolicy.Minimum),
             0,

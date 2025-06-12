@@ -128,8 +128,6 @@ def get_max_attack_power_for_list(attackers: list[Pokemon]) -> defaultdict[
     return max_attack_powers
 
 
-
-
 # ==============================================================================
 
 def get_pokemon_health(
@@ -139,7 +137,8 @@ def get_pokemon_health(
     pokemon_to_health: dict[str, int] = dict()
     for poke in pokemon:
         poke: Pokemon
-        pokemon_to_health[poke.unique_id]: int = get_stat_for_battle_factory_pokemon(
+        pokemon_to_health[
+            poke.unique_id]: int = get_stat_for_battle_factory_pokemon(
             poke,
             level,
             StatEnum.HEALTH
@@ -291,13 +290,32 @@ def get_defense_multipliers_for_types(
     return dict(multipliers)
 
 
+# TODO Focus Band, King's Rock, Lansat Berry, Lax Incense, Light Clay,
+# Lucky Punch, Mental Herb are not implemented;
+# not sure if there are good ways to implement
+# TODO Liechi Berry is kind of a hack, as attack is multiplied, not damage
+# TODO Metronome is also a hack since is boost power, not damage
+implemented_items = [
+    "Aspear Berry", "Big Root", "Black Belt", "Black Sludge", "Black Glasses",
+    "Charcoal", "Cheri Berry", "Chesto Berry", "Chople Berry", "Coba Berry",
+    "Colbur Berry", "Damp Rock", "DeepSeaScale", "Dragon Fang", "Expert Belt",
+    "Focus Band", "Haban Berry", "Hard Stone", "Icy Rock", "Kasib Berry",
+    "King's Rock", "Lansat Berry", "Lax Incense", "Leftovers", "Liechi Berry",
+    "Life Orb", " Light Clay", "Lucky Punch", "Magnet", "Mental Herb",
+    "Metal Coat", "Metronome", "Miracle Seed", "Muscle Band", "Mystic Water",
+    "NeverMeltIce", "Occa Berry", "Odd Incense", "Passho Berry", "Payapa Berry",
+    "Pecha berry", "Persim Berry", "Petaya Berry",
+]
+
+
 def get_max_damage_attacker_can_do_to_defender(
         attacker: Pokemon,
         defender: Pokemon,
         level: int,
         random: float,
         accuracy: int
-) -> int:
+) -> tuple[int, Move]:
+    move = None
     defender_types: set[PokemonType] = all_pokemon_types[defender.name]
     defender_defense_multipliers: dict[PokemonType, float] = \
         get_defense_multipliers_for_types(defender_types)
@@ -313,6 +331,7 @@ def get_max_damage_attacker_can_do_to_defender(
         level=level,
         stat_type=StatEnum.SPECIAL_ATTACK
     )
+    attacker_item = attacker.item
 
     defense_stat: int = get_stat_for_battle_factory_pokemon(
         pokemon=defender,
@@ -324,6 +343,14 @@ def get_max_damage_attacker_can_do_to_defender(
         level=level,
         stat_type=StatEnum.SPECIAL_DEFENSE
     )
+    defender_item = defender.item
+    if defender.name == "Clamperl" and defender_item == "DeepSeaScale":
+        special_defense_stat *= 2
+
+    if attacker_item not in implemented_items or \
+            defender_item not in implemented_items:
+        raise Exception(
+            f"Item {attacker_item} or {defender_item} not implemented")
 
     for pokemon_move in attacker.moves:
         pokemon_move: Move
@@ -354,68 +381,42 @@ def get_max_damage_attacker_can_do_to_defender(
                 type_multiplier=type_multiplier,
                 random=random
             )
+            if type_multiplier >= 2.0 and attacker_item == "Expert Belt":
+                damage *= 1.2
+
+            if not is_special and attacker_item == "Muscle Band":
+                damage *= 1.1
+
+            if ((attacker_item == "Black Belt" and
+                 pokemon_move.move_type == PokemonType.FIGHTING) or
+                    (attacker_item == "Black Glasses" and
+                     pokemon_move.move_type == PokemonType.DARK) or
+                    (attacker_item == "Charcoal" and
+                     pokemon_move.move_type == PokemonType.FIRE) or
+                    (attacker_item == "Dragon Fang" and
+                     pokemon_move.move_type == PokemonType.DRAGON) or
+                    (attacker_item == "Hard Stone" and
+                     pokemon_move.move_type == PokemonType.ROCK) or
+                    (attacker_item == "Magnet" and
+                     pokemon_move.move_type == PokemonType.ELECTRIC) or
+                    (attacker_item == "Metal Coat" and
+                     pokemon_move.move_type == PokemonType.STEEL) or
+                    (attacker_item == "Miracle Seed" and
+                     pokemon_move.move_type == PokemonType.GRASS) or
+                    (attacker_item == "Mystic Water" and
+                     pokemon_move.move_type == PokemonType.WATER) or
+                    (attacker_item == "NeverMeltIce" and
+                     pokemon_move.move_type == PokemonType.ICE) or
+                    (attacker_item == "Odd Incense" and
+                     pokemon_move.move_type == PokemonType.PSYCHIC)
+            ):
+                damage *= 1.2
+            if attacker_item == "Choice Band":
+                damage *= 1.5
+            if attacker_item == "Life Orb":
+                damage *= 1.3
+
+        if damage > max_damage:
+            move = pokemon_move
         max_damage: int = max(damage, max_damage)
-    return max_damage
-
-
-__MIN_RANDOM_ROLL__: float = 0.85
-
-
-def get_max_damage_attackers_can_do_to_defenders(
-        attacking_pokemon: list[Pokemon],
-        defending_pokemon: list[Pokemon],
-        level: int,
-        is_opponent: bool,
-) -> defaultdict[Pokemon, defaultdict[Pokemon, float]]:
-    attacker_to_defender_to_max_damage: \
-        defaultdict[Pokemon, defaultdict[Pokemon, float]] = \
-        defaultdict(lambda: defaultdict(lambda: 0.0))
-    for attacker in attacking_pokemon:
-        attacker: Pokemon
-        for defender in defending_pokemon:
-            defender: Pokemon
-            max_damage: int = get_max_damage_attacker_can_do_to_defender(
-                attacker=attacker,
-                defender=defender,
-                level=level,
-                random=1.0 if is_opponent else __MIN_RANDOM_ROLL__,
-                accuracy=0 if is_opponent else 100,
-            )
-            attacker_to_defender_to_max_damage[attacker][defender]: int = \
-                max_damage
-    return attacker_to_defender_to_max_damage
-
-
-def get_num_hits_attackers_need_do_to_defenders(
-        attackers: list[Pokemon],
-        defenders: list[Pokemon],
-        level: int,
-        is_opponent: bool
-) -> defaultdict[Pokemon, dict[Pokemon, float]]:
-    attacker_to_defender_to_max_damage: \
-        defaultdict[Pokemon, defaultdict[Pokemon, float]] = \
-        get_max_damage_attackers_can_do_to_defenders(
-            attacking_pokemon=attackers,
-            defending_pokemon=defenders,
-            level=level,
-            is_opponent=is_opponent
-        )
-    pokemon_to_health: dict[str, int] = get_pokemon_health(
-        pokemon=attackers + defenders,
-        level=level
-    )
-    attacker_to_defender_to_hits: defaultdict[Pokemon, dict[Pokemon, float]] = \
-        defaultdict(lambda: dict())
-    for attacker, defender_to_max_damage in \
-            attacker_to_defender_to_max_damage.items():
-        attacker: Pokemon
-        defender_to_max_damage: defaultdict[Pokemon, float]
-        for defender, max_damage in defender_to_max_damage.items():
-            defender: Pokemon
-            max_damage: int
-            if max_damage != 0:
-                hits: float = pokemon_to_health[defender.unique_id] / max_damage
-            else:
-                hits = 0
-            attacker_to_defender_to_hits[attacker][defender]: float = hits
-    return attacker_to_defender_to_hits
+    return max_damage, move

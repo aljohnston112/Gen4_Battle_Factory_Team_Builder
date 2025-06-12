@@ -6,9 +6,10 @@ from PyQt5.QtWidgets import QGridLayout, QGroupBox, QRadioButton, \
 from data.Strings import string_round_1, string_round_2, string_round_3, \
     string_round_4, string_round_5, string_round_6, string_round_7, \
     string_round_8_plus
+from use_case.PrintUseCase import PrintUseCase
 from use_case.RoundUseCase import RoundUseCase, Round
 from use_case.TeamUseCase import TeamUseCase
-from view.TextOutputWidget import TextOutputWidget
+from view.DualTextOutputWidget import DualTextOutputWidget
 from view.Round1And2Layout import Round1And2Layout
 from view.Round3Layout import Round3Layout
 from view.Round4Layout import Round4Layout
@@ -41,20 +42,31 @@ class HintsLayout(QGridLayout):
         self.hint_widgets: list[QWidget] = [
             Round1And2Layout(
                 team_use_case=self.__team_use_case__,
+                print_use_case=self.__print_use_case__,
                 level=level,
                 is_round_2=False
             ),
             Round1And2Layout(
                 team_use_case=self.__team_use_case__,
+                print_use_case=self.__print_use_case__,
                 level=level,
                 is_round_2=True
             ),
-            Round3Layout(self.__team_use_case__, level),
-            Round4Layout(self.__team_use_case__, level),
+            Round3Layout(
+                team_use_case=self.__team_use_case__,
+                print_use_case=self.__print_use_case__,
+                level=level
+            ),
+            Round4Layout(
+                team_use_case=self.__team_use_case__,
+                print_use_case=self.__print_use_case__,
+                level=level
+            ),
             Round5Layout(
-                self.__team_use_case__,
-                self.__current_round_use_case__,
-                level
+                team_use_case=self.__team_use_case__,
+                print_use_case=self.__print_use_case__,
+                current_round_use_case=self.__current_round_use_case__,
+                level=level
             )
         ]
         for hint_widget in self.hint_widgets:
@@ -130,6 +142,12 @@ class HintsLayout(QGridLayout):
         # row, column
         self.addLayout(self.team_layout, 0, 0)
 
+        # Output text boxes
+        self.text_output_widget = DualTextOutputWidget()
+        self.addWidget(self.text_output_widget, 4, 0, 1, 2)
+        self.__print_use_case__: PrintUseCase = \
+            PrintUseCase(self.text_output_widget)
+
         self.hint_widgets: list[QWidget] | None = None
         self.stacked_round_layouts: list[QWidget] | None = None
         self.__set_up_stacked_rounds__(level=level)
@@ -137,6 +155,3 @@ class HintsLayout(QGridLayout):
         self.radio_buttons_rounds = None
         self.__set_up_round_radio_buttons__()
 
-        # Output text box
-        self.text_output_widget = TextOutputWidget()
-        self.addWidget(self.text_output_widget, 4, 0, 1, 2)

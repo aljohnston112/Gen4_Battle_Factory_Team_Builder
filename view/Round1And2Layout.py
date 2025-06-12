@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, \
     QSizePolicy, QGridLayout, QSpacerItem
 
 from data.Strings import string_opponents, string_confirm
+from use_case.PrintUseCase import PrintUseCase
 from use_case.TeamUseCase import TeamUseCase
 from view.combo_boxes.PokemonComboBox import PokemonComboBox
 from view_model.Round1And2ViewModel import Round1And2ViewModel
@@ -15,6 +16,7 @@ class Round1And2Layout(QWidget):
     def __init__(
             self,
             team_use_case: TeamUseCase,
+            print_use_case: PrintUseCase,
             is_round_2: bool,
             level: int
     ):
@@ -22,6 +24,7 @@ class Round1And2Layout(QWidget):
         num_pokemon = 2 if is_round_2 else 3
         self.__view_model__ = Round1And2ViewModel(
             team_use_case=team_use_case,
+            print_use_case=print_use_case,
             is_round_2=is_round_2,
             level=level
         )

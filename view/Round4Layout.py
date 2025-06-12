@@ -10,9 +10,13 @@ class Round4Layout(QWidget):
     """
     Allows the user to enter hints for round four of the battle factory
     """
-    def __init__(self, team_use_case, level):
+    def __init__(self, team_use_case, print_use_case, level):
         super().__init__()
-        self.__view_model__ = Round4ViewModel(team_use_case, level)
+        self.__view_model__ = Round4ViewModel(
+            team_use_case=team_use_case,
+            print_use_case=print_use_case,
+            level=level
+        )
 
         layout = QGridLayout()
         self.setLayout(layout)
