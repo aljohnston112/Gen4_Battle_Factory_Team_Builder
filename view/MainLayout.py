@@ -1,7 +1,10 @@
 import sys
 
+from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout
 
+from algorithm.FrontierTeamBuilder import load_pokemon_ranks_accuracy, \
+    load_pokemon_ranks
 from data.Strings import string_title
 from view.HintsLayout import HintsLayout
 
@@ -33,6 +36,15 @@ class MainLayout(QGridLayout):
 
     def __init__(self, level: int):
         super().__init__()
+
+        class WorkerThread(QThread):
+
+            def run(self):
+                load_pokemon_ranks_accuracy()
+                load_pokemon_ranks()
+
+        self.thread = WorkerThread()
+        self.thread.start()
 
         self.__hints__ = HintsLayout(level=level)
         # row, column
