@@ -14,10 +14,11 @@ def do_round_two(
         choice_pokemon: list[Pokemon],
         opponent_pokemon: list[Pokemon],
         level: int,
+        is_first_battle: bool,
         is_last_battle: bool,
         set_number: int
 ):
-    do_round_one(player_pokemon, choice_pokemon, opponent_pokemon, level, set_number, is_last_battle)
+    do_round_one(player_pokemon, choice_pokemon, opponent_pokemon, level, set_number, is_first_battle, is_last_battle)
 
 
 def do_round_one(
@@ -26,23 +27,43 @@ def do_round_one(
         opponent_pokemon_in: list[Pokemon],
         level: int,
         set_number: int,
+        is_first_battle: bool,
         is_last_battle: bool
 ) -> None:
-    opponent_pokemon = \
-        [p for p in opponent_pokemon_in if is_valid_round(p, set_number)]
-    if is_last_battle:
-        opponent_pokemon += \
-            [p for p in opponent_pokemon_in if
-             is_valid_round(p, set_number + 1)]
-    elif set_number > 0:
-        opponent_pokemon += \
-            [p for p in opponent_pokemon_in if
-             is_valid_round(p, set_number - 1)]
+    if set_number < 7:
+        if is_last_battle:
+            opponent_pokemon = \
+                [p for p in opponent_pokemon_in if
+                 is_valid_round(p, set_number + 1)]
+        else:
+            opponent_pokemon = \
+                [p for p in opponent_pokemon_in if is_valid_round(p, set_number)]
+            if set_number > 0:
+                opponent_pokemon += \
+                    [p for p in opponent_pokemon_in if
+                     is_valid_round(p, set_number - 1)]
+    else:
+        opponent_pokemon = \
+            [p for p in opponent_pokemon_in if is_valid_round(p, 3)]
+        opponent_pokemon += [poke for poke in
+                         opponent_pokemon_in if
+                         is_valid_round(poke, 4)]
+        opponent_pokemon += [poke for poke in
+                         opponent_pokemon_in if
+                         is_valid_round(poke, 5)]
+        opponent_pokemon += [poke for poke in
+                         opponent_pokemon_in if
+                         is_valid_round(poke, 6)]
+        opponent_pokemon += [poke for poke in
+                         opponent_pokemon_in if
+                         is_valid_round(poke, 7)]
 
     opponent_to_pokemon_to_hits: dict[Pokemon, dict[Pokemon, Hits]] = {}
-    set_numbers = [set_number, set_number + 1]
+    set_numbers = [set_number]
     if set_number > 0:
         set_numbers.append(set_number - 1)
+    if set_number < 7:
+        set_numbers.append(set_number + 1)
     all_ranks_accuracy = load_pokemon_ranks_accuracy()
     for opponent in opponent_pokemon:
         pokemon_to_hits = {}
@@ -91,14 +112,16 @@ def do_round_one(
             )
         print()
 
-    factory_pokemon = get_pokemon_from_set(set_number)
+    factory_pokemon = get_pokemon_from_set(set_number, is_last_battle)
+
     get_potential_threats_and_print_win_rates_and_coverage(
         level,
         set_numbers,
         factory_pokemon,
         player_pokemon,
         choice_pokemon,
-        []
+        [],
+        False
     )
 
     chosen_pokemon: list[Pokemon] = ask_user_to_pick_pokemon(1, player_pokemon)
@@ -106,13 +129,16 @@ def do_round_one(
         set(player_pokemon)
         .difference(set(chosen_pokemon))
     )
+
+
     get_potential_threats_and_print_win_rates_and_coverage(
         level,
         set_numbers,
         factory_pokemon,
         [p for p in choice_pokemon if p not in chosen_pokemon],
         remaining_pokemon,
-        chosen_pokemon
+        chosen_pokemon,
+        is_first_battle
     )
 
     chosen_pokemon += ask_user_to_pick_pokemon(1, remaining_pokemon)
@@ -120,13 +146,15 @@ def do_round_one(
         set(player_pokemon)
         .difference(set(chosen_pokemon))
     )
+
     get_potential_threats_and_print_win_rates_and_coverage(
         level,
         set_numbers,
         factory_pokemon,
         [p for p in choice_pokemon if p not in chosen_pokemon],
         remaining_pokemon,
-        chosen_pokemon
+        chosen_pokemon,
+        is_first_battle
     )
 
 
@@ -160,6 +188,7 @@ class Round1And2ViewModel:
                 self.__opponent_pokemon__,
                 self.__level__,
                 0,
+                self.__team_use_case__.get_round_stage() == RoundStage.FIRST_BATTLE,
                 self.__team_use_case__.get_round_stage() == RoundStage.LAST_BATTLE
             )
         else:
@@ -168,6 +197,7 @@ class Round1And2ViewModel:
                 self.__team_use_case__.get_choice_pokemon(),
                 self.__opponent_pokemon__,
                 self.__level__,
+                self.__team_use_case__.get_round_stage() == RoundStage.FIRST_BATTLE,
                 self.__team_use_case__.get_round_stage() == RoundStage.LAST_BATTLE,
                 1
             )

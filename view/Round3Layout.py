@@ -11,9 +11,9 @@ class Round3Layout(QWidget):
     """
     Allows the user to enter hints for round three of battle factory
     """
-    def __init__(self, team_use_case):
+    def __init__(self, team_use_case, level):
         super().__init__()
-        self.__view_model__ = Round3ViewModel(team_use_case)
+        self.__view_model__ = Round3ViewModel(team_use_case, level)
 
         root_layout = QGridLayout()
         self.setLayout(root_layout)
