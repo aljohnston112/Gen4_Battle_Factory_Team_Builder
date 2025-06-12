@@ -71,17 +71,18 @@ def do_round_one(
             ranks_accuracy = all_ranks_accuracy[set_number]
             battle_result: BattleResult = ranks_accuracy.get(opponent.unique_id)
             for poke in player_pokemon + choice_pokemon:
-                if battle_result and poke.unique_id in battle_result.results:
-                    hits = battle_result.results[poke.unique_id]
+                if battle_result and poke.unique_id in battle_result.win_results:
+                    hits = battle_result.win_results[poke.unique_id]
                     pokemon_to_hits[poke] = Hits(
                         hits_taken=hits.hits_given,
                         hits_given=hits.hits_taken
                     )
                 else:
-                    other_battle_result: BattleResult = ranks_accuracy.get(poke.unique_id)
-                    if other_battle_result and opponent.unique_id in other_battle_result.results:
-                        hits = other_battle_result.results[opponent.unique_id]
+                    if battle_result and poke.unique_id in battle_result.lose_results:
+                        hits = battle_result.lose_results[opponent.unique_id]
                         pokemon_to_hits[poke] = hits
+                    else:
+                        raise Exception("Missing battle results")
         opponent_to_pokemon_to_hits[opponent] = {
             k: v for k, v in sorted(
                 pokemon_to_hits.items(),

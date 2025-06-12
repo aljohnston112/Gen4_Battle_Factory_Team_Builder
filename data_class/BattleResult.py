@@ -7,4 +7,5 @@ from data_class.Hits import Hits
 class BattleResult:
     winner_id: str
     win_rate: float
-    results: dict[str, Hits]
+    win_results: dict[str, Hits]
+    lose_results: dict[str, Hits]

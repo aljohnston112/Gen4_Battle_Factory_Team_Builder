@@ -81,7 +81,7 @@ def print_coverage(
                 battle_result: BattleResult = set_ranks.get(poke.unique_id)
                 if battle_result:
                     union_wins |= \
-                        set(results for results in battle_result.results)
+                        set(results for results in battle_result.win_results)
 
             # Intersection of wins
             for poke in triple:
@@ -89,7 +89,7 @@ def print_coverage(
                 battle_result: BattleResult = set_ranks.get(poke.unique_id)
                 if battle_result:
                     intersect_wins &= set(
-                        results for results in battle_result.results)
+                        results for results in battle_result.win_results)
 
         union_remaining = [
             op_id for op_id in all_opponent_ids
@@ -137,7 +137,7 @@ def print_win_rates_over_threats(
                 set_to_battle_results[set_number].get(poke_id, None)
             if battle_result:
                 beatable_ids += \
-                    [threat_id for threat_id in battle_result.results.keys()]
+                    [threat_id for threat_id in battle_result.win_results.keys()]
         for threat in potential_threats:
             threat: Pokemon
             if threat.unique_id in beatable_ids:
