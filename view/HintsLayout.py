@@ -49,9 +49,13 @@ class HintsLayout(QGridLayout):
                 level=level,
                 is_round_2=True
             ),
-            Round3Layout(self.__team_use_case__),
-            Round4Layout(self.__team_use_case__),
-            Round5Layout(self.__team_use_case__)
+            Round3Layout(self.__team_use_case__, level),
+            Round4Layout(self.__team_use_case__, level),
+            Round5Layout(
+                self.__team_use_case__,
+                self.__current_round_use_case__,
+                level
+            )
         ]
         for hint_widget in self.hint_widgets:
             hint_widget: QWidget

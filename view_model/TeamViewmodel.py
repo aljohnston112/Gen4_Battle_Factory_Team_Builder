@@ -68,7 +68,7 @@ def print_coverage(
         union_wins: set[str] = set()
         all_opponent_ids: set[str] = \
             set(opponent.unique_id for opponent in opponent_pokemon)
-        intersect_wins = all_opponent_ids
+        intersect_wins = set(all_opponent_ids)
         for set_number in set_numbers:
             set_number: int
 
@@ -96,8 +96,8 @@ def print_coverage(
             if op_id not in union_wins
         ]
         intersect_remaining = [
-            op.unique_id for op in opponent_pokemon if
-            op.unique_id not in intersect_wins
+            op_id for op_id in all_opponent_ids if
+            op_id not in intersect_wins
         ]
         results.append(
             (
@@ -218,6 +218,7 @@ def get_potential_threats_and_print_win_rates_and_coverage(
         player_pokemon: list[Pokemon],
         choice_pokemon: list[Pokemon],
         chosen_pokemon: list[Pokemon],
+        is_first_battle: bool
 ):
     potential_threats: list[Pokemon] = get_potential_threats(
         level=level,
@@ -234,8 +235,12 @@ def get_potential_threats_and_print_win_rates_and_coverage(
     print()
     print_sorted_win_rates(pokemon_list=pokemon_left)
     print()
-    print_coverage(factory_pokemon, chosen_pokemon, player_pokemon,
-                   choice_pokemon, set_numbers)
+    if is_first_battle:
+        print_coverage(factory_pokemon, chosen_pokemon, choice_pokemon,
+                       player_pokemon, set_numbers)
+    else:
+        print_coverage(factory_pokemon, chosen_pokemon, player_pokemon,
+                       choice_pokemon, set_numbers)
 
 
 def ask_user_to_pick_pokemon(

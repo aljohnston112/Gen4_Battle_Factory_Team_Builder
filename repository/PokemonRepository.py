@@ -3,21 +3,27 @@ from typing import Collection
 from data_class.Pokemon import Pokemon
 from data_class.Type import PokemonType
 from data_source.PokemonDataSource import get_battle_factory_pokemon
+from use_case.RoundUseCase import Round
 
 all_battle_factory_pokemon: dict[str, Pokemon] = get_battle_factory_pokemon()
 
 
-def find_pokemon_with_type(pokemon_type: PokemonType | None) -> Collection[Pokemon]:
+def find_pokemon_with_type(
+        pokemon_type: PokemonType | None,
+        round_number: Round,
+        is_last_battle: bool,
+) -> Collection[Pokemon]:
     p: list[Pokemon] = []
+    all_pokemon = get_pokemon_from_set(round_number.value, is_last_battle)
     if pokemon_type is not None:
-        for poke in all_battle_factory_pokemon.values():
+        for poke in all_pokemon:
             poke: Pokemon
             if pokemon_type in poke.types:
                 pokemon_type: PokemonType
                 p.append(poke)
         return p
     else:
-        return all_battle_factory_pokemon.values()
+        return all_pokemon
 
 
 def find_pokemon_with_move(move_name: str) -> list[Pokemon]:
@@ -71,15 +77,34 @@ def is_valid_round(pokemon: Pokemon, round_number: int) -> bool:
     return int(parts[1]) == round_number
 
 
-def get_pokemon_from_set(set_number: int):
-    pokemon_list: list[Pokemon] = [p for p in
-                                   all_battle_factory_pokemon.values() if
-                                   is_valid_round(p, set_number)]
-    pokemon_list += [poke for poke in
-                     all_battle_factory_pokemon.values() if
-                     is_valid_round(poke, set_number + 1)]
-    if set_number > 0:
+def get_pokemon_from_set(set_number: int, is_last_battle: bool) -> list[Pokemon]:
+    if set_number < 7:
+        if is_last_battle:
+            pokemon_list = [poke for poke in
+                             all_battle_factory_pokemon.values() if
+                             is_valid_round(poke, set_number + 1)]
+        else:
+            pokemon_list: list[Pokemon] = [p for p in
+                                           all_battle_factory_pokemon.values() if
+                                           is_valid_round(p, set_number)]
+            if set_number > 0:
+                pokemon_list += [poke for poke in
+                                 all_battle_factory_pokemon.values() if
+                                 is_valid_round(poke, set_number - 1)]
+    else:
+        pokemon_list: list[Pokemon] = [p for p in
+                                       all_battle_factory_pokemon.values() if
+                                       is_valid_round(p, 3)]
         pokemon_list += [poke for poke in
                          all_battle_factory_pokemon.values() if
-                         is_valid_round(poke, set_number - 1)]
+                         is_valid_round(poke, 4)]
+        pokemon_list += [poke for poke in
+                         all_battle_factory_pokemon.values() if
+                         is_valid_round(poke, 5)]
+        pokemon_list += [poke for poke in
+                         all_battle_factory_pokemon.values() if
+                         is_valid_round(poke, 6)]
+        pokemon_list += [poke for poke in
+                         all_battle_factory_pokemon.values() if
+                         is_valid_round(poke, 7)]
     return pokemon_list
