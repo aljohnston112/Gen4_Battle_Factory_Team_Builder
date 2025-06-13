@@ -16,16 +16,29 @@ class Round(Enum):
     EIGHT = 7
 
 
+class RoundStage(Enum):
+    """
+    Possible stages in a round.
+    Middle battle is used for the second battle to the sixth battle, inclusive.
+    """
+    FIRST_BATTLE = 0
+    MIDDLE_BATTLE = 1
+    LAST_BATTLE = 2
+
+
 class RoundUseCase:
     """
     A wrapper for the current round.
     """
 
     def __init__(self):
+        """
+        Sets the default round to round one.
+        """
         self.__current_round__: Round = Round.ONE
 
     def set_current_round(self, current_round: Round) -> None:
-        self.__current_round__ = current_round
+        self.__current_round__: Round = current_round
 
     def get_current_round(self) -> Round:
         return self.__current_round__

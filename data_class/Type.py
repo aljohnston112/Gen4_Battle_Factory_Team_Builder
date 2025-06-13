@@ -30,7 +30,7 @@ class PokemonType(Enum):
     DARK = "dark"
 
 
-__TYPE_DICT__ = {
+__TYPE_DICT__: dict[str, PokemonType] = {
     "normal": PokemonType.NORMAL,
     "fighting": PokemonType.FIGHTING,
     "flying": PokemonType.FLYING,

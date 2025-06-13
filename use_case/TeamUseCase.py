@@ -1,15 +1,5 @@
-from enum import Enum
-
 from data_class.Pokemon import Pokemon
-
-
-class RoundStage(Enum):
-    """
-    An enum used to mark what stage a round is in.
-    """
-    FIRST_BATTLE = 0
-    MIDDLE_BATTLE = 1
-    LAST_BATTLE = 2
+from use_case.RoundUseCase import RoundStage
 
 
 class TeamUseCase:
@@ -22,6 +12,12 @@ class TeamUseCase:
             team_pokemon: list[Pokemon],
             choice_pokemon: list[Pokemon]
     ) -> None:
+        """
+        Sets the team and choice Pokémon.
+        The round stage will be set to the first battle.
+        :param team_pokemon: The Pokémon on the user's team.
+        :param choice_pokemon: The Pokémon the user can trade for.
+        """
         self.__team_pokemon__: list[Pokemon] = team_pokemon
         self.__choice_pokemon__: list[Pokemon] = choice_pokemon
         self.__round_stage__: RoundStage = RoundStage.FIRST_BATTLE

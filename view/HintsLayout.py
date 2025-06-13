@@ -1,5 +1,3 @@
-import sys
-
 from PyQt5.QtWidgets import QGridLayout, QGroupBox, QRadioButton, \
     QStackedWidget, QWidget, QHBoxLayout
 
@@ -24,22 +22,69 @@ class HintsLayout(QGridLayout):
 
     def __round_changed__(self, new_round: Round) -> None:
         """
-        Sets the round layout based on which round the user selected
+        Sets the round layout based on which round the user selected.
         :param new_round: The Round of the radio button that the user selected.
         """
         i: int = new_round.value
-        if i >= len(self.hint_widgets):
-            i = len(self.hint_widgets) - 1
-        self.stacked_round_layouts.setCurrentWidget(self.hint_widgets[i])
+        if i >= len(self.__hint_widgets__):
+            i = len(self.__hint_widgets__) - 1
+        self.__stacked_round_layouts__.setCurrentWidget(
+            self.__hint_widgets__[i]
+        )
         self.__current_round_use_case__.set_current_round(new_round)
+
+    def __round_checked__(self, checked: bool) -> None:
+        """
+        Changes the round based on which radio button the user has checked.
+        :param checked: Whether the radio button is checked.
+        """
+        if not checked:
+            return
+        for i in range(len(self.__radio_buttons_rounds__)):
+            i: int
+            if self.__radio_buttons_rounds__[i].isChecked():
+                self.__round_changed__(Round(i))
+                break
+
+    def __set_up_round_radio_buttons__(self) -> None:
+        """
+        Sets up the radio buttons used to pick the round number.
+        """
+        h_box_layout_rounds: QHBoxLayout = QHBoxLayout()
+        h_box_layout_rounds.addStretch()
+        self.__radio_buttons_rounds__: list[QRadioButton] = [
+            QRadioButton(string) for string in
+            [
+                string_round_1,
+                string_round_2,
+                string_round_3,
+                string_round_4,
+                string_round_5,
+                string_round_6,
+                string_round_7,
+                string_round_8_plus
+            ]
+        ]
+        for radio_button in self.__radio_buttons_rounds__:
+            radio_button: QRadioButton
+            h_box_layout_rounds.addWidget(radio_button)
+            radio_button.toggled.connect(self.__round_checked__)
+            h_box_layout_rounds.addStretch()
+
+        group_box_radio_buttons: QGroupBox = QGroupBox()
+        group_box_radio_buttons.setLayout(h_box_layout_rounds)
+        # row, column, row_span, column_span
+        self.addWidget(group_box_radio_buttons, 1, 0, 1, 4)
+        # Set the default round to 1
+        self.__radio_buttons_rounds__[Round.ONE.value].click()
 
     def __set_up_stacked_rounds__(self, level: int) -> None:
         """
         Adds all hint widgets to the layout.
         They are stacked so only one appears at a time.
         """
-        self.stacked_round_layouts: QStackedWidget = QStackedWidget()
-        self.hint_widgets: list[QWidget] = [
+        self.__stacked_round_layouts__: QStackedWidget = QStackedWidget()
+        self.__hint_widgets__: list[QWidget] = [
             Round1And2Layout(
                 team_use_case=self.__team_use_case__,
                 print_use_case=self.__print_use_case__,
@@ -69,63 +114,18 @@ class HintsLayout(QGridLayout):
                 level=level
             )
         ]
-        for hint_widget in self.hint_widgets:
+        for hint_widget in self.__hint_widgets__:
             hint_widget: QWidget
-            self.stacked_round_layouts.addWidget(hint_widget)
-        # row, column, row_span, row_column
-        self.addWidget(self.stacked_round_layouts, 2, 0, 2, 1)
-
-    def __round_checked__(self, checked) -> None:
-        """
-        Changes the round based on which radio button the user has checked.
-        :param checked: Whether the radio button is checked.
-        """
-        if not checked:
-            return
-        for i in range(len(self.radio_buttons_rounds)):
-            i: int
-            radio_button: QRadioButton = self.radio_buttons_rounds[i]
-            if radio_button.isChecked():
-                self.__round_changed__(Round(i))
-                break
-
-    def __set_up_round_radio_buttons__(self) -> None:
-        """
-        Sets up the radio buttons used to pick the round number.
-        """
-        h_box_layout_rounds: QHBoxLayout = QHBoxLayout()
-        h_box_layout_rounds.addStretch()
-        self.radio_buttons_rounds: list[QRadioButton] = [
-            QRadioButton(string) for string in
-            [
-                string_round_1,
-                string_round_2,
-                string_round_3,
-                string_round_4,
-                string_round_5,
-                string_round_6,
-                string_round_7,
-                string_round_8_plus
-             ]
-        ]
-        for radio_button in self.radio_buttons_rounds:
-            radio_button: QRadioButton
-            h_box_layout_rounds.addWidget(radio_button)
-            radio_button.toggled.connect(self.__round_checked__)
-            h_box_layout_rounds.addStretch()
-
-        group_box_radio_buttons: QGroupBox = QGroupBox()
-        group_box_radio_buttons.setLayout(h_box_layout_rounds)
-        # row, column, row_span, row_column
-        self.addWidget(group_box_radio_buttons, 1, 0, 1, 4)
-        # Set the default round to 1
-        self.radio_buttons_rounds[Round.ONE.value].click()
+            self.__stacked_round_layouts__.addWidget(hint_widget)
+        # row, column, row_span, column_span
+        self.addWidget(self.__stacked_round_layouts__, 2, 0, 2, 1)
 
     def __init__(self, level: int) -> None:
         """
-        Creates the hints UI.
-        The three Pokémon the user has and
-        the three they have to choose from are input to the Team UI.
+        Creates the UI where the user can enter hints
+        they are given by the battle factory.
+        The hints include three Pokémon the user has,
+        and the three they have to choose from.
         If it is the first battle, then all six will be choices.
         The appropriate UI will appear
         depending on which round and battle are selected,
@@ -138,20 +138,24 @@ class HintsLayout(QGridLayout):
             team_pokemon=[],
             choice_pokemon=[]
         )
-        self.team_layout: TeamLayout = TeamLayout(self.__team_use_case__)
-        # row, column
-        self.addLayout(self.team_layout, 0, 0)
 
         # Output text boxes
-        self.text_output_widget = DualTextOutputWidget()
-        self.addWidget(self.text_output_widget, 4, 0, 1, 2)
+        self.__text_output_widget__ = DualTextOutputWidget()
+        # row, column, row_span, column_span
+        self.addWidget(self.__text_output_widget__, 4, 0, 1, 2)
         self.__print_use_case__: PrintUseCase = \
-            PrintUseCase(self.text_output_widget)
+            PrintUseCase(self.__text_output_widget__)
 
-        self.hint_widgets: list[QWidget] | None = None
-        self.stacked_round_layouts: list[QWidget] | None = None
+        # For the user to enter their team and choice Pokémon
+        self.__team_layout__: TeamLayout = TeamLayout(self.__team_use_case__)
+        # row, column
+        self.addLayout(self.__team_layout__, 0, 0)
+
+        # For the user to enter the hints they get
+        self.__hint_widgets__: list[QWidget] | None = None
+        self.__stacked_round_layouts__: list[QWidget] | None = None
         self.__set_up_stacked_rounds__(level=level)
 
-        self.radio_buttons_rounds = None
+        # For the user to change the round they are in
+        self.__radio_buttons_rounds__ = None
         self.__set_up_round_radio_buttons__()
-

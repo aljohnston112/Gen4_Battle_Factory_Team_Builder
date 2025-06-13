@@ -1,7 +1,7 @@
 import sys
 
-from PyQt5.QtCore import QThread, pyqtSignal
-from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout
+from PyQt5.QtCore import QThread
+from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLayout
 
 from algorithm.FrontierTeamBuilder import load_pokemon_ranks_accuracy, \
     load_pokemon_ranks
@@ -29,23 +29,33 @@ def run_main_app() -> None:
     sys.exit(app.exec())
 
 
+class BattleResultLoader(QThread):
+    """
+    A thread that loads the battle results.
+    """
+    def run(self):
+        """
+        Loads the battle results.
+        """
+        load_pokemon_ranks_accuracy()
+        load_pokemon_ranks()
+
+
 class MainLayout(QGridLayout):
     """
     The top-level layout.
     """
 
     def __init__(self, level: int):
+        """
+        :param level: (int): The level of the battle factory Pokémon.
+        """
         super().__init__()
 
-        class WorkerThread(QThread):
-
-            def run(self):
-                load_pokemon_ranks_accuracy()
-                load_pokemon_ranks()
-
-        self.thread = WorkerThread()
+        # Load the battle results in the background
+        self.thread = BattleResultLoader()
         self.thread.start()
 
-        self.__hints__ = HintsLayout(level=level)
+        self.__hints__: QLayout = HintsLayout(level=level)
         # row, column
         self.addLayout(self.__hints__, 0, 0)
