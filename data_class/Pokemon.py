@@ -291,20 +291,29 @@ def get_defense_multipliers_for_types(
 
 
 # TODO Focus Band, King's Rock, Lansat Berry, Lax Incense, Light Clay,
-# Lucky Punch, Mental Herb are not implemented;
+# Lucky Punch, Mental Herb, Razor Claw, Razor Fang,
+# Scope Lens, Stick are not implemented;
 # not sure if there are good ways to implement
 # TODO Liechi Berry is kind of a hack, as attack is multiplied, not damage
 # TODO Metronome is also a hack since is boost power, not damage
 implemented_items = [
-    "Aspear Berry", "Big Root", "Black Belt", "Black Sludge", "Black Glasses",
-    "Charcoal", "Cheri Berry", "Chesto Berry", "Chople Berry", "Coba Berry",
+    "", "Aspear Berry", "Big Root", "Black Belt", "Black Sludge", "BlackGlasses",
+    "Brightpowder",
+    "Charcoal", "Charti Berry", "Cheri Berry", "Chesto Berry", "Choice Band",
+    "Choice Scarf", "Choice Specs", "Chople Berry", "Coba Berry",
     "Colbur Berry", "Damp Rock", "DeepSeaScale", "Dragon Fang", "Expert Belt",
-    "Focus Band", "Haban Berry", "Hard Stone", "Icy Rock", "Kasib Berry",
+    "Focus Band", "Focus Sash", "Grip Claw", "Haban Berry", "Hard Stone", "Heat Rock",
+    "Icy Rock", "Iron Ball", "Kasib Berry",
     "King's Rock", "Lansat Berry", "Lax Incense", "Leftovers", "Liechi Berry",
-    "Life Orb", " Light Clay", "Lucky Punch", "Magnet", "Mental Herb",
+    "Life Orb", "Light Clay", "Lum Berry", "Lucky Punch", "Magnet", "Mental Herb",
     "Metal Coat", "Metronome", "Miracle Seed", "Muscle Band", "Mystic Water",
     "NeverMeltIce", "Occa Berry", "Odd Incense", "Passho Berry", "Payapa Berry",
-    "Pecha berry", "Persim Berry", "Petaya Berry",
+    "Pecha Berry", "Persim Berry", "Petaya Berry", "Poison Barb", "Power Herb",
+    "Quick Claw", "Rawst Berry", "Razor Claw", "Razor Fang", "Rindo Berry",
+    "Rock Incense", "Rose Incense", "Salac Berry", "Scope Lens", "Sea Incense", "Sharp Beak",
+    "Shell Bell", "Shuca Berry", "Silk Scarf", "SilverPowder", "Sitrus Berry",
+    "Soft Sand", "Spell Tag", "Stick", "Thick Club", "Toxic Orb", "Twisted Spoon",
+    "Wacan Berry", "Wave Incense", "Wide Lens", "Wise Glasses", "White Herb", "Yache Berry", "Zoom Lens"
 ]
 
 
@@ -313,7 +322,8 @@ def get_max_damage_attacker_can_do_to_defender(
         defender: Pokemon,
         level: int,
         random: float,
-        accuracy: int
+        accuracy: int,
+        is_poisoned: bool
 ) -> tuple[int, Move]:
     move = None
     defender_types: set[PokemonType] = all_pokemon_types[defender.name]
@@ -326,12 +336,19 @@ def get_max_damage_attacker_can_do_to_defender(
         level=level,
         stat_type=StatEnum.ATTACK
     )
+    attacker_item = attacker.item
+    if attacker_item == "Choice Band":
+        attack_stat *= 1.5
+    if (attacker_item == "Thick Club" and
+            attacker.name in ["Cubone",  "Marowak"]):
+        attack_stat *= 2
     special_attack_stat: int = get_stat_for_battle_factory_pokemon(
         pokemon=attacker,
         level=level,
         stat_type=StatEnum.SPECIAL_ATTACK
     )
-    attacker_item = attacker.item
+    if attacker_item == "Choice Specs":
+        special_attack_stat *= 1.5
 
     defense_stat: int = get_stat_for_battle_factory_pokemon(
         pokemon=defender,
@@ -358,7 +375,9 @@ def get_max_damage_attacker_can_do_to_defender(
         if pokemon_move.accuracy < accuracy:
             continue
 
-        if pokemon_move.name in ["Sky Attack", "Solarbeam"]:
+        if (pokemon_move.name in ["Sky Attack", "Solarbeam"] and
+                (attacker_item != "Power Herb")
+        ):
             continue
 
         if pokemon_move.power == 0:
@@ -372,6 +391,51 @@ def get_max_damage_attacker_can_do_to_defender(
             is_stab: bool = pokemon_move.move_type in attacker.types
             type_multiplier: float = \
                 defender_defense_multipliers.get(pokemon_move.move_type, 1.0)
+            power = pokemon_move.power
+            if attacker_item == "Iron Ball" and pokemon_move.name == "Fling":
+                power = 130
+            if is_poisoned and pokemon_move.name == "Facade":
+                power *= 2
+            if ((attacker_item == "Black Belt" and
+                 pokemon_move.move_type == PokemonType.FIGHTING) or
+                    (attacker_item == "BlackGlasses" and
+                     pokemon_move.move_type == PokemonType.DARK) or
+                    (attacker_item == "Charcoal" and
+                     pokemon_move.move_type == PokemonType.FIRE) or
+                    (attacker_item == "Dragon Fang" and
+                     pokemon_move.move_type == PokemonType.DRAGON) or
+                    ((attacker_item in ["Hard Stone", "Rock Incense"]) and
+                     pokemon_move.move_type == PokemonType.ROCK) or
+                    (attacker_item == "Magnet" and
+                     pokemon_move.move_type == PokemonType.ELECTRIC) or
+                    (attacker_item == "Metal Coat" and
+                     pokemon_move.move_type == PokemonType.STEEL) or
+                    (attacker_item in ["Miracle Seed", "Rose Incense"] and
+                     pokemon_move.move_type == PokemonType.GRASS) or
+                    (attacker_item in ["Mystic Water", "Sea Incense", "Wave Incense"] and
+                     pokemon_move.move_type == PokemonType.WATER) or
+                    (attacker_item == "NeverMeltIce" and
+                     pokemon_move.move_type == PokemonType.ICE) or
+                    (attacker_item in ["Odd Incense", "Twisted Spoon"] and
+                     pokemon_move.move_type == PokemonType.PSYCHIC) or
+                    (attacker_item == "Poison Barb" and
+                     pokemon_move.move_type == PokemonType.POISON) or
+                    (attacker_item == "Sharp Beak" and
+                     pokemon_move.move_type == PokemonType.FLYING) or
+                    (attacker_item == "Silk Scarf" and
+                     pokemon_move.move_type == PokemonType.NORMAL) or
+                    (attacker_item == "SilverPowder" and
+                     pokemon_move.move_type == PokemonType.BUG) or
+                    (attacker_item == "Soft Sand" and
+                     pokemon_move.move_type == PokemonType.GROUND) or
+                    (attacker_item == "Spell Tag" and
+                     pokemon_move.move_type == PokemonType.GHOST)
+            ):
+                power *= 1.2
+            if not is_special and attacker_item == "Muscle Band":
+                power *= 1.1
+            if is_special and attacker_item == "Wise Glasses":
+                power *= 1.1
             damage: int = calculate_gen4_damage(
                 level=level,
                 power=pokemon_move.power,
@@ -381,38 +445,9 @@ def get_max_damage_attacker_can_do_to_defender(
                 type_multiplier=type_multiplier,
                 random=random
             )
+
             if type_multiplier >= 2.0 and attacker_item == "Expert Belt":
                 damage *= 1.2
-
-            if not is_special and attacker_item == "Muscle Band":
-                damage *= 1.1
-
-            if ((attacker_item == "Black Belt" and
-                 pokemon_move.move_type == PokemonType.FIGHTING) or
-                    (attacker_item == "Black Glasses" and
-                     pokemon_move.move_type == PokemonType.DARK) or
-                    (attacker_item == "Charcoal" and
-                     pokemon_move.move_type == PokemonType.FIRE) or
-                    (attacker_item == "Dragon Fang" and
-                     pokemon_move.move_type == PokemonType.DRAGON) or
-                    (attacker_item == "Hard Stone" and
-                     pokemon_move.move_type == PokemonType.ROCK) or
-                    (attacker_item == "Magnet" and
-                     pokemon_move.move_type == PokemonType.ELECTRIC) or
-                    (attacker_item == "Metal Coat" and
-                     pokemon_move.move_type == PokemonType.STEEL) or
-                    (attacker_item == "Miracle Seed" and
-                     pokemon_move.move_type == PokemonType.GRASS) or
-                    (attacker_item == "Mystic Water" and
-                     pokemon_move.move_type == PokemonType.WATER) or
-                    (attacker_item == "NeverMeltIce" and
-                     pokemon_move.move_type == PokemonType.ICE) or
-                    (attacker_item == "Odd Incense" and
-                     pokemon_move.move_type == PokemonType.PSYCHIC)
-            ):
-                damage *= 1.2
-            if attacker_item == "Choice Band":
-                damage *= 1.5
             if attacker_item == "Life Orb":
                 damage *= 1.3
 
