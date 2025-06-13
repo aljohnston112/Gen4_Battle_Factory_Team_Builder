@@ -116,7 +116,7 @@ def get_pokemon_to_pokemon_they_can_beat(
     frontier_pokemon: dict[str, Pokemon] = get_battle_factory_pokemon()
     winner_to_defeated: dict[str, BattleResult] = dict()
     set_numbers: list[int] = [set_number - 2, set_number - 1, set_number,
-                              set_number + 1]
+                              set_number + 1, set_number + 2]
     set_pokemon = {k: v for k, v in frontier_pokemon.items() if
                    v.set_number in set_numbers}
     for player_pokemon_id, player_pokemon in set_pokemon.items():
