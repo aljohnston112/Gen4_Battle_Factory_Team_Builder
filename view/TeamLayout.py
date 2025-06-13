@@ -1,63 +1,61 @@
 from PyQt5.QtWidgets import QLabel, QHBoxLayout, QGridLayout, QGroupBox, \
-    QRadioButton, QSpacerItem, QSizePolicy
+    QRadioButton
 
 from data.Strings import string_last_battle, string_team, string_first_battle, \
     string_middle_battle, string_choices
 from use_case.PokemonUseCase import PokemonUseCase
 from use_case.TeamUseCase import TeamUseCase
+from view.LayoutUtil import add_expanding_spacer
 from view.PokemonAndMoveLayout import PokemonAndMoveLayout
 from view_model.TeamViewmodel import TeamViewModel, RoundStage
 
 
 class TeamLayout(QGridLayout):
     """
-    Two rows of six data_class and move layouts.
-    One for the user's team, and another for choices
-    unless it is the first round,
-    in which case all six are the user's choices.
+    Two rows of six Pokémon and move combo boxes.
+    One row is for the user's team, and the other for the user's choices,
+    but if it is the first round, both rows are the user's choices.
     """
 
     def __battle_changed__(self, battle_type: RoundStage) -> None:
         self.__view_model__.set_round_stage(battle_type)
         if battle_type != RoundStage.FIRST_BATTLE:
-            self.label_choices.show()
+            self.__label_choices__.show()
         else:
-            self.label_choices.hide()
+            self.__label_choices__.hide()
 
-    def __new_battle_checked__(self, checked) -> None:
+    def __new_battle_checked__(self, checked: bool) -> None:
         if not checked:
             return
-        for i in range(len(self.radio_buttons_rounds)):
-            if self.radio_buttons_rounds[i].isChecked():
+        for i in range(len(self.__radio_buttons_rounds__)):
+            if self.__radio_buttons_rounds__[i].isChecked():
                 self.__battle_changed__(RoundStage(i))
                 break
 
-    def __set_up_round_radio_buttons__(self) -> None:
+    def __set_up_round_stage_radio_buttons__(self) -> None:
         """
         Sets up the radio buttons used to pick the round number.
         """
-        self.radio_buttons_rounds: list[QRadioButton] = [
+        self.__radio_buttons_rounds__: list[QRadioButton] = [
             QRadioButton(string)
             for string in
             [string_first_battle, string_middle_battle, string_last_battle]
         ]
 
         h_box_layout_rounds: QHBoxLayout = QHBoxLayout()
-        for radio_button in self.radio_buttons_rounds:
+        for radio_button in self.__radio_buttons_rounds__:
             radio_button: QRadioButton
             h_box_layout_rounds.addWidget(radio_button)
             radio_button.toggled.connect(self.__new_battle_checked__)
 
         group_box_rb: QGroupBox = QGroupBox()
         group_box_rb.setLayout(h_box_layout_rounds)
+        # row, column, row_span, column_span
         self.addWidget(group_box_rb, 3, 1, 1, 7)
         # Set the default round to 1
-        self.radio_buttons_rounds[0].click()
+        self.__radio_buttons_rounds__[0].click()
 
-    def __on_new_data__(self) -> None:
-        self.__view_model__.on_new_data()
-
-    def __init__(self, team_use_case: TeamUseCase):
+    def __init__(self, team_use_case: TeamUseCase) -> None:
         super().__init__()
         pokemon_use_cases: list[PokemonUseCase] = [
             PokemonUseCase() for _ in range(6)
@@ -69,68 +67,52 @@ class TeamLayout(QGridLayout):
 
         # Team label
         first_row: int = 0
-        self.addItem(
-            QSpacerItem(0, 1, QSizePolicy.Expanding, QSizePolicy.Minimum),
-            first_row,
-            0
-        )
+        add_expanding_spacer(grid_layout=self, row=first_row, column=0)
         label_team: QLabel = QLabel(string_team)
-        self.addWidget(label_team, 0, 1)
-        self.addItem(
-            QSpacerItem(0, 1, QSizePolicy.Expanding, QSizePolicy.Minimum),
-            first_row,
-            2
-        )
+        self.addWidget(label_team, first_row, 1)
+        add_expanding_spacer(grid_layout=self, row=first_row, column=2)
 
         # Add team Pokémon and move selection boxes
         # [0:3] are the team Pokémon
-        self.pokemon: list[PokemonAndMoveLayout] = []
+        self.__pokemon__: list[PokemonAndMoveLayout] = []
         for i in range(0, 3):
-            self.pokemon.append(
+            self.__pokemon__.append(
                 PokemonAndMoveLayout(
                     pokemon_use_case=pokemon_use_cases[i],
-                    on_new_data=self.__on_new_data__
+                    on_new_data=self.__view_model__.on_new_data
                 )
             )
             column: int = 2 * i + 3
-            self.addWidget(self.pokemon[i], 0, column)
-            self.addItem(
-                QSpacerItem(0, 1, QSizePolicy.Expanding, QSizePolicy.Minimum),
-                first_row,
-                column + 1
+            self.addWidget(self.__pokemon__[i], first_row, column)
+            add_expanding_spacer(
+                grid_layout=self,
+                row=first_row,
+                column=column + 1
             )
 
         # Choices label
         second_row: int = 1
-        self.addItem(
-            QSpacerItem(0, 1, QSizePolicy.Expanding, QSizePolicy.Minimum),
-            second_row,
-            0
-        )
-        self.label_choices: QLabel = QLabel(string_choices)
-        self.addWidget(self.label_choices, 1, 1)
+        add_expanding_spacer(grid_layout=self, row=second_row, column=0)
+        self.__label_choices__: QLabel = QLabel(string_choices)
+        self.addWidget(self.__label_choices__, second_row, 1)
         # Hidden for the first battle
-        self.label_choices.hide()
-        self.addItem(
-            QSpacerItem(0, 1, QSizePolicy.Expanding, QSizePolicy.Minimum),
-            second_row,
-            2
-        )
+        self.__label_choices__.hide()
+        add_expanding_spacer(grid_layout=self, row=second_row, column=2)
 
         # Add choice Pokémon and move selection boxes
         # [3:6] are the choice Pokémon.
         for i in range(3, 6):
-            self.pokemon.append(
+            self.__pokemon__.append(
                 PokemonAndMoveLayout(
                     pokemon_use_case=pokemon_use_cases[i],
-                    on_new_data=self.__on_new_data__
+                    on_new_data=self.__view_model__.on_new_data
                 )
             )
-            column = 2 * (i - 3) + 3
-            self.addWidget(self.pokemon[i], second_row, column)
-            self.addItem(
-                QSpacerItem(0, 1, QSizePolicy.Expanding, QSizePolicy.Minimum),
-                second_row,
-                column + 1
+            column: int = 2 * (i - 3) + 3
+            self.addWidget(self.__pokemon__[i], second_row, column)
+            add_expanding_spacer(
+                grid_layout=self,
+                row=second_row,
+                column=column + 1
             )
-        self.__set_up_round_radio_buttons__()
+        self.__set_up_round_stage_radio_buttons__()

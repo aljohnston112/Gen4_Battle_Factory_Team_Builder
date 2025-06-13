@@ -1,53 +1,53 @@
+from typing import Callable
+
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QComboBox
 
+from data_class.Move import Move
+from data_class.Pokemon import Pokemon
 from repository.PokemonRepository import find_pokemon
+from use_case.PokemonUseCase import PokemonUseCase
 from view.combo_boxes.PokemonComboBox import PokemonComboBox
 
 
 class PokemonAndMoveLayout(QWidget):
     """
-    A QWidget that lets the user pick a data_class and then a move.
-    It is used to narrow down what data_class the user selects.
+    A QWidget that lets the user pick a Pokémon
+    and then a move if there is more than one of that Pokémon.
+    The move is used to narrow down what Pokémon the user selects.
     """
 
-    def __init__(self, pokemon_use_case, on_new_data):
-        super().__init__()
+    def __move_text_changed__(self) -> None:
+        self.__update_state__()
 
-        self.__on_new_data__ = on_new_data
-        self.__pokemon_use_case__ = pokemon_use_case
+    def __get_pokemon__(self) -> list[Pokemon]:
+        return find_pokemon(
+            pokemon_names=[self.__pokemon_combo_box__.currentText()],
+            move_names=[self.__move_combo_box__.currentText()]
+        )
 
-        layout = QVBoxLayout()
-        self.setLayout(layout)
+    def __update_state__(self) -> None:
+        self.__pokemon_use_case__.set_pokemon(self.__get_pokemon__())
+        self.__on_new_data__()
 
-        self.pokemon_combo_box = PokemonComboBox()
-        self.pokemon_combo_box.currentTextChanged.connect(self.__pokemon_text_changed__)
-
-        self.move_combo_box = QComboBox()
-        self.move_combo_box.setVisible(False)
-        self.move_combo_box.currentTextChanged.connect(self.__move_text_changed__)
-
-        layout.addWidget(self.pokemon_combo_box)
-        layout.addWidget(self.move_combo_box)
-
-    def __pokemon_text_changed__(self, pokemon_name):
+    def __pokemon_text_changed__(self, pokemon_name: str) -> None:
         """
-        Updates the MoveComboBox based on the user's choice of data_class.
-        :param pokemon_name: The data_class name the user chose.
+        Updates the MoveComboBox based on the user's Pokémon choice.
+        :param pokemon_name: The Pokémon name the user chose.
         """
-        self.move_combo_box.clear()
-
-        selected_pokemon = find_pokemon(
+        self.__move_combo_box__.clear()
+        selected_pokemon: list[Pokemon] = find_pokemon(
             pokemon_names=[pokemon_name],
             move_names=None
         )
         if len(selected_pokemon) > 1:
-
             # Get the unique moves that each data_class with the name can know
-            pokemon_moves = set()
-            removed_moves = set()
+            pokemon_moves: set[Move] = set()
+            removed_moves: set[Move] = set()
             for poke in selected_pokemon:
-                move_list = poke.moves
+                poke: Pokemon
+                move_list: list[Move] = poke.moves
                 for move in move_list:
+                    move: Move
                     if move in pokemon_moves:
                         removed_moves.add(move)
                         pokemon_moves.remove(move)
@@ -56,23 +56,33 @@ class PokemonAndMoveLayout(QWidget):
 
             # Add the moves to the combo box
             for move in pokemon_moves:
-                self.move_combo_box.addItem(move.name)
-            self.move_combo_box.setVisible(True)
+                self.__move_combo_box__.addItem(move.name)
+            self.__move_combo_box__.setVisible(True)
         else:
-            self.move_combo_box.setVisible(False)
+            self.__move_combo_box__.setVisible(False)
         self.__update_state__()
 
-    def __move_text_changed__(self):
-        self.__update_state__()
+    def __init__(
+            self,
+            pokemon_use_case: PokemonUseCase,
+            on_new_data: Callable[[], None]
+    ) -> None:
+        super().__init__()
+        self.__on_new_data__: Callable[[], None] = on_new_data
+        self.__pokemon_use_case__: PokemonUseCase = pokemon_use_case
 
-    def __update_state__(self):
-        self.__pokemon_use_case__.set_pokemon(
-            self.__get_pokemon__()
-        )
-        self.__on_new_data__()
+        layout: QVBoxLayout = QVBoxLayout()
+        self.setLayout(layout)
 
-    def __get_pokemon__(self):
-        return find_pokemon(
-            [self.pokemon_combo_box.currentText()],
-            [self.move_combo_box.currentText()]
+        self.__pokemon_combo_box__: PokemonComboBox = PokemonComboBox()
+        self.__pokemon_combo_box__.currentTextChanged.connect(
+            self.__pokemon_text_changed__
         )
+        layout.addWidget(self.__pokemon_combo_box__)
+
+        self.__move_combo_box__: QComboBox = QComboBox()
+        self.__move_combo_box__.setVisible(False)
+        self.__move_combo_box__.currentTextChanged.connect(
+            self.__move_text_changed__
+        )
+        layout.addWidget(self.__move_combo_box__)
