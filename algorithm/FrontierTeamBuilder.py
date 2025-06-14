@@ -1,5 +1,5 @@
 import json
-from math import inf
+from math import inf, floor
 from os.path import exists
 
 import cattr
@@ -19,93 +19,107 @@ from repository.PokemonTypeRepository import all_pokemon_types
 
 
 def get_health_gained(
-        player_pokemon,
-        player_attack,
-        player_attack_damage,
-        player_first,
-        player_max_health,
-        player_health,
-        player_item,
-        is_player,
-        player_turns_poisoned
-):
-    player_health_gained = 0
-    if player_item == "Black Sludge":
-        if player_pokemon.name not in ["Clefairy", "Clefable", "Kadabra",
-                                       "Alakazam"]:
-            if ((
-                    PokemonType.POISON in player_pokemon.types and not is_player) or
-                    (player_item == "Leftovers")
-            ):
-                player_health_gained += player_max_health / 16
+        pokemon: Pokemon,
+        move: str,
+        attack_damage: float,
+        was_first: bool,
+        max_health: int,
+        current_health: int,
+        hold_item: str,
+        is_player: bool,
+        player_turns_badly_poisoned: int
+) -> int:
+    health_gain_before_loss: int = 0
+    health_gained: int = 0
+    health_lost: int = 0
+
+    # Toxic
+    if player_turns_badly_poisoned > 0:
+        health_lost += player_turns_badly_poisoned * (max_health // 16)
+
+    # Draining moves and Big Root
+    if move in ["Drain Punch", "Giga Drain", "Mega Drain"]:
+        if current_health != 0 or was_first:
+            health_gain_before_loss += attack_damage // 2
+            if hold_item == "Big Root":
+                health_gain_before_loss = floor(health_gain_before_loss * 1.3)
+        else:
+            health_gained += attack_damage // 2
+            if hold_item == "Big Root":
+                health_gained = floor(health_gained * 1.3)
+
+    # Sitrus Berry
+    if hold_item == "Sitrus Berry" and current_health < max_health // 2:
+        health_gained += max_health // 4
+        pokemon.item = ""
+
+    # Black Sludge
+    elif hold_item == "Black Sludge":
+        has_magic_guard: bool = pokemon.name in [
+            "Clefairy", "Clefable", "Kadabra", "Alakazam"
+        ]
+        if not has_magic_guard:
+            is_poison: bool = PokemonType.POISON in pokemon.types
+            if is_poison and not is_player:
+                health_gained += max_health // 16
             elif is_player:
-                player_health_gained -= player_max_health / 8
-    if player_item == "Life Orb":
-        player_health_gained -= player_max_health / 10
-    if player_turns_poisoned > 0:
-        player_health_gained -= player_turns_poisoned * (player_max_health / 16)
+                health_lost += max_health // 8
+    # Leftovers
+    elif hold_item == "Leftovers":
+        health_gained += max_health // 16
 
-    if ((player_item == "Shell Bell") and
-            (player_health != 0 or player_first)
-    ):
-        player_health_gained += player_attack_damage / 8
-    if ((player_attack in ["Drain Punch", "Giga Drain", "Mega Drain"]) and
-            (player_health != 0 or player_first)
-    ):
-        player_health_gained += player_attack_damage / 2
-    if player_item == "Big Root":
-        player_health_gained *= 1.3
-    if player_item == "Sitrus Berry" and player_health < player_max_health / 2:
-        player_health_gained += player_max_health / 4
-        player_pokemon.item = ""
+    # Life Orb
+    elif hold_item == "Life Orb":
+        health_lost += max_health // 10
+
+    # Shell Bell
+    elif hold_item == "Shell Bell":
+        if current_health != 0 or was_first:
+            health_gain_before_loss += attack_damage // 8
+        else:
+            health_gained += attack_damage // 8
+
+    if current_health + health_gain_before_loss < health_lost:
+        return -current_health
+
+    return health_gain_before_loss + health_gained - health_lost
 
 
-    return player_health_gained
+__berry_resistances__: dict[PokemonType, str] = {
+    PokemonType.FIGHTING: "Chople Berry",
+    PokemonType.FLYING: "Coba Berry",
+    PokemonType.DARK: "Colbur Berry",
+    PokemonType.DRAGON: "Haban Berry",
+    PokemonType.GHOST: "Kasib Berry",
+    PokemonType.FIRE: "Occa Berry",
+    PokemonType.WATER: "Passho Berry",
+    PokemonType.PSYCHIC: "Payapa Berry",
+    PokemonType.GRASS: "Rindo Berry",
+    PokemonType.GROUND: "Shuca Berry",
+    PokemonType.ELECTRIC: "Wacan Berry",
+    PokemonType.ICE: "Yache Berry",
+    PokemonType.ROCK: "Charti Berry"
+}
 
 
 def apply_damage_modifiers(
         defender: Pokemon,
         defender_item: str,
         attacker_attack: Move | None,
-        damage: int
-):
+        damage_taken: int
+) -> int:
     if attacker_attack is None:
-        return damage
+        return damage_taken
     defender_types: set[PokemonType] = all_pokemon_types[defender.name]
     defender_defense_multipliers: dict[PokemonType, float] = \
         get_defense_multipliers_for_types(defender_types)
     type_multiplier: float = \
         defender_defense_multipliers.get(attacker_attack.move_type, 1.0)
-    if (type_multiplier >= 2.0 and
-            (attacker_attack.move_type == PokemonType.FIGHTING and
-             defender_item == "Chople Berry") or
-            (attacker_attack.move_type == PokemonType.FLYING and
-             defender_item == "Coba Berry") or
-            (attacker_attack.move_type == PokemonType.DARK and
-             defender_item == "Colbur Berry") or
-            (attacker_attack.move_type == PokemonType.DRAGON and
-             defender_item == "Haban Berry") or
-            (attacker_attack.move_type == PokemonType.GHOST and
-             defender_item == "Kasib Berry") or
-            (attacker_attack.move_type == PokemonType.FIRE and
-             defender_item == "Occa Berry") or
-            (attacker_attack.move_type == PokemonType.WATER and
-             defender_item == "Passho Berry") or
-            (attacker_attack.move_type == PokemonType.PSYCHIC and
-             defender_item == "Payapa Berry") or
-            (attacker_attack.move_type == PokemonType.GRASS and
-             defender_item == "Rindo Berry") or
-            (attacker_attack.move_type == PokemonType.GROUND and
-             defender_item == "Shuca Berry") or
-            (attacker_attack.move_type == PokemonType.ELECTRIC and
-             defender_item == "Wacan Berry") or
-            (attacker_attack.move_type == PokemonType.ICE and
-             defender_item == "Yache Berry") or
-            (attacker_attack.move_type == PokemonType.ROCK and
-             defender_item == "Charti Berry")
-    ):
-        damage *= 0.5
-    return damage
+    resist_berry: str = __berry_resistances__.get(attacker_attack.move_type)
+    if (type_multiplier >= 2.0) and (defender_item == resist_berry):
+        damage_taken = damage_taken // 2
+        defender.item = ""
+    return damage_taken
 
 
 def get_pokemon_to_pokemon_they_can_beat(
@@ -115,31 +129,46 @@ def get_pokemon_to_pokemon_they_can_beat(
 ) -> dict[str, BattleResult]:
     frontier_pokemon: dict[str, Pokemon] = get_battle_factory_pokemon()
     winner_to_defeated: dict[str, BattleResult] = dict()
-    set_numbers: list[int] = [set_number - 2, set_number - 1, set_number,
-                              set_number + 1, set_number + 2]
-    set_pokemon = {k: v for k, v in frontier_pokemon.items() if
-                   v.set_number in set_numbers}
+    set_numbers: list[int] = [
+        set_number - 2, set_number - 1,
+        set_number,
+        set_number + 1, set_number + 2
+    ]
+    set_pokemon: dict[str, Pokemon] = {
+        poke_id: poke for poke_id, poke in frontier_pokemon.items()
+        if poke.set_number in set_numbers
+    }
     for player_pokemon_id, player_pokemon in set_pokemon.items():
         player_pokemon_id: str
         player_pokemon: Pokemon
+        player_item_backup: str = str(player_pokemon.item)
+        if player_pokemon.item not in implemented_items:
+            raise Exception(f"Item {player_pokemon.item} not implemented")
+        player_max_health: int = get_stat_for_battle_factory_pokemon(
+            player_pokemon,
+            level,
+            StatEnum.HEALTH
+        )
         player_speed_stat: int = get_stat_for_battle_factory_pokemon(
             player_pokemon,
             level,
             StatEnum.SPEED
         )
         if player_pokemon.item == "Choice Scarf":
-            player_speed_stat *= 1.5
-        player_max_health: int = get_stat_for_battle_factory_pokemon(
-            player_pokemon,
-            level,
-            StatEnum.HEALTH
-        )
+            player_speed_stat: int = floor(1.5 * player_speed_stat)
         win_results: dict[str, Hits] = dict()
         lose_results: dict[str, Hits] = dict()
-
         for opponent_pokemon_id, opponent_pokemon in set_pokemon.items():
             opponent_pokemon_id: str
             opponent_pokemon: Pokemon
+            opponent_item_backup: str = str(opponent_pokemon.item)
+            if opponent_pokemon.item not in implemented_items:
+                raise Exception(f"{opponent_pokemon.item} not implemented")
+            opponent_max_health: int = get_stat_for_battle_factory_pokemon(
+                opponent_pokemon,
+                level,
+                StatEnum.HEALTH,
+            )
             # Who is faster?
             opponent_speed_stat: int = get_stat_for_battle_factory_pokemon(
                 opponent_pokemon,
@@ -147,20 +176,11 @@ def get_pokemon_to_pokemon_they_can_beat(
                 StatEnum.SPEED,
             )
             if opponent_pokemon.item == "Choice Scarf":
-                opponent_speed_stat *= 1.5
+                opponent_speed_stat: int = floor(1.5 * opponent_speed_stat)
             player_first: bool = player_speed_stat > opponent_speed_stat
             if opponent_pokemon.item == "Quick Claw":
                 player_first = False
-            opponent_max_health: int = get_stat_for_battle_factory_pokemon(
-                opponent_pokemon,
-                level,
-                StatEnum.HEALTH,
-            )
-            opponent_health = opponent_max_health
-            if player_pokemon.item not in implemented_items or \
-                    opponent_pokemon.item not in implemented_items:
-                raise Exception(
-                    f"Item {player_pokemon.item} or {opponent_pokemon.item} not implemented")
+
             opponent_attack_damage, opponent_attack = \
                 get_max_damage_attacker_can_do_to_defender(
                     attacker=opponent_pokemon,
@@ -175,100 +195,118 @@ def get_pokemon_to_pokemon_they_can_beat(
                     attacker=player_pokemon,
                     defender=opponent_pokemon,
                     level=level,
-                    random=0.85 if worst_case else 1.0,
+                    random=0.85,
                     accuracy=100 if worst_case else 0,
                     is_poisoned=False
                 )
             hits_taken: float = inf
             if opponent_attack_damage != 0:
                 hits_taken: float = player_max_health / opponent_attack_damage
-
-            hits_given = inf
+            hits_given: float = inf
             if player_attack_damage != 0:
-                hits_given: float = opponent_health / player_attack_damage
+                hits_given: float = opponent_max_health / player_attack_damage
             hits: Hits = Hits(hits_taken=hits_taken, hits_given=hits_given)
 
             player_health: int = player_max_health
-
-            if player_pokemon.item == "Focus Sash" and opponent_attack_damage > player_max_health:
-                player_health = opponent_attack_damage + 1
-            if opponent_pokemon.item == "Focus Sash" and player_attack_damage > opponent_max_health:
-                opponent_health = player_attack_damage + 1
+            opponent_health: int = opponent_max_health
+            is_first_turn = True
             # TODO pluck and bug bite will eat berries
-            if opponent_attack_damage != 0 or player_attack_damage != 0:
-                opponent_turns_poisoned = -1
-                player_turns_poisoned = -1
+
+            if ((opponent_attack_damage != 0 or player_attack_damage != 0)
+                    and opponent_attack and player_attack
+            ):
+                opponent_turns_poisoned: int = -1
+                player_turns_poisoned: int = -1
                 while player_health > 0 and opponent_health > 0:
-                    actual_player_damage = player_attack_damage
-                    actual_opponent_damage = opponent_attack_damage
+                    actual_player_damage: int = player_attack_damage
+                    actual_opponent_damage: int = opponent_attack_damage
                     if not player_pokemon.item == "":
                         actual_opponent_damage = apply_damage_modifiers(
                             defender=player_pokemon,
                             defender_item=player_pokemon.item,
                             attacker_attack=opponent_attack,
-                            damage=opponent_attack_damage
+                            damage_taken=opponent_attack_damage
                         )
-                        if actual_opponent_damage != opponent_attack_damage:
-                            player_pokemon.item = ""
 
-
-                        if player_health <= player_max_health / 4:
+                        # Stat boosting berries
+                        if ((player_health <= player_max_health // 4) or
+                                (player_health <= player_health // 2 and
+                                 (player_pokemon.name in
+                                  ["Shuckle", "Zigzagoon", "Linoone"]))
+                        ):
                             if player_attack:
-                                player_move_is_special = player_attack.category == Category.SPECIAL
+                                player_move_is_special: bool = \
+                                    player_attack.category == Category.SPECIAL
                                 if ((player_pokemon.item == "Liechi Berry" and
-                                     not player_move_is_special) or
-                                        (player_pokemon.item == "Petaya Berry" and
-                                         player_move_is_special)
-                                ):
-                                    actual_player_damage *= 1.5
+                                     not player_move_is_special
+                                ) or (player_pokemon.item == "Petaya Berry" and
+                                      player_move_is_special
+                                )):
+                                    # kind of a hack, as attack is multiplied, not damage
+                                    actual_player_damage: int = \
+                                        floor(1.5 * actual_player_damage)
                                     player_pokemon.item = ""
                             if player_pokemon.item == "Salac Berry":
-                                player_speed_stat *= 1.5
-                                player_first = player_speed_stat > opponent_speed_stat
+                                player_speed_stat: int = \
+                                    floor(1.5 * player_speed_stat)
+                                player_first: bool = \
+                                    (player_speed_stat > opponent_speed_stat and
+                                     opponent_pokemon.item != "Quick Claw")
                                 player_pokemon.item = ""
 
-                        if player_attack and player_attack.name in ["Sky Attack", "Solarbeam"]:
-                            player_pokemon.item = ""
+                        if (player_attack and
+                                player_attack.name in [
+                                    "Sky Attack", "Solarbeam"
+                                ]
+                        ):
                             player_attack_damage, player_attack = \
                                 get_max_damage_attacker_can_do_to_defender(
                                     attacker=player_pokemon,
                                     defender=opponent_pokemon,
                                     level=level,
-                                    random=0.85 if worst_case else 1.0,
+                                    random=0.85,
                                     accuracy=100 if worst_case else 0,
                                     is_poisoned=player_turns_poisoned > -1
                                 )
+                            player_pokemon.item = ""
 
                     if not opponent_pokemon.item == "":
                         actual_player_damage = apply_damage_modifiers(
                             defender=opponent_pokemon,
                             defender_item=opponent_pokemon.item,
                             attacker_attack=player_attack,
-                            damage=player_attack_damage
+                            damage_taken=player_attack_damage
                         )
-                        if actual_player_damage != player_attack_damage:
-                            opponent_pokemon.item = ""
 
-                        if (((opponent_health <= opponent_max_health / 4) or
-                             (opponent_health <= opponent_health / 2 and
+                        # Stat boosting berries
+                        if (((opponent_health <= opponent_max_health // 4) or
+                             (opponent_health <= opponent_health // 2 and
                               (opponent_pokemon.name in
                                ["Shuckle", "Zigzagoon", "Linoone"])))
                         ):
                             if opponent_attack:
-                                opponent_move_is_special = opponent_attack.category == Category.SPECIAL
+                                opponent_move_is_special = \
+                                    opponent_attack.category == Category.SPECIAL
                                 if ((opponent_pokemon.item == "Liechi Berry" and
-                                     not opponent_move_is_special) or
-                                        (opponent_pokemon.item == "Petaya Berry" and
-                                         opponent_move_is_special)
-                                ):
-                                    actual_opponent_damage *= 1.5
+                                     not opponent_move_is_special) or (
+                                        opponent_pokemon.item == "Petaya Berry" and
+                                        opponent_move_is_special
+                                )):
+                                    actual_opponent_damage: int = \
+                                        floor(1.5 * actual_opponent_damage)
                                     opponent_pokemon.item = ""
                             if opponent_pokemon.item == "Salac Berry":
-                                opponent_speed_stat *= 1.5
-                                player_first = player_speed_stat > opponent_speed_stat
+                                opponent_speed_stat: int = \
+                                    floor(1.5 * opponent_speed_stat)
+                                player_first: bool = \
+                                    (player_speed_stat > opponent_speed_stat and
+                                     opponent_pokemon.item != "Quick Claw")
                                 opponent_pokemon.item = ""
-                        if opponent_attack and opponent_attack.name in ["Sky Attack", "Solarbeam"]:
-                            opponent_pokemon.item = ""
+                        if (opponent_attack and
+                                opponent_attack.name in [
+                                    "Sky Attack", "Solarbeam"
+                                ]
+                        ):
                             opponent_attack_damage, opponent_attack = \
                                 get_max_damage_attacker_can_do_to_defender(
                                     attacker=opponent_pokemon,
@@ -278,15 +316,33 @@ def get_pokemon_to_pokemon_they_can_beat(
                                     accuracy=0,
                                     is_poisoned=opponent_turns_poisoned > -1
                                 )
+                            opponent_pokemon.item = ""
 
                     player_health: int = player_health - actual_opponent_damage
                     opponent_health: int = opponent_health - actual_player_damage
 
-                    if player_pokemon.item == "Metronome":
-                        actual_player_damage *= 1.1
-                    if opponent_pokemon.item == "Metronome":
-                        actual_player_damage *= 1.1
+                    # Focus Sash
+                    if is_first_turn:
+                        if (player_pokemon.item == "Focus Sash" and
+                                opponent_attack_damage > player_max_health and
+                                player_health == player_max_health
+                        ):
+                            player_health: int = 1
+                        if (opponent_pokemon.item == "Focus Sash" and
+                                player_attack_damage > opponent_max_health and
+                                opponent_health == opponent_max_health
+                        ):
+                            opponent_health: int = 1
 
+                    # TODO Metronome is a hack since is boost power, not damage
+                    if player_pokemon.item == "Metronome":
+                        actual_player_damage: int = \
+                            floor(1.1 * actual_player_damage)
+                    if opponent_pokemon.item == "Metronome":
+                        actual_opponent_damage: int = \
+                            floor(1.1 * actual_opponent_damage)
+
+                    # Toxic Orb
                     if (player_pokemon.item == "Toxic Orb" and
                             PokemonType.POISON not in player_pokemon.types
                     ):
@@ -297,52 +353,59 @@ def get_pokemon_to_pokemon_they_can_beat(
                     ):
                         opponent_turns_poisoned += 1
 
-                    player_health_gained = get_health_gained(
-                        player_pokemon=player_pokemon,
-                        player_attack=player_attack,
-                        player_attack_damage=player_attack_damage,
-                        player_first=player_first,
-                        player_max_health=player_max_health,
-                        player_health=player_health,
-                        player_item=player_pokemon.item,
+                    player_health_gained: int = get_health_gained(
+                        pokemon=player_pokemon,
+                        move="" if player_attack is None else player_attack.name,
+                        attack_damage=player_attack_damage,
+                        was_first=player_first,
+                        max_health=player_max_health,
+                        current_health=player_health,
+                        hold_item=player_pokemon.item,
                         is_player=True,
-                        player_turns_poisoned=player_turns_poisoned
+                        player_turns_badly_poisoned=player_turns_poisoned
                     )
                     player_health += player_health_gained
                     if player_health > player_max_health:
                         player_health = player_max_health
-                    opponent_health_gained = get_health_gained(
-                        player_pokemon=opponent_pokemon,
-                        player_attack=opponent_attack,
-                        player_attack_damage=opponent_attack_damage,
-                        player_max_health=opponent_max_health,
-                        player_first=not player_first,
-                        player_health=opponent_health,
-                        player_item=opponent_pokemon.item,
+                    opponent_health_gained: int = get_health_gained(
+                        pokemon=opponent_pokemon,
+                        move="" if not opponent_attack else opponent_attack.name,
+                        attack_damage=opponent_attack_damage,
+                        max_health=opponent_max_health,
+                        was_first=not player_first,
+                        current_health=opponent_health,
+                        hold_item=opponent_pokemon.item,
                         is_player=False,
-                        player_turns_poisoned=player_turns_poisoned
+                        player_turns_badly_poisoned=player_turns_poisoned
                     )
                     opponent_health += opponent_health_gained
                     if opponent_health > opponent_max_health:
                         opponent_health = opponent_max_health
                     # End the battle if no progress is being made
-                    if (actual_opponent_damage <= player_health_gained and
-                        actual_player_damage <= opponent_health_gained
+                    if ((actual_opponent_damage <= player_health_gained and
+                         actual_player_damage <= opponent_health_gained) or
+                            player_attack is None
                     ):
                         player_health = 0
+                    elif opponent_attack is None:
+                        opponent_health = 0
 
-                    if player_pokemon.item == "Iron Ball":
+                    # The Iron Ball needs to be cleared since fling was used
+                    if (player_attack and player_pokemon.item == "Iron Ball" and
+                            player_attack.name == "Fling"
+                    ):
                         player_pokemon.item = ""
-                        opponent_attack_damage, opponent_attack = \
+                        player_attack_damage, player_attack = \
                             get_max_damage_attacker_can_do_to_defender(
                                 attacker=player_pokemon,
                                 defender=opponent_pokemon,
                                 level=level,
-                                random=1.0,
-                                accuracy=0,
+                                random=0.85,
+                                accuracy=100 if worst_case else 0,
                                 is_poisoned=player_turns_poisoned > -1
                             )
-                    if opponent_pokemon.item == "Iron Ball":
+                    if (opponent_attack and opponent_pokemon.item == "Iron Ball" and
+                            opponent_attack.name == "Fling"):
                         opponent_pokemon.item = ""
                         opponent_attack_damage, opponent_attack = \
                             get_max_damage_attacker_can_do_to_defender(
@@ -353,8 +416,10 @@ def get_pokemon_to_pokemon_they_can_beat(
                                 accuracy=0,
                                 is_poisoned=opponent_turns_poisoned > -1
                             )
-
-
+                    is_first_turn = False
+            # No one could do damage; player loss by default
+            elif opponent_attack is None and player_attack is not None:
+                opponent_health = 0
             else:
                 player_health: int = 0
             if player_health > 0 or \
@@ -366,10 +431,13 @@ def get_pokemon_to_pokemon_they_can_beat(
                 win_results[opponent_pokemon_id] = hits
             else:
                 lose_results[opponent_pokemon_id] = hits
+            player_pokemon.item = player_item_backup
+            opponent_pokemon.item = opponent_item_backup
         winner_to_defeated[player_pokemon_id]: BattleResult = \
             BattleResult(
                 winner_id=player_pokemon_id,
-                win_rate=len(win_results) / len(set_pokemon),
+                win_rate=
+                len(win_results) / (len(win_results) + len(lose_results)),
                 win_results=win_results,
                 lose_results=lose_results,
             )

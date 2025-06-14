@@ -436,24 +436,24 @@ def do_round(
 
 
 def filter_opponents(
-        opponent_pokemon: list[Pokemon],
+        opponent_pokemon_in: list[Pokemon],
         set_number: int,
         is_last_battle: bool
 ) -> list[Pokemon]:
     if set_number < 7:
         if is_last_battle:
             opponent_pokemon: list[Pokemon] = [
-                p for p in opponent_pokemon
+                p for p in opponent_pokemon_in
                 if is_from_round(p, set_number + 1)
             ]
         else:
             opponent_pokemon: list[Pokemon] = [
-                p for p in opponent_pokemon
+                p for p in opponent_pokemon_in
                 if is_from_round(p, set_number)
             ]
             if set_number > 0:
                 opponent_pokemon += [
-                    p for p in opponent_pokemon
+                    p for p in opponent_pokemon_in
                     if is_from_round(p, set_number - 1)
                 ]
     else:
@@ -461,7 +461,7 @@ def filter_opponents(
         opponent_pokemon: list[Pokemon] = []
         for i in range(3, 8):
             opponent_pokemon += [
-                p for p in opponent_pokemon
+                p for p in opponent_pokemon_in
                 if is_from_round(p, i)
             ]
     return opponent_pokemon
@@ -473,6 +473,7 @@ def do_round_one(
         set_number: int,
         print_use_case: PrintUseCase
 ) -> None:
+    print_use_case.clear_both()
     set_numbers = [set_number]
     if set_number > 0:
         set_numbers.append(set_number - 1)
@@ -481,7 +482,7 @@ def do_round_one(
     round_stage: RoundStage = team_use_case.get_round_stage()
     is_last_battle = round_stage == RoundStage.LAST_BATTLE
     opponent_pokemon: list[Pokemon] = filter_opponents(
-        opponent_pokemon=opponent_pokemon_in,
+        opponent_pokemon_in=opponent_pokemon_in,
         set_number=set_number,
         is_last_battle=is_last_battle,
     )

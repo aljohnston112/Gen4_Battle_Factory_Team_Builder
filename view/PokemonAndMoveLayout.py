@@ -27,7 +27,8 @@ class PokemonAndMoveLayout(QWidget):
 
     def __update_state__(self) -> None:
         self.__pokemon_use_case__.set_pokemon(self.__get_pokemon__())
-        self.__on_new_data__()
+        if self.__on_new_data__:
+            self.__on_new_data__()
 
     def __pokemon_text_changed__(self, pokemon_name: str) -> None:
         """
@@ -65,10 +66,10 @@ class PokemonAndMoveLayout(QWidget):
     def __init__(
             self,
             pokemon_use_case: PokemonUseCase,
-            on_new_data: Callable[[], None]
+            on_new_data: Callable[[], None] | None
     ) -> None:
         super().__init__()
-        self.__on_new_data__: Callable[[], None] = on_new_data
+        self.__on_new_data__: Callable[[], None] | None = on_new_data
         self.__pokemon_use_case__: PokemonUseCase = pokemon_use_case
 
         layout: QVBoxLayout = QVBoxLayout()
