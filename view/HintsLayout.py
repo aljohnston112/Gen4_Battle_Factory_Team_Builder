@@ -120,7 +120,12 @@ class HintsLayout(QGridLayout):
         # row, column, row_span, column_span
         self.addWidget(self.__stacked_round_layouts__, 2, 0, 2, 1)
 
-    def __init__(self, level: int) -> None:
+    def __init__(
+            self,
+            level: int,
+            round_use_case: RoundUseCase,
+            team_use_case: TeamUseCase
+    ) -> None:
         """
         Creates the UI where the user can enter hints
         they are given by the battle factory.
@@ -133,12 +138,8 @@ class HintsLayout(QGridLayout):
         by the battle factory before a match.
         """
         super().__init__()
-        self.__current_round_use_case__: RoundUseCase = RoundUseCase()
-        self.__team_use_case__: TeamUseCase = TeamUseCase(
-            team_pokemon=[],
-            choice_pokemon=[]
-        )
-
+        self.__current_round_use_case__: RoundUseCase = round_use_case
+        self.__team_use_case__: TeamUseCase = team_use_case
         # Output text boxes
         self.__text_output_widget__ = DualTextOutputWidget()
         # row, column, row_span, column_span
