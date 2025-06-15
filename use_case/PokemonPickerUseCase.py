@@ -1,4 +1,5 @@
 from PyQt5.QtCore import QEventLoop
+from PyQt5.QtWidgets import QDialog
 
 from data_class.Pokemon import Pokemon
 from view.PokemonPickerDialog import PokemonPickerDialog
@@ -21,15 +22,19 @@ class PokemonPickerUseCase:
     ) -> list[Pokemon]:
         pokemon_names = [poke.name for poke in pokemon]
         chosen = []
+        user_quit: bool = False
         if len(pokemon_names) != 0:
-            while num_pokemon > 0:
+            while num_pokemon > 0 and not user_quit:
                 picker: PokemonPickerDialog = PokemonPickerDialog(
                     pokemon_names=pokemon_names,
                     callback_picked=self.set_picked_pokemon
                 )
                 loop: QEventLoop = QEventLoop()
 
-                def on_done():
+                def on_done(result: int):
+                    if result == QDialog.Rejected:
+                        nonlocal user_quit
+                        user_quit = True
                     loop.quit()
 
                 picker.finished.connect(on_done)

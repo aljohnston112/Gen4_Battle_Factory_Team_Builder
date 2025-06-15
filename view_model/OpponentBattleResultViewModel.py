@@ -58,10 +58,10 @@ class OpponentBattleResultViewModel:
                     else print_use_case.print_2
             if use_accuracy:
                 print_function(
-                    "########## 100% accuracy moves results ##########"
+                    "##### 100% accuracy moves results #####"
                 )
             else:
-                print_function("########## All moves results ##########")
+                print_function("##### All moves results #####")
             print_hit_results(
                 opponent_to_pokemon_to_hits=opponent_to_pokemon_to_hits,
                 print_function=print_function

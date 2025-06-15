@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtCore import QThread
+from PyQt5.QtCore import QThread, QObject, QEvent
 from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLayout
 
 from algorithm.FrontierTeamBuilder import load_pokemon_ranks_accuracy, \
@@ -52,6 +52,22 @@ def run_main_app() -> None:
         )
     )
     opponent_battle_result_window.show()
+
+    class WindowCloseFilter(QObject):
+        def __init__(self, target_window):
+            super().__init__()
+            self.target_window = target_window
+
+        def eventFilter(self, watched, event):
+            if event.type() == QEvent.Close:
+                self.target_window.close()
+            return False
+
+    filter1 = WindowCloseFilter(opponent_battle_result_window)
+    window.installEventFilter(filter1)
+
+    filter2 = WindowCloseFilter(window)
+    opponent_battle_result_window.installEventFilter(filter2)
 
     # Load the battle results in the background
     window.thread = BattleResultLoader()
