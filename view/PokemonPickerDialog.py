@@ -34,5 +34,5 @@ class PokemonPickerDialog(QDialog):
 
     def confirm_clicked(self, pokemon_name):
         self.callback_picked(pokemon_name)
-        self.close()
+        self.accept()
 

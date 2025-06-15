@@ -244,11 +244,11 @@ def print_win_rates_over_threats(
         print_use_case.print_1 if use_accuracy else print_use_case.print_2
     if use_accuracy:
         print_function(
-            "===== Win Rate Over Potential Threats - 100% accuracy ====="
+            "===== Win Rate Over Potential Threats ====="
         )
     else:
         print_function(
-            "===== Win Rate Over Potential Threats - All Moves =====")
+            "===== Win Rate Over Potential Threats =====")
 
     print_win_rate_results(
         win_counts=win_counts,
@@ -334,7 +334,8 @@ def print_hit_results(
         pokemon_to_hits: dict[str, Hits]
         print_function(f"----- Against {opponent} -----")
         print_function(
-            f"{'Pokémon':<20} {'Hits to KO':>12} {'Hits to be KOed':>18}"
+            f"{'Pokémon':>15} | {'Hits Given':<10} | {'Hits Taken':<10}"
+            f"\n----------------|------------|-----------"
         )
         for poke, hits in sorted(
                 pokemon_to_hits.items(),
@@ -347,7 +348,7 @@ def print_hit_results(
             hits_given: float = hits.hits_given
             hits_taken: float = hits.hits_taken
             print_function(
-                f"{poke:<20} {hits_given:>12.2f} {hits_taken:>18.2f}"
+                f"{poke:>15} | {hits_given:>10.2f} | {hits_taken:>10.2f}"
             )
         print_function(None)
 
@@ -417,9 +418,9 @@ def do_round(
     print_function: Callable[[str], None] = \
         print_use_case.print_1 if use_accuracy else print_use_case.print_2
     if use_accuracy:
-        print_function("########## 100% accuracy moves results ##########")
+        print_function("##### 100% accuracy moves results #####")
     else:
-        print_function("########## All moves results ##########")
+        print_function("##### All moves results #####")
     print_hit_results(
         opponent_to_pokemon_to_hits=opponent_to_pokemon_to_hits,
         print_function=print_function
@@ -507,6 +508,10 @@ def do_round_one(
             num_pokemon=1,
             team_pokemon=player_pokemon
         )
+
+    if len(chosen_pokemon) == 0:
+        return
+
     remaining_pokemon: list[Pokemon] = \
         get_remaining_pokemon_and_print_win_rates_and_coverage(
             set_numbers=set_numbers,
@@ -516,18 +521,37 @@ def do_round_one(
             chosen_pokemon=chosen_pokemon,
             print_use_case=print_use_case,
         )
-    chosen_pokemon += ask_user_to_pick_pokemon(
+    new_chosen_pokemon = ask_user_to_pick_pokemon(
         num_pokemon=1,
         team_pokemon=remaining_pokemon
     )
-    get_remaining_pokemon_and_print_win_rates_and_coverage(
-        set_numbers=set_numbers,
-        factory_pokemon=factory_pokemon,
-        player_pokemon=player_pokemon,
-        choice_pokemon=choice_pokemon,
-        chosen_pokemon=chosen_pokemon,
-        print_use_case=print_use_case,
+
+    if len(new_chosen_pokemon) == 0:
+        return
+
+    chosen_pokemon += new_chosen_pokemon
+
+    remaining_pokemon: list[Pokemon] = \
+        get_remaining_pokemon_and_print_win_rates_and_coverage(
+            set_numbers=set_numbers,
+            factory_pokemon=factory_pokemon,
+            player_pokemon=player_pokemon,
+            choice_pokemon=choice_pokemon,
+            chosen_pokemon=chosen_pokemon,
+            print_use_case=print_use_case,
+        )
+
+    new_chosen_pokemon += ask_user_to_pick_pokemon(
+        num_pokemon=1,
+        team_pokemon=remaining_pokemon + choice_pokemon
     )
+
+    if len(new_chosen_pokemon) == 0:
+        return
+
+    chosen_pokemon += new_chosen_pokemon
+
+    # Move the chosen Pokémon to the team slots
 
 
 # ==============================================================================
