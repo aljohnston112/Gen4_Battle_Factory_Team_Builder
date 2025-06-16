@@ -2,6 +2,8 @@ from itertools import combinations
 from math import inf
 from typing import Callable
 
+from PyQt5.QtWidgets import QApplication
+
 from algorithm.FrontierTeamBuilder import load_pokemon_ranks_accuracy, \
     load_pokemon_ranks
 from data_class.BattleResult import BattleResult
@@ -460,7 +462,7 @@ def do_round_one(
         round_use_case: RoundUseCase,
         opponent_pokemon_in: list[Pokemon],
         print_use_case: PrintUseCase
-) -> None:
+) -> bool:
     print_use_case.clear_both()
     set_number = round_use_case.get_current_round().value
     set_numbers = [set_number]
@@ -498,7 +500,7 @@ def do_round_one(
         )
 
     if len(chosen_pokemon) == 0:
-        return
+        return False
 
     remaining_pokemon: list[Pokemon] = \
         get_remaining_pokemon_and_print_win_rates_and_coverage(
@@ -515,7 +517,7 @@ def do_round_one(
     )
 
     if len(new_chosen_pokemon) == 0:
-        return
+        return False
 
     chosen_pokemon += new_chosen_pokemon
 
@@ -535,10 +537,9 @@ def do_round_one(
     )
 
     if len(new_chosen_pokemon) == 0:
-        return
+        return False
 
     chosen_pokemon += new_chosen_pokemon
-    remaining_pokemon.remove(new_chosen_pokemon[0])
 
     # Move the chosen Pokémon to the team slots
     if not round_use_case.get_round_stage() == RoundStage.FIRST_BATTLE:
@@ -549,12 +550,16 @@ def do_round_one(
                 pokemon_traded_away=remaining_pokemon[0],
                 pokemon_traded_for=new_chosen_pokemon[0]
             )
+            QApplication.processEvents()
     else:
+        remaining_pokemon.remove(new_chosen_pokemon[0])
         for i, pokemon in enumerate(remaining_pokemon):
             team_use_case.user_traded(
                 pokemon_traded_away=pokemon,
                 pokemon_traded_for=chosen_pokemon[i]
             )
+        QApplication.processEvents()
+    return True
 
 
 # ==============================================================================
@@ -578,18 +583,29 @@ class Round1And2ViewModel:
         self.__level__: int = level
 
     def confirm_clicked(self) -> None:
-        do_round_one(
+        user_finished: bool = do_round_one(
             team_use_case=self.__team_use_case__,
             opponent_pokemon_in=self.__opponent_pokemon__,
             print_use_case=self.__print_use_case__,
             round_use_case=self.__round_use_case__
         )
 
+        if user_finished:
+            self.__team_use_case__.user_finished_round(
+                self.__opponent_pokemon__
+            )
+
     def set_opponent_pokemon_names(
             self,
             opponent_pokemon_names: list[str]
     ) -> None:
+        set_number: int = self.__round_use_case__.get_current_round().value
+        if self.__round_use_case__.get_round_stage() == RoundStage.LAST_BATTLE:
+            set_numbers: list[int] = [set_number + 1]
+        else:
+            set_numbers: list[int] = [set_number - 1, set_number]
         self.__opponent_pokemon__: list[Pokemon] = find_pokemon(
+            set_numbers=set_numbers,
             pokemon_names=opponent_pokemon_names,
             move_names=None
         )

@@ -5,6 +5,7 @@ def main() -> None:
     """
     Runs the app.
     """
+
     run_main_app()
 
 
