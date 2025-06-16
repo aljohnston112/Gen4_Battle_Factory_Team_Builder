@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, \
 
 from data.Strings import string_opponents, string_confirm
 from use_case.PrintUseCase import PrintUseCase
+from use_case.RoundUseCase import RoundUseCase
 from use_case.TeamUseCase import TeamUseCase
 from view.LayoutUtil import add_expanding_spacer
 from view.combo_boxes.PokemonComboBox import PokemonComboBox
@@ -32,6 +33,7 @@ class Round1And2Layout(QWidget):
     def __init__(
             self,
             team_use_case: TeamUseCase,
+            round_use_case: RoundUseCase,
             print_use_case: PrintUseCase,
             is_round_2: bool,
             level: int
@@ -40,6 +42,7 @@ class Round1And2Layout(QWidget):
         self.__view_model__: Round1And2ViewModel = Round1And2ViewModel(
             team_use_case=team_use_case,
             print_use_case=print_use_case,
+            round_use_case=round_use_case,
             is_round_2=is_round_2,
             level=level
         )
@@ -56,7 +59,10 @@ class Round1And2Layout(QWidget):
         self.__pokemon_combo_boxes__: list[PokemonComboBox] = []
         for i in range(num_pokemon):
             i: int
-            combo_box: PokemonComboBox = PokemonComboBox()
+            combo_box: PokemonComboBox = PokemonComboBox(
+                round_use_case=round_use_case,
+                is_player=False
+            )
             combo_box.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
             combo_box.currentTextChanged.connect(self.__text_changed__)
             self.__pokemon_combo_boxes__.append(combo_box)

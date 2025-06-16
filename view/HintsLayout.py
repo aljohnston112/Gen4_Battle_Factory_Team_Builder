@@ -31,7 +31,7 @@ class HintsLayout(QGridLayout):
         self.__stacked_round_layouts__.setCurrentWidget(
             self.__hint_widgets__[i]
         )
-        self.__current_round_use_case__.set_current_round(new_round)
+        self.__round_use_case__.set_current_round(new_round)
 
     def __round_checked__(self, checked: bool) -> None:
         """
@@ -87,30 +87,34 @@ class HintsLayout(QGridLayout):
         self.__hint_widgets__: list[QWidget] = [
             Round1And2Layout(
                 team_use_case=self.__team_use_case__,
+                round_use_case=self.__round_use_case__,
                 print_use_case=self.__print_use_case__,
                 level=level,
                 is_round_2=False
             ),
             Round1And2Layout(
                 team_use_case=self.__team_use_case__,
+                round_use_case=self.__round_use_case__,
                 print_use_case=self.__print_use_case__,
                 level=level,
                 is_round_2=True
             ),
             Round3Layout(
                 team_use_case=self.__team_use_case__,
+                round_use_case=self.__round_use_case__,
                 print_use_case=self.__print_use_case__,
                 level=level
             ),
             Round4Layout(
                 team_use_case=self.__team_use_case__,
+                round_use_case=self.__round_use_case__,
                 print_use_case=self.__print_use_case__,
                 level=level
             ),
             Round5Layout(
                 team_use_case=self.__team_use_case__,
                 print_use_case=self.__print_use_case__,
-                current_round_use_case=self.__current_round_use_case__,
+                round_use_case=self.__round_use_case__,
                 level=level
             )
         ]
@@ -138,7 +142,7 @@ class HintsLayout(QGridLayout):
         by the battle factory before a match.
         """
         super().__init__()
-        self.__current_round_use_case__: RoundUseCase = round_use_case
+        self.__round_use_case__: RoundUseCase = round_use_case
         self.__team_use_case__: TeamUseCase = team_use_case
         # Output text boxes
         self.__text_output_widget__ = DualTextOutputWidget()
@@ -148,7 +152,10 @@ class HintsLayout(QGridLayout):
             PrintUseCase(self.__text_output_widget__)
 
         # For the user to enter their team and choice Pokémon
-        self.__team_layout__: TeamLayout = TeamLayout(self.__team_use_case__)
+        self.__team_layout__: TeamLayout = TeamLayout(
+            team_use_case=team_use_case,
+            round_case_case=round_use_case
+        )
         # row, column
         self.addLayout(self.__team_layout__, 0, 0)
 

@@ -6,6 +6,7 @@ from data_class.Move import Move
 from data_class.Pokemon import Pokemon
 from repository.PokemonRepository import find_pokemon
 from use_case.PokemonUseCase import PokemonUseCase
+from use_case.RoundUseCase import RoundUseCase
 from view.combo_boxes.PokemonComboBox import PokemonComboBox
 
 
@@ -66,7 +67,9 @@ class PokemonAndMoveLayout(QWidget):
     def __init__(
             self,
             pokemon_use_case: PokemonUseCase,
-            on_new_data: Callable[[], None] | None
+            round_use_case: RoundUseCase,
+            on_new_data: Callable[[], None] | None,
+            is_player: bool
     ) -> None:
         super().__init__()
         self.__on_new_data__: Callable[[], None] | None = on_new_data
@@ -75,7 +78,8 @@ class PokemonAndMoveLayout(QWidget):
         layout: QVBoxLayout = QVBoxLayout()
         self.setLayout(layout)
 
-        self.__pokemon_combo_box__: PokemonComboBox = PokemonComboBox()
+        self.__pokemon_combo_box__: PokemonComboBox = \
+            PokemonComboBox(round_use_case=round_use_case, is_player=is_player)
         self.__pokemon_combo_box__.currentTextChanged.connect(
             self.__pokemon_text_changed__
         )

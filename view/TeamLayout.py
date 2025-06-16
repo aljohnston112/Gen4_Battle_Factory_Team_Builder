@@ -4,10 +4,11 @@ from PyQt5.QtWidgets import QLabel, QHBoxLayout, QGridLayout, QGroupBox, \
 from data.Strings import string_last_battle, string_team, string_first_battle, \
     string_middle_battle, string_choices
 from use_case.PokemonUseCase import PokemonUseCase
+from use_case.RoundUseCase import RoundUseCase, RoundStage
 from use_case.TeamUseCase import TeamUseCase
 from view.LayoutUtil import add_expanding_spacer
 from view.PokemonAndMoveLayout import PokemonAndMoveLayout
-from view_model.TeamViewmodel import TeamViewModel, RoundStage
+from view_model.TeamViewmodel import TeamViewModel
 
 
 class TeamLayout(QGridLayout):
@@ -55,13 +56,18 @@ class TeamLayout(QGridLayout):
         # Set the default round to 1
         self.__radio_buttons_rounds__[0].click()
 
-    def __init__(self, team_use_case: TeamUseCase) -> None:
+    def __init__(
+            self,
+            team_use_case: TeamUseCase,
+            round_case_case: RoundUseCase
+    ) -> None:
         super().__init__()
         pokemon_use_cases: list[PokemonUseCase] = [
             PokemonUseCase() for _ in range(6)
         ]
         self.__view_model__: TeamViewModel = TeamViewModel(
             team_use_case=team_use_case,
+            round_use_case=round_case_case,
             pokemon_use_cases=pokemon_use_cases
         )
 
@@ -79,7 +85,9 @@ class TeamLayout(QGridLayout):
             self.__pokemon__.append(
                 PokemonAndMoveLayout(
                     pokemon_use_case=pokemon_use_cases[i],
-                    on_new_data=self.__view_model__.on_new_data
+                    round_use_case=round_case_case,
+                    on_new_data=self.__view_model__.on_new_data,
+                    is_player=True
                 )
             )
             column: int = 2 * i + 3
@@ -105,7 +113,9 @@ class TeamLayout(QGridLayout):
             self.__pokemon__.append(
                 PokemonAndMoveLayout(
                     pokemon_use_case=pokemon_use_cases[i],
-                    on_new_data=self.__view_model__.on_new_data
+                    round_use_case=round_case_case,
+                    on_new_data=self.__view_model__.on_new_data,
+                    is_player=True
                 )
             )
             column: int = 2 * (i - 3) + 3

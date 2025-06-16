@@ -43,6 +43,11 @@ def find_pokemon_with_move(
     return pokemon
 
 
+def get_set_number(pokemon: Pokemon) -> int:
+    parts = pokemon.unique_id.split('_')
+    return int(parts[1])
+
+
 def is_from_round(pokemon: Pokemon, round_number: int) -> bool:
     parts = pokemon.unique_id.split('_')
     return int(parts[1]) == round_number

@@ -35,10 +35,8 @@ class OpponentBattleResultViewModel:
             opponent_pokemon_in=opponent_pokemon_in,
             set_number=set_number,
             is_last_battle
-            =team_use_case.get_round_stage() == RoundStage.LAST_BATTLE,
+            =self.__round_use_case__.get_round_stage() == RoundStage.LAST_BATTLE,
         )
-        team_pokemon: list[Pokemon] = team_use_case.get_team_pokemon()
-
         set_numbers = [set_number]
         if set_number > 0:
             set_numbers.append(set_number - 1)
