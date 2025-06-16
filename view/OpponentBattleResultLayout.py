@@ -37,7 +37,9 @@ class OpponentBattleResultLayout(QGridLayout):
             self.__pokemon__.append(
                 PokemonAndMoveLayout(
                     pokemon_use_case=pokemon_use_cases[i],
-                    on_new_data=None
+                    round_use_case=round_use_case,
+                    on_new_data=None,
+                    is_player=False
                 )
             )
             combo_box: PokemonAndMoveLayout = self.__pokemon__[i]

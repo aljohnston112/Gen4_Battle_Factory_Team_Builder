@@ -18,14 +18,14 @@ class Round5Layout(QWidget):
             self,
             team_use_case: TeamUseCase,
             print_use_case: PrintUseCase,
-            current_round_use_case: RoundUseCase,
+            round_use_case: RoundUseCase,
             level: int
     ) -> None:
         super().__init__()
         self.__view_model__: Round5ViewModel = Round5ViewModel(
             team_use_case=team_use_case,
             print_use_case=print_use_case,
-            current_round_use_case=current_round_use_case,
+            current_round_use_case=round_use_case,
             level=level
         )
         layout: QGridLayout = QGridLayout()

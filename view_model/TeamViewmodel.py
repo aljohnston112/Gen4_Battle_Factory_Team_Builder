@@ -1,19 +1,23 @@
 from data_class.Pokemon import Pokemon
 from use_case.PokemonUseCase import PokemonUseCase
-from use_case.TeamUseCase import RoundStage, TeamUseCase
+from use_case.RoundUseCase import RoundStage, RoundUseCase
+from use_case.TeamUseCase import TeamUseCase
 
 
 class TeamViewModel:
+
     def __init__(
             self,
             team_use_case: TeamUseCase,
+            round_use_case: RoundUseCase,
             pokemon_use_cases: list[PokemonUseCase],
     ) -> None:
         self.__team_use_case__: TeamUseCase = team_use_case
+        self.__round_use_case__: RoundUseCase = round_use_case
         self.__pokemon_use_cases__: list[PokemonUseCase] = pokemon_use_cases
 
     def on_new_data(self) -> None:
-        round_stage: RoundStage = self.__team_use_case__.get_round_stage()
+        round_stage: RoundStage = self.__round_use_case__.get_round_stage()
 
         # All Pokémon are considered team Pokémon for the first round
         # It makes the logic in the rest of the program easier
@@ -38,5 +42,5 @@ class TeamViewModel:
         )
 
     def set_round_stage(self, battle_type: RoundStage) -> None:
-        self.__team_use_case__.set_round_stage(battle_type)
+        self.__round_use_case__.set_round_stage(battle_type)
         self.on_new_data()

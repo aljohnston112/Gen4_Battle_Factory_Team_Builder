@@ -2,6 +2,9 @@ from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QSizePolicy, \
     QGridLayout
 
 from data.Strings import string_move, string_confirm
+from use_case.PrintUseCase import PrintUseCase
+from use_case.RoundUseCase import RoundUseCase
+from use_case.TeamUseCase import TeamUseCase
 from view.LayoutUtil import add_expanding_spacer
 from view.combo_boxes.MoveComboBox import MoveComboBox
 from view_model.Round4ViewModel import Round4ViewModel
@@ -12,10 +15,17 @@ class Round4Layout(QWidget):
     Allows the user to enter hints for round four of the battle factory
     """
 
-    def __init__(self, team_use_case, print_use_case, level):
+    def __init__(
+            self,
+            team_use_case: TeamUseCase,
+            round_use_case: RoundUseCase,
+            print_use_case: PrintUseCase,
+            level: int
+    ):
         super().__init__()
         self.__view_model__: Round4ViewModel = Round4ViewModel(
             team_use_case=team_use_case,
+            round_use_case=round_use_case,
             print_use_case=print_use_case,
             level=level
         )

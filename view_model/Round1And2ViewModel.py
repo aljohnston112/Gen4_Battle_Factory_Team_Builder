@@ -11,19 +11,20 @@ from repository.PokemonRepository import find_pokemon, get_pokemon_from_round, \
     is_from_round
 from use_case.PokemonPickerUseCase import PokemonPickerUseCase
 from use_case.PrintUseCase import PrintUseCase
-from use_case.TeamUseCase import TeamUseCase, RoundStage
+from use_case.RoundUseCase import RoundStage, RoundUseCase
+from use_case.TeamUseCase import TeamUseCase
 
 
 def do_round_two(
         team_use_case: TeamUseCase,
         opponent_pokemon: list[Pokemon],
-        set_number: int,
+        round_use_case: RoundUseCase,
         print_use_case: PrintUseCase
 ) -> None:
     do_round_one(
         team_use_case=team_use_case,
         opponent_pokemon_in=opponent_pokemon,
-        set_number=set_number,
+        round_use_case=round_use_case,
         print_use_case=print_use_case
     )
 
@@ -470,17 +471,18 @@ def filter_opponents(
 
 def do_round_one(
         team_use_case: TeamUseCase,
+        round_use_case: RoundUseCase,
         opponent_pokemon_in: list[Pokemon],
-        set_number: int,
         print_use_case: PrintUseCase
 ) -> None:
     print_use_case.clear_both()
+    set_number = round_use_case.get_current_round().value
     set_numbers = [set_number]
     if set_number > 0:
         set_numbers.append(set_number - 1)
     if set_number < 7:
         set_numbers.append(set_number + 1)
-    round_stage: RoundStage = team_use_case.get_round_stage()
+    round_stage: RoundStage = round_use_case.get_round_stage()
     is_last_battle = round_stage == RoundStage.LAST_BATTLE
     opponent_pokemon: list[Pokemon] = filter_opponents(
         opponent_pokemon_in=opponent_pokemon_in,
@@ -489,7 +491,7 @@ def do_round_one(
     )
     factory_pokemon: list[Pokemon] = get_pokemon_from_round(
         round_number=set_number,
-        is_last_battle=is_last_battle
+        is_last_battle=True
     )
     player_pokemon: list[Pokemon] = team_use_case.get_team_pokemon()
     choice_pokemon: list[Pokemon] = team_use_case.get_choice_pokemon()
@@ -563,12 +565,14 @@ class Round1And2ViewModel:
             self,
             team_use_case: TeamUseCase,
             print_use_case: PrintUseCase,
+            round_use_case: RoundUseCase,
             is_round_2: bool,
             level: int
     ) -> None:
         self.__is_round_2__: bool = is_round_2
         self.__team_use_case__: TeamUseCase = team_use_case
         self.__print_use_case__: PrintUseCase = print_use_case
+        self.__round_use_case__: RoundUseCase = round_use_case
         self.__opponent_pokemon__: list[Pokemon] = []
         self.__level__: int = level
 
@@ -577,14 +581,14 @@ class Round1And2ViewModel:
             do_round_one(
                 team_use_case=self.__team_use_case__,
                 opponent_pokemon_in=self.__opponent_pokemon__,
-                set_number=0,
-                print_use_case=self.__print_use_case__
+                print_use_case=self.__print_use_case__,
+                round_use_case=self.__round_use_case__
             )
         else:
             do_round_two(
                 team_use_case=self.__team_use_case__,
                 opponent_pokemon=self.__opponent_pokemon__,
-                set_number=1,
+                round_use_case=self.__round_use_case__,
                 print_use_case=self.__print_use_case__
             )
 
