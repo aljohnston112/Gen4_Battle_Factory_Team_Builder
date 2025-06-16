@@ -4,6 +4,7 @@ from data_class.Pokemon import Pokemon
 from repository.PokemonRepository import all_battle_factory_pokemon, \
     get_set_number
 from use_case.RoundUseCase import RoundUseCase, RoundStage
+from view.combo_boxes.MoveComboBox import MoveComboBox
 
 
 class PokemonComboBox(QComboBox):
@@ -20,6 +21,9 @@ class PokemonComboBox(QComboBox):
         self.setCurrentIndex(self.findText(new_text))
 
     def __add_all_pokemon_names__(self, round_use_case: RoundUseCase) -> None:
+        poke_backup = self.currentText()
+        move_backup = self.__connected_move_layout__.currentText() \
+            if self.__connected_move_layout__ else ""
         self.clear()
         current_set: int = round_use_case.get_current_round().value
         if self.__is_player__:
@@ -54,10 +58,20 @@ class PokemonComboBox(QComboBox):
         for name in sorted(name_set):
             name: str
             self.addItem(name)
+        self.text_changed(poke_backup)
+        if self.__connected_move_layout__:
+            self.__connected_move_layout__.setCurrentText(move_backup)
 
-    def __init__(self, round_use_case: RoundUseCase, is_player: bool) -> None:
+    def __init__(
+            self,
+            round_use_case: RoundUseCase,
+            is_player: bool,
+            connected_move_layout: MoveComboBox | None
+    ) -> None:
         super().__init__()
         self.__is_player__: bool = is_player
+        self.__connected_move_layout__: MoveComboBox | None = \
+            connected_move_layout
         self.__add_all_pokemon_names__(round_use_case=round_use_case)
         self.currentTextChanged.connect(self.text_changed)
         round_use_case.add_listener(self.__add_all_pokemon_names__)

@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QLabel, QHBoxLayout, QGridLayout, QGroupBox, \
 
 from data.Strings import string_last_battle, string_team, string_first_battle, \
     string_middle_battle, string_choices
+from data_class.Pokemon import Pokemon
 from use_case.PokemonUseCase import PokemonUseCase
 from use_case.RoundUseCase import RoundUseCase, RoundStage
 from use_case.TeamUseCase import TeamUseCase
@@ -55,6 +56,17 @@ class TeamLayout(QGridLayout):
         self.addWidget(group_box_rb, 3, 1, 1, 7)
         # Set the default round to 1
         self.__radio_buttons_rounds__[0].click()
+
+    def user_traded(
+            self,
+            pokemon_traded_away: Pokemon,
+            pokemon_traded_for: Pokemon
+    ):
+        for pokemon_box in self.__pokemon__[:3]:
+            pokemon_box: PokemonAndMoveLayout
+            poke: str = pokemon_box.get_selected_pokemon()
+            if poke == pokemon_traded_away.name:
+                pokemon_box.set_selected_pokemon(pokemon_traded_for.name)
 
     def __init__(
             self,
@@ -126,3 +138,4 @@ class TeamLayout(QGridLayout):
                 column=column + 1
             )
         self.__set_up_round_stage_radio_buttons__()
+        team_use_case.add_trade_listener(self.user_traded)
