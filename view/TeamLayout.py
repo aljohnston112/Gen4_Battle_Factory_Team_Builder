@@ -62,11 +62,23 @@ class TeamLayout(QGridLayout):
             pokemon_traded_away: Pokemon,
             pokemon_traded_for: Pokemon
     ):
+        current_pokemon = [
+            p.get_selected_pokemon() for p in self.__pokemon__[:3]
+        ]
+        if pokemon_traded_for.name in current_pokemon:
+            return
+
         for pokemon_box in self.__pokemon__[:3]:
             pokemon_box: PokemonAndMoveLayout
             poke: str = pokemon_box.get_selected_pokemon()
             if poke == pokemon_traded_away.name:
                 pokemon_box.set_selected_pokemon(pokemon_traded_for.name)
+
+    def round_finished(self, new_pokemon: list[Pokemon]):
+        for i, poke in enumerate(new_pokemon):
+            i: int
+            poke: Pokemon
+            self.__pokemon__[3 + i].set_selected_pokemon(poke.name)
 
     def __init__(
             self,
@@ -139,3 +151,4 @@ class TeamLayout(QGridLayout):
             )
         self.__set_up_round_stage_radio_buttons__()
         team_use_case.add_trade_listener(self.user_traded)
+        team_use_case.add_round_finish_listener(self.round_finished)

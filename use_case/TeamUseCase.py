@@ -21,6 +21,7 @@ class TeamUseCase:
         self.__team_pokemon__: list[Pokemon] = team_pokemon
         self.__choice_pokemon__: list[Pokemon] = choice_pokemon
         self.__trade_listeners__: list[Callable[[Pokemon, Pokemon], None]] = []
+        self.__round_finish_listeners__: list[Callable[[list[Pokemon]], None]] = []
 
     def set_pokemon(
             self,
@@ -42,3 +43,13 @@ class TeamUseCase:
 
     def add_trade_listener(self, user_traded):
         self.__trade_listeners__.append(user_traded)
+
+    def add_round_finish_listener(self, listener: Callable[[list[Pokemon]], None]):
+        self.__round_finish_listeners__.append(listener)
+
+    def remove_round_finish_listener(self, listener: Callable[[list[Pokemon]], None]):
+        self.__round_finish_listeners__.remove(listener)
+
+    def user_finished_round(self, choices: list[Pokemon]):
+        for listener in self.__round_finish_listeners__:
+            listener(choices)

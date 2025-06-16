@@ -7,6 +7,7 @@ from data_class.Pokemon import Pokemon
 from repository.PokemonRepository import find_pokemon
 from use_case.PokemonUseCase import PokemonUseCase
 from use_case.RoundUseCase import RoundUseCase
+from view.combo_boxes.MoveComboBox import MoveComboBox
 from view.combo_boxes.PokemonComboBox import PokemonComboBox
 
 
@@ -21,9 +22,11 @@ class PokemonAndMoveLayout(QWidget):
         self.__update_state__()
 
     def __get_pokemon__(self) -> list[Pokemon]:
+        # TODO add set numbers?
         return find_pokemon(
+            set_numbers=None,
             pokemon_names=[self.__pokemon_combo_box__.currentText()],
-            move_names=[self.__move_combo_box__.currentText()]
+            move_names=[self.__move_combo_box__.currentText()],
         )
 
     def __update_state__(self) -> None:
@@ -31,13 +34,18 @@ class PokemonAndMoveLayout(QWidget):
         if self.__on_new_data__:
             self.__on_new_data__()
 
-    def __pokemon_text_changed__(self, pokemon_name: str) -> None:
+    def __pokemon_text_changed__(
+            self,
+            pokemon_name: str
+    ) -> None:
         """
         Updates the MoveComboBox based on the user's Pokémon choice.
         :param pokemon_name: The Pokémon name the user chose.
         """
         self.__move_combo_box__.clear()
+        # TODO set numbers?
         selected_pokemon: list[Pokemon] = find_pokemon(
+            set_numbers=None,
             pokemon_names=[pokemon_name],
             move_names=None
         )
@@ -85,7 +93,7 @@ class PokemonAndMoveLayout(QWidget):
         layout: QVBoxLayout = QVBoxLayout()
         self.setLayout(layout)
 
-        self.__move_combo_box__: QComboBox = QComboBox()
+        self.__move_combo_box__: MoveComboBox = MoveComboBox()
         self.__pokemon_combo_box__: PokemonComboBox = \
             PokemonComboBox(
                 round_use_case=round_use_case,
@@ -102,4 +110,3 @@ class PokemonAndMoveLayout(QWidget):
             self.__move_text_changed__
         )
         layout.addWidget(self.__move_combo_box__)
-

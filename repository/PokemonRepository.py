@@ -83,11 +83,13 @@ def get_pokemon_from_round(
 
 
 def find_pokemon(
+        set_numbers: list[int] | None,
         pokemon_names: list[str],
         move_names: list[str] | None
 ) -> list[Pokemon]:
     """
     Finds the Pokémon objects with the given names and moves.
+    :param set_numbers: The set numbers to restrict the search to.
     :param pokemon_names: The names of the Pokémon objects.
     :param move_names: The corresponding move names of the Pokémon objects.
                        If an empty string is given or move_names is None,
@@ -112,7 +114,11 @@ def find_pokemon(
                     else:
                         could_be: bool = True
                 if could_be:
-                    found_pokemon.append(poke)
+                    if set_numbers is not None:
+                        if get_set_number(poke) in set_numbers:
+                            found_pokemon.append(poke)
+                    else:
+                        found_pokemon.append(poke)
                     found: bool = True
             if not found:
                 print("Pokemon not found: " + name + "\n")

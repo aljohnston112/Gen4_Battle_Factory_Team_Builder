@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, \
     QSizePolicy, QGridLayout
 
 from data.Strings import string_opponents, string_confirm
+from data_class.Pokemon import Pokemon
 from use_case.PrintUseCase import PrintUseCase
 from use_case.RoundUseCase import RoundUseCase
 from use_case.TeamUseCase import TeamUseCase
@@ -16,7 +17,7 @@ class Round1And2Layout(QWidget):
     during round one and two of battle factory.
     """
 
-    def __get_pokemon__(self):
+    def __get_pokemon__(self) -> list[str]:
         """
         Gets the Pokémon picked by the user.
         :return: The Pokémon picked by the user (maybe empty).
@@ -27,7 +28,7 @@ class Round1And2Layout(QWidget):
             if pokemonComboBox.currentText() != ""
         ]
 
-    def __text_changed__(self):
+    def __text_changed__(self) -> None:
         self.__view_model__.set_opponent_pokemon_names(self.__get_pokemon__())
 
     def __init__(
