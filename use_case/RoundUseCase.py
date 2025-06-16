@@ -55,6 +55,7 @@ class RoundUseCase:
 
     def set_round_stage(self, round_stage: RoundStage) -> None:
         self.__round_stage__ = round_stage
+        self.notify_observers()
 
 
     def get_round_stage(self) -> RoundStage:

@@ -55,7 +55,8 @@ class Round3Layout(QWidget):
 
         pokemon_combo_box: PokemonComboBox = PokemonComboBox(
             round_use_case=round_use_case,
-            is_player=False
+            is_player=False,
+            connected_move_layout=None
         )
         pokemon_combo_box.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         pokemon_combo_box.currentTextChanged.connect(self.text_changed)

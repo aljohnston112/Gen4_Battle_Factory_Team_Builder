@@ -7,20 +7,6 @@ from use_case.TeamUseCase import TeamUseCase
 from view_model.Round1And2ViewModel import do_round_one
 
 
-def do_round_five(
-        team_use_case: TeamUseCase,
-        opponent_pokemon: list[Pokemon],
-        round_use_case: RoundUseCase,
-        print_use_case: PrintUseCase
-):
-    do_round_one(
-        team_use_case=team_use_case,
-        opponent_pokemon_in=opponent_pokemon,
-        round_use_case=round_use_case,
-        print_use_case=print_use_case
-    )
-
-
 class Round5ViewModel:
 
     def __init__(
@@ -50,9 +36,9 @@ class Round5ViewModel:
 
     def confirm_clicked(self) -> None:
         self.set_pokemon_type(self.__type__)
-        do_round_five(
+        do_round_one(
             team_use_case=self.__team_use_case__,
-            opponent_pokemon=self.__opponent_pokemon__,
+            opponent_pokemon_in=self.__opponent_pokemon__,
             round_use_case=self.__current_round_use_case__,
             print_use_case=self.__print_use_case__
         )

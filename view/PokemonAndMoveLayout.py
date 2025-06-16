@@ -64,6 +64,13 @@ class PokemonAndMoveLayout(QWidget):
             self.__move_combo_box__.setVisible(False)
         self.__update_state__()
 
+    def get_selected_pokemon(self) -> str | None:
+        return self.__pokemon_combo_box__.currentText()
+
+    def set_selected_pokemon(self, pokemon: str) -> None:
+        self.__pokemon_combo_box__.text_changed(pokemon)
+        self.__update_state__()
+
     def __init__(
             self,
             pokemon_use_case: PokemonUseCase,
@@ -78,16 +85,21 @@ class PokemonAndMoveLayout(QWidget):
         layout: QVBoxLayout = QVBoxLayout()
         self.setLayout(layout)
 
+        self.__move_combo_box__: QComboBox = QComboBox()
         self.__pokemon_combo_box__: PokemonComboBox = \
-            PokemonComboBox(round_use_case=round_use_case, is_player=is_player)
+            PokemonComboBox(
+                round_use_case=round_use_case,
+                is_player=is_player,
+                connected_move_layout=self.__move_combo_box__
+            )
         self.__pokemon_combo_box__.currentTextChanged.connect(
             self.__pokemon_text_changed__
         )
         layout.addWidget(self.__pokemon_combo_box__)
 
-        self.__move_combo_box__: QComboBox = QComboBox()
         self.__move_combo_box__.setVisible(False)
         self.__move_combo_box__.currentTextChanged.connect(
             self.__move_text_changed__
         )
         layout.addWidget(self.__move_combo_box__)
+

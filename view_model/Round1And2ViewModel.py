@@ -15,20 +15,6 @@ from use_case.RoundUseCase import RoundStage, RoundUseCase
 from use_case.TeamUseCase import TeamUseCase
 
 
-def do_round_two(
-        team_use_case: TeamUseCase,
-        opponent_pokemon: list[Pokemon],
-        round_use_case: RoundUseCase,
-        print_use_case: PrintUseCase
-) -> None:
-    do_round_one(
-        team_use_case=team_use_case,
-        opponent_pokemon_in=opponent_pokemon,
-        round_use_case=round_use_case,
-        print_use_case=print_use_case
-    )
-
-
 def get_remaining_pokemon_and_print_win_rates_and_coverage(
         set_numbers,
         factory_pokemon,
@@ -543,7 +529,7 @@ def do_round_one(
             print_use_case=print_use_case,
         )
 
-    new_chosen_pokemon += ask_user_to_pick_pokemon(
+    new_chosen_pokemon = ask_user_to_pick_pokemon(
         num_pokemon=1,
         team_pokemon=remaining_pokemon + choice_pokemon
     )
@@ -552,8 +538,23 @@ def do_round_one(
         return
 
     chosen_pokemon += new_chosen_pokemon
+    remaining_pokemon.remove(new_chosen_pokemon[0])
 
     # Move the chosen Pokémon to the team slots
+    if not round_use_case.get_round_stage() == RoundStage.FIRST_BATTLE:
+        if len(remaining_pokemon) != 1:
+            raise Exception("Expected a single remaining Pokemon")
+        if new_chosen_pokemon not in player_pokemon:
+            team_use_case.user_traded(
+                pokemon_traded_away=remaining_pokemon[0],
+                pokemon_traded_for=new_chosen_pokemon[0]
+            )
+    else:
+        for i, pokemon in enumerate(remaining_pokemon):
+            team_use_case.user_traded(
+                pokemon_traded_away=pokemon,
+                pokemon_traded_for=chosen_pokemon[i]
+            )
 
 
 # ==============================================================================
@@ -577,20 +578,12 @@ class Round1And2ViewModel:
         self.__level__: int = level
 
     def confirm_clicked(self) -> None:
-        if not self.__is_round_2__:
-            do_round_one(
-                team_use_case=self.__team_use_case__,
-                opponent_pokemon_in=self.__opponent_pokemon__,
-                print_use_case=self.__print_use_case__,
-                round_use_case=self.__round_use_case__
-            )
-        else:
-            do_round_two(
-                team_use_case=self.__team_use_case__,
-                opponent_pokemon=self.__opponent_pokemon__,
-                round_use_case=self.__round_use_case__,
-                print_use_case=self.__print_use_case__
-            )
+        do_round_one(
+            team_use_case=self.__team_use_case__,
+            opponent_pokemon_in=self.__opponent_pokemon__,
+            print_use_case=self.__print_use_case__,
+            round_use_case=self.__round_use_case__
+        )
 
     def set_opponent_pokemon_names(
             self,
