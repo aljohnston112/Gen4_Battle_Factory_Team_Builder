@@ -315,12 +315,12 @@ def print_win_rates_and_coverage_over_potential_threats(
 
 
 def print_hit_results(
-        opponent_to_pokemon_to_hits: dict[str, dict[str, Hits]],
+        opponent_to_pokemon_to_hits: dict[str, dict[str, tuple[Hits, bool]]],
         print_function: Callable[[str | None], None]
 ) -> None:
     for opponent, pokemon_to_hits in opponent_to_pokemon_to_hits.items():
         opponent: str
-        pokemon_to_hits: dict[str, Hits]
+        pokemon_to_hits: dict[str, tuple[Hits, bool]]
         print_function(f"----- Against {opponent} -----")
         print_function(
             f"{'Pokémon':>15} | {'Hits Given':<10} | {'Hits Taken':<10}"
@@ -329,15 +329,16 @@ def print_hit_results(
         for poke, hits in sorted(
                 pokemon_to_hits.items(),
                 key=lambda item: 9999
-                if item[1].hits_taken == 0
-                else item[1].hits_given / item[1].hits_taken
+                if item[1][0].hits_taken == 0
+                else item[1][0].hits_given / item[1][0].hits_taken
         ):
             poke: str
-            hits: Hits
-            hits_given: float = hits.hits_given
-            hits_taken: float = hits.hits_taken
+            hits: tuple[Hits, bool]
+            hits_given: float = hits[0].hits_given
+            hits_taken: float = hits[0].hits_taken
+            won: str = poke + ", " + ("W" if hits[1] else "L")
             print_function(
-                f"{poke:>15} | {hits_given:>10.2f} | {hits_taken:>10.2f}"
+                f"{won:>15} | {hits_given:>10.2f} | {hits_taken:>10.2f}"
             )
         print_function(None)
 
@@ -347,15 +348,15 @@ def get_battle_results(
         opponent_pokemon: list[Pokemon],
         set_numbers: list[int],
         use_accuracy: bool
-) -> dict[str, dict[str, Hits]]:
-    opponent_to_pokemon_to_hits: dict[str, dict[str, Hits]] = {}
+) -> dict[str, dict[str, tuple[Hits, bool]]]:
+    opponent_to_pokemon_to_hits: dict[str, dict[str, tuple[Hits, bool]]] = {}
     all_battle_results: dict[int, dict[str, BattleResult]] = \
         load_pokemon_ranks_accuracy() if use_accuracy else load_pokemon_ranks()
     player_pokemon: list[Pokemon] = team_use_case.get_team_pokemon()
     choice_pokemon: list[Pokemon] = team_use_case.get_choice_pokemon()
     for opponent in opponent_pokemon:
         opponent: Pokemon
-        pokemon_to_hits: dict[str, Hits] = {}
+        pokemon_to_hits: dict[str, tuple[Hits, bool]] = {}
         opponent_id: str = opponent.unique_id
         for set_number in set_numbers:
             set_number: int
@@ -368,12 +369,12 @@ def get_battle_results(
                 if battle_result:
                     win_results: dict[str, Hits] = battle_result.win_results
                     if win_results and opponent_id in win_results:
-                        pokemon_to_hits[poke_id] = win_results[opponent_id]
+                        pokemon_to_hits[poke_id] = (win_results[opponent_id], True)
                     else:
                         lose_results: dict[str, Hits] = \
                             battle_result.lose_results
                         if lose_results and opponent_id in lose_results:
-                            pokemon_to_hits[poke_id] = lose_results[opponent_id]
+                            pokemon_to_hits[poke_id] = (lose_results[opponent_id], False)
                         else:
                             print("Missing battle results")
                 else:
@@ -381,7 +382,7 @@ def get_battle_results(
         opponent_to_pokemon_to_hits[opponent_id] = {
             k: v for k, v in sorted(
                 pokemon_to_hits.items(),
-                key=lambda item: item[1].hits_given / item[1].hits_taken
+                key=lambda item: item[1][0].hits_given / item[1][0].hits_taken
             )
         }
     return opponent_to_pokemon_to_hits
@@ -397,7 +398,7 @@ def do_round(
 ) -> None:
     player_pokemon: list[Pokemon] = team_use_case.get_team_pokemon()
     choice_pokemon: list[Pokemon] = team_use_case.get_choice_pokemon()
-    opponent_to_pokemon_to_hits: dict[str, dict[str, Hits]] = \
+    opponent_to_pokemon_to_hits: dict[str, dict[str, tuple[Hits, bool]]] = \
         get_battle_results(
             team_use_case=team_use_case,
             opponent_pokemon=opponent_pokemon,
@@ -479,6 +480,7 @@ def do_round_one(
     )
     factory_pokemon: list[Pokemon] = get_pokemon_from_round(
         round_number=set_number,
+        # Only considering the last battle to be better prepared for it
         is_last_battle=True
     )
     player_pokemon: list[Pokemon] = team_use_case.get_team_pokemon()

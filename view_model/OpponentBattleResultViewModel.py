@@ -43,7 +43,7 @@ class OpponentBattleResultViewModel:
         if set_number < 7:
             set_numbers.append(set_number + 1)
         for use_accuracy in [True, False]:
-            opponent_to_pokemon_to_hits: dict[str, dict[str, Hits]] = \
+            opponent_to_pokemon_to_hits: dict[str, dict[str, tuple[Hits, bool]]] = \
                 get_battle_results(
                     team_use_case=team_use_case,
                     opponent_pokemon=opponent_pokemon,
