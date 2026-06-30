@@ -347,7 +347,7 @@ def get_battle_results(
         team_use_case: TeamUseCase,
         opponent_pokemon: list[Pokemon],
         set_numbers: list[int],
-        use_accuracy: bool
+        use_accuracy: bool,
 ) -> dict[str, dict[str, tuple[Hits, bool]]]:
     opponent_to_pokemon_to_hits: dict[str, dict[str, tuple[Hits, bool]]] = {}
     all_battle_results: dict[int, dict[str, BattleResult]] = \

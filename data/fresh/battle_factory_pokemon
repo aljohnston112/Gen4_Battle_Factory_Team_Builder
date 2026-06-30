@@ -4,8 +4,8 @@
         "unique_id": "Bulbasaur_0_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -810,8 +810,8 @@
         "unique_id": "Starly_0_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Sharp Beak",
         "moves": [
@@ -1066,8 +1066,8 @@
         "unique_id": "Budew_0_1",
         "nature": "calm",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Big Root",
         "moves": [
@@ -1517,8 +1517,8 @@
         "unique_id": "Geodude_0_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Focus Band",
         "moves": [
@@ -1718,8 +1718,8 @@
         "unique_id": "Larvitar_0_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Liechi Berry",
         "moves": [
@@ -1920,8 +1920,8 @@
         "unique_id": "Bronzor_0_1",
         "nature": "brave",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "Odd Incense",
         "moves": [
@@ -2225,8 +2225,8 @@
         "unique_id": "Carvanha_0_1",
         "nature": "adamant",
         "types": [
-            "dark",
-            "water"
+            "water",
+            "dark"
         ],
         "item": "Cheri Berry",
         "moves": [
@@ -2377,8 +2377,8 @@
         "unique_id": "Doduo_0_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Liechi Berry",
         "moves": [
@@ -2428,8 +2428,8 @@
         "unique_id": "Swablu_0_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Mental Herb",
         "moves": [
@@ -2579,8 +2579,8 @@
         "unique_id": "Slowpoke_0_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Cheri Berry",
         "moves": [
@@ -2630,8 +2630,8 @@
         "unique_id": "Oddish_0_1",
         "nature": "bold",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Rose Incense",
         "moves": [
@@ -2831,8 +2831,8 @@
         "unique_id": "Natu_0_1",
         "nature": "timid",
         "types": [
-            "flying",
-            "psychic"
+            "psychic",
+            "flying"
         ],
         "item": "Twisted Spoon",
         "moves": [
@@ -2932,8 +2932,8 @@
         "unique_id": "Magnemite_0_1",
         "nature": "bold",
         "types": [
-            "electric",
-            "steel"
+            "steel",
+            "electric"
         ],
         "item": "Rawst Berry",
         "moves": [
@@ -3133,8 +3133,8 @@
         "unique_id": "Exeggcute_0_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "grass"
+            "grass",
+            "psychic"
         ],
         "item": "Odd Incense",
         "moves": [
@@ -3435,8 +3435,8 @@
         "unique_id": "Chinchou_0_1",
         "nature": "modest",
         "types": [
-            "electric",
-            "water"
+            "water",
+            "electric"
         ],
         "item": "Magnet",
         "moves": [
@@ -3536,8 +3536,8 @@
         "unique_id": "Delibird_0_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "ice"
+            "ice",
+            "flying"
         ],
         "item": "NeverMeltIce",
         "moves": [
@@ -3688,8 +3688,8 @@
         "unique_id": "Aron_0_1",
         "nature": "impish",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Metal Coat",
         "moves": [
@@ -4040,8 +4040,8 @@
         "unique_id": "Snover_0_1",
         "nature": "adamant",
         "types": [
-            "ice",
-            "grass"
+            "grass",
+            "ice"
         ],
         "item": "NeverMeltIce",
         "moves": [
@@ -4091,8 +4091,8 @@
         "unique_id": "Tentacool_0_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "water"
+            "water",
+            "poison"
         ],
         "item": "Cheri Berry",
         "moves": [
@@ -4292,8 +4292,8 @@
         "unique_id": "Skiploom_0_1",
         "nature": "hardy",
         "types": [
-            "flying",
-            "grass"
+            "grass",
+            "flying"
         ],
         "item": "Big Root",
         "moves": [
@@ -4496,8 +4496,8 @@
         "unique_id": "Staravia_0_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Sharp Beak",
         "moves": [
@@ -4547,8 +4547,8 @@
         "unique_id": "Rhyhorn_0_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Persim Berry",
         "moves": [
@@ -4652,8 +4652,8 @@
         "unique_id": "Mantyke_0_1",
         "nature": "hardy",
         "types": [
-            "flying",
-            "water"
+            "water",
+            "flying"
         ],
         "item": "Mystic Water",
         "moves": [
@@ -4754,8 +4754,8 @@
         "unique_id": "Pidgeotto_0_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Rawst Berry",
         "moves": [
@@ -4905,8 +4905,8 @@
         "unique_id": "Shieldon_0_1",
         "nature": "sassy",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Focus Band",
         "moves": [
@@ -5006,8 +5006,8 @@
         "unique_id": "Farfetch'd_0_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Stick",
         "moves": [
@@ -5057,8 +5057,8 @@
         "unique_id": "Omanyte_0_1",
         "nature": "bold",
         "types": [
-            "rock",
-            "water"
+            "water",
+            "rock"
         ],
         "item": "Pecha Berry",
         "moves": [
@@ -5108,8 +5108,8 @@
         "unique_id": "Kabuto_0_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "water"
+            "water",
+            "rock"
         ],
         "item": "Liechi Berry",
         "moves": [
@@ -5159,8 +5159,8 @@
         "unique_id": "Lileep_0_1",
         "nature": "calm",
         "types": [
-            "rock",
-            "grass"
+            "grass",
+            "rock"
         ],
         "item": "Lax Incense",
         "moves": [
@@ -5765,8 +5765,8 @@
         "unique_id": "Corsola_0_1",
         "nature": "modest",
         "types": [
-            "rock",
-            "water"
+            "water",
+            "rock"
         ],
         "item": "Focus Band",
         "moves": [
@@ -6169,8 +6169,8 @@
         "unique_id": "Onix_0_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Hard Stone",
         "moves": [
@@ -6372,8 +6372,8 @@
         "unique_id": "Weepinbell_0_1",
         "nature": "quiet",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Scope Lens",
         "moves": [
@@ -6423,8 +6423,8 @@
         "unique_id": "Graveler_0_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Focus Band",
         "moves": [
@@ -6677,8 +6677,8 @@
         "unique_id": "Gloom_0_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Miracle Seed",
         "moves": [
@@ -6928,8 +6928,8 @@
         "unique_id": "Roselia_0_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Black Sludge",
         "moves": [
@@ -7080,8 +7080,8 @@
         "unique_id": "Chatot_0_1",
         "nature": "calm",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Persim Berry",
         "moves": [
@@ -7182,8 +7182,8 @@
         "unique_id": "Togetic_0_1",
         "nature": "calm",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Chesto Berry",
         "moves": [
@@ -7588,8 +7588,8 @@
         "unique_id": "Ivysaur_1_1",
         "nature": "careful",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Salac Berry",
         "moves": [
@@ -7939,8 +7939,8 @@
         "unique_id": "Combusken_1_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "Liechi Berry",
         "moves": [
@@ -7990,8 +7990,8 @@
         "unique_id": "Marshtomp_1_1",
         "nature": "modest",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Focus Band",
         "moves": [
@@ -8091,8 +8091,8 @@
         "unique_id": "Monferno_1_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "Coba Berry",
         "moves": [
@@ -8242,8 +8242,8 @@
         "unique_id": "Magcargo_1_1",
         "nature": "modest",
         "types": [
-            "rock",
-            "fire"
+            "fire",
+            "rock"
         ],
         "item": "Lax Incense",
         "moves": [
@@ -8293,8 +8293,8 @@
         "unique_id": "Pupitar_1_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Hard Stone",
         "moves": [
@@ -8344,8 +8344,8 @@
         "unique_id": "Sealeo_1_1",
         "nature": "relaxed",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Icy Rock",
         "moves": [
@@ -8395,8 +8395,8 @@
         "unique_id": "Bibarel_1_1",
         "nature": "docile",
         "types": [
-            "normal",
-            "water"
+            "water",
+            "normal"
         ],
         "item": "Chople Berry",
         "moves": [
@@ -9048,8 +9048,8 @@
         "unique_id": "Metang_1_1",
         "nature": "quirky",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "Chesto Berry",
         "moves": [
@@ -9351,8 +9351,8 @@
         "unique_id": "Gligar_1_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "ground"
+            "ground",
+            "flying"
         ],
         "item": "Razor Claw",
         "moves": [
@@ -9402,8 +9402,8 @@
         "unique_id": "Qwilfish_1_1",
         "nature": "bashful",
         "types": [
-            "poison",
-            "water"
+            "water",
+            "poison"
         ],
         "item": "Cheri Berry",
         "moves": [
@@ -9504,8 +9504,8 @@
         "unique_id": "Swellow_1_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "King's Rock",
         "moves": [
@@ -9555,8 +9555,8 @@
         "unique_id": "Pelipper_1_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "water"
+            "water",
+            "flying"
         ],
         "item": "Chesto Berry",
         "moves": [
@@ -9606,8 +9606,8 @@
         "unique_id": "Lairon_1_1",
         "nature": "impish",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Metal Coat",
         "moves": [
@@ -9957,8 +9957,8 @@
         "unique_id": "Lunatone_1_1",
         "nature": "modest",
         "types": [
-            "rock",
-            "psychic"
+            "psychic",
+            "rock"
         ],
         "item": "Sitrus Berry",
         "moves": [
@@ -10008,8 +10008,8 @@
         "unique_id": "Solrock_1_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "psychic"
+            "psychic",
+            "rock"
         ],
         "item": "Sitrus Berry",
         "moves": [
@@ -10160,8 +10160,8 @@
         "unique_id": "Fearow_1_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Sharp Beak",
         "moves": [
@@ -10211,8 +10211,8 @@
         "unique_id": "Noctowl_1_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Persim Berry",
         "moves": [
@@ -10463,8 +10463,8 @@
         "unique_id": "Jumpluff_1_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "grass"
+            "grass",
+            "flying"
         ],
         "item": "Pecha Berry",
         "moves": [
@@ -10514,8 +10514,8 @@
         "unique_id": "Piloswine_1_1",
         "nature": "modest",
         "types": [
-            "ice",
-            "ground"
+            "ground",
+            "ice"
         ],
         "item": "NeverMeltIce",
         "moves": [
@@ -10866,8 +10866,8 @@
         "unique_id": "Girafarig_1_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "normal"
+            "normal",
+            "psychic"
         ],
         "item": "Petaya Berry",
         "moves": [
@@ -11218,8 +11218,8 @@
         "unique_id": "Dodrio_1_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Aspear Berry",
         "moves": [
@@ -11269,8 +11269,8 @@
         "unique_id": "Sharpedo_1_1",
         "nature": "quirky",
         "types": [
-            "dark",
-            "water"
+            "water",
+            "dark"
         ],
         "item": "Cheri Berry",
         "moves": [
@@ -11371,8 +11371,8 @@
         "unique_id": "Tropius_1_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "grass"
+            "grass",
+            "flying"
         ],
         "item": "Lansat Berry",
         "moves": [
@@ -11472,8 +11472,8 @@
         "unique_id": "Magneton_1_1",
         "nature": "docile",
         "types": [
-            "electric",
-            "steel"
+            "steel",
+            "electric"
         ],
         "item": "Petaya Berry",
         "moves": [
@@ -11523,8 +11523,8 @@
         "unique_id": "Mantine_1_1",
         "nature": "quirky",
         "types": [
-            "flying",
-            "water"
+            "water",
+            "flying"
         ],
         "item": "Mystic Water",
         "moves": [
@@ -11678,8 +11678,8 @@
         "unique_id": "Crawdaunt_1_1",
         "nature": "modest",
         "types": [
-            "dark",
-            "water"
+            "water",
+            "dark"
         ],
         "item": "Persim Berry",
         "moves": [
@@ -11729,8 +11729,8 @@
         "unique_id": "Pidgeot_1_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Cheri Berry",
         "moves": [
@@ -11780,8 +11780,8 @@
         "unique_id": "Xatu_1_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "psychic"
+            "psychic",
+            "flying"
         ],
         "item": "Sharp Beak",
         "moves": [
@@ -12282,8 +12282,8 @@
         "unique_id": "Relicanth_1_1",
         "nature": "relaxed",
         "types": [
-            "rock",
-            "water"
+            "water",
+            "rock"
         ],
         "item": "Wave Incense",
         "moves": [
@@ -12433,8 +12433,8 @@
         "unique_id": "Omastar_1_1",
         "nature": "brave",
         "types": [
-            "rock",
-            "water"
+            "water",
+            "rock"
         ],
         "item": "Metronome",
         "moves": [
@@ -12484,8 +12484,8 @@
         "unique_id": "Kabutops_1_1",
         "nature": "impish",
         "types": [
-            "rock",
-            "water"
+            "water",
+            "rock"
         ],
         "item": "Sea Incense",
         "moves": [
@@ -12586,8 +12586,8 @@
         "unique_id": "Cloyster_1_1",
         "nature": "bold",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "NeverMeltIce",
         "moves": [
@@ -12637,8 +12637,8 @@
         "unique_id": "Ivysaur_2_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Big Root",
         "moves": [
@@ -12992,8 +12992,8 @@
         "unique_id": "Combusken_2_1",
         "nature": "hardy",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "Scope Lens",
         "moves": [
@@ -13043,8 +13043,8 @@
         "unique_id": "Marshtomp_2_1",
         "nature": "quiet",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Persim Berry",
         "moves": [
@@ -13144,8 +13144,8 @@
         "unique_id": "Monferno_2_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "Scope Lens",
         "moves": [
@@ -13295,8 +13295,8 @@
         "unique_id": "Magcargo_2_1",
         "nature": "quiet",
         "types": [
-            "rock",
-            "fire"
+            "fire",
+            "rock"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -13346,8 +13346,8 @@
         "unique_id": "Pupitar_2_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Soft Sand",
         "moves": [
@@ -13397,8 +13397,8 @@
         "unique_id": "Sealeo_2_1",
         "nature": "quiet",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Chesto Berry",
         "moves": [
@@ -13448,8 +13448,8 @@
         "unique_id": "Bibarel_2_1",
         "nature": "adamant",
         "types": [
-            "normal",
-            "water"
+            "water",
+            "normal"
         ],
         "item": "Shell Bell",
         "moves": [
@@ -14105,8 +14105,8 @@
         "unique_id": "Metang_2_1",
         "nature": "adamant",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "Shuca Berry",
         "moves": [
@@ -14408,8 +14408,8 @@
         "unique_id": "Gligar_2_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "ground"
+            "ground",
+            "flying"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -14459,8 +14459,8 @@
         "unique_id": "Qwilfish_2_1",
         "nature": "adamant",
         "types": [
-            "poison",
-            "water"
+            "water",
+            "poison"
         ],
         "item": "Focus Band",
         "moves": [
@@ -14561,8 +14561,8 @@
         "unique_id": "Swellow_2_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Toxic Orb",
         "moves": [
@@ -14612,8 +14612,8 @@
         "unique_id": "Pelipper_2_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "water"
+            "water",
+            "flying"
         ],
         "item": "Shell Bell",
         "moves": [
@@ -14663,8 +14663,8 @@
         "unique_id": "Lairon_2_1",
         "nature": "impish",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Sitrus Berry",
         "moves": [
@@ -15014,8 +15014,8 @@
         "unique_id": "Lunatone_2_1",
         "nature": "modest",
         "types": [
-            "rock",
-            "psychic"
+            "psychic",
+            "rock"
         ],
         "item": "Passho Berry",
         "moves": [
@@ -15065,8 +15065,8 @@
         "unique_id": "Solrock_2_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "psychic"
+            "psychic",
+            "rock"
         ],
         "item": "Passho Berry",
         "moves": [
@@ -15217,8 +15217,8 @@
         "unique_id": "Fearow_2_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Cheri Berry",
         "moves": [
@@ -15268,8 +15268,8 @@
         "unique_id": "Noctowl_2_1",
         "nature": "quiet",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Persim Berry",
         "moves": [
@@ -15520,8 +15520,8 @@
         "unique_id": "Jumpluff_2_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "grass"
+            "grass",
+            "flying"
         ],
         "item": "Sitrus Berry",
         "moves": [
@@ -15571,8 +15571,8 @@
         "unique_id": "Piloswine_2_1",
         "nature": "adamant",
         "types": [
-            "ice",
-            "ground"
+            "ground",
+            "ice"
         ],
         "item": "Muscle Band",
         "moves": [
@@ -15931,8 +15931,8 @@
         "unique_id": "Girafarig_2_1",
         "nature": "adamant",
         "types": [
-            "psychic",
-            "normal"
+            "normal",
+            "psychic"
         ],
         "item": "Razor Claw",
         "moves": [
@@ -16287,8 +16287,8 @@
         "unique_id": "Dodrio_2_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "King's Rock",
         "moves": [
@@ -16338,8 +16338,8 @@
         "unique_id": "Sharpedo_2_1",
         "nature": "adamant",
         "types": [
-            "dark",
-            "water"
+            "water",
+            "dark"
         ],
         "item": "Wacan Berry",
         "moves": [
@@ -16440,8 +16440,8 @@
         "unique_id": "Tropius_2_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "grass"
+            "grass",
+            "flying"
         ],
         "item": "Occa Berry",
         "moves": [
@@ -16541,8 +16541,8 @@
         "unique_id": "Magneton_2_1",
         "nature": "modest",
         "types": [
-            "electric",
-            "steel"
+            "steel",
+            "electric"
         ],
         "item": "Shuca Berry",
         "moves": [
@@ -16592,8 +16592,8 @@
         "unique_id": "Mantine_2_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "water"
+            "water",
+            "flying"
         ],
         "item": "Shell Bell",
         "moves": [
@@ -16743,8 +16743,8 @@
         "unique_id": "Crawdaunt_2_1",
         "nature": "adamant",
         "types": [
-            "dark",
-            "water"
+            "water",
+            "dark"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -16794,8 +16794,8 @@
         "unique_id": "Pidgeot_2_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Razor Claw",
         "moves": [
@@ -16845,8 +16845,8 @@
         "unique_id": "Xatu_2_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "psychic"
+            "psychic",
+            "flying"
         ],
         "item": "Colbur Berry",
         "moves": [
@@ -17347,8 +17347,8 @@
         "unique_id": "Relicanth_2_1",
         "nature": "impish",
         "types": [
-            "rock",
-            "water"
+            "water",
+            "rock"
         ],
         "item": "Chesto Berry",
         "moves": [
@@ -17498,8 +17498,8 @@
         "unique_id": "Omastar_2_1",
         "nature": "modest",
         "types": [
-            "rock",
-            "water"
+            "water",
+            "rock"
         ],
         "item": "Sitrus Berry",
         "moves": [
@@ -17549,8 +17549,8 @@
         "unique_id": "Kabutops_2_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "water"
+            "water",
+            "rock"
         ],
         "item": "Razor Claw",
         "moves": [
@@ -17651,8 +17651,8 @@
         "unique_id": "Cloyster_2_1",
         "nature": "impish",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Leftovers",
         "moves": [
@@ -17702,8 +17702,8 @@
         "unique_id": "Venusaur_3_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "White Herb",
         "moves": [
@@ -17753,8 +17753,8 @@
         "unique_id": "Charizard_3_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "fire"
+            "fire",
+            "flying"
         ],
         "item": "Petaya Berry",
         "moves": [
@@ -18058,8 +18058,8 @@
         "unique_id": "Blaziken_3_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "Salac Berry",
         "moves": [
@@ -18109,8 +18109,8 @@
         "unique_id": "Swampert_3_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Shell Bell",
         "moves": [
@@ -18160,8 +18160,8 @@
         "unique_id": "Torterra_3_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "grass"
+            "grass",
+            "ground"
         ],
         "item": "Yache Berry",
         "moves": [
@@ -18211,8 +18211,8 @@
         "unique_id": "Infernape_3_1",
         "nature": "jolly",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "Coba Berry",
         "moves": [
@@ -18262,8 +18262,8 @@
         "unique_id": "Empoleon_3_1",
         "nature": "adamant",
         "types": [
-            "steel",
-            "water"
+            "water",
+            "steel"
         ],
         "item": "Razor Claw",
         "moves": [
@@ -18464,8 +18464,8 @@
         "unique_id": "Quagsire_3_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Rindo Berry",
         "moves": [
@@ -18666,8 +18666,8 @@
         "unique_id": "Lanturn_3_1",
         "nature": "modest",
         "types": [
-            "electric",
-            "water"
+            "water",
+            "electric"
         ],
         "item": "Rindo Berry",
         "moves": [
@@ -18819,8 +18819,8 @@
         "unique_id": "Skarmory_3_1",
         "nature": "impish",
         "types": [
-            "flying",
-            "steel"
+            "steel",
+            "flying"
         ],
         "item": "Occa Berry",
         "moves": [
@@ -18920,8 +18920,8 @@
         "unique_id": "Whiscash_3_1",
         "nature": "modest",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Shell Bell",
         "moves": [
@@ -19122,8 +19122,8 @@
         "unique_id": "Dewgong_3_1",
         "nature": "careful",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Razor Fang",
         "moves": [
@@ -19223,8 +19223,8 @@
         "unique_id": "Staraptor_3_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "King's Rock",
         "moves": [
@@ -19274,8 +19274,8 @@
         "unique_id": "Gastrodon_3_1",
         "nature": "careful",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Focus Sash",
         "moves": [
@@ -19376,8 +19376,8 @@
         "unique_id": "Vileplume_3_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Big Root",
         "moves": [
@@ -19427,8 +19427,8 @@
         "unique_id": "Victreebel_3_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Payapa Berry",
         "moves": [
@@ -19935,8 +19935,8 @@
         "unique_id": "Golem_3_1",
         "nature": "impish",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Focus Band",
         "moves": [
@@ -19986,8 +19986,8 @@
         "unique_id": "Rhydon_3_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Passho Berry",
         "moves": [
@@ -20037,8 +20037,8 @@
         "unique_id": "Slowbro_3_1",
         "nature": "bold",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Chesto Berry",
         "moves": [
@@ -20288,8 +20288,8 @@
         "unique_id": "Slowking_3_1",
         "nature": "quiet",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Shell Bell",
         "moves": [
@@ -20393,8 +20393,8 @@
         "unique_id": "Altaria_3_1",
         "nature": "careful",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Chesto Berry",
         "moves": [
@@ -20495,8 +20495,8 @@
         "unique_id": "Abomasnow_3_1",
         "nature": "calm",
         "types": [
-            "ice",
-            "grass"
+            "grass",
+            "ice"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -20648,8 +20648,8 @@
         "unique_id": "Cradily_3_1",
         "nature": "impish",
         "types": [
-            "rock",
-            "grass"
+            "grass",
+            "rock"
         ],
         "item": "Razor Claw",
         "moves": [
@@ -20754,8 +20754,8 @@
         "unique_id": "Bastiodon_3_1",
         "nature": "impish",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Focus Band",
         "moves": [
@@ -21006,8 +21006,8 @@
         "unique_id": "Poliwrath_3_1",
         "nature": "modest",
         "types": [
-            "fighting",
-            "water"
+            "water",
+            "fighting"
         ],
         "item": "Rindo Berry",
         "moves": [
@@ -21762,8 +21762,8 @@
         "unique_id": "Bronzong_3_1",
         "nature": "impish",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "King's Rock",
         "moves": [
@@ -22069,8 +22069,8 @@
         "unique_id": "Roserade_3_1",
         "nature": "calm",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Coba Berry",
         "moves": [
@@ -22171,8 +22171,8 @@
         "unique_id": "Steelix_3_1",
         "nature": "impish",
         "types": [
-            "ground",
-            "steel"
+            "steel",
+            "ground"
         ],
         "item": "Passho Berry",
         "moves": [
@@ -22273,8 +22273,8 @@
         "unique_id": "Gliscor_3_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "ground"
+            "ground",
+            "flying"
         ],
         "item": "Yache Berry",
         "moves": [
@@ -22324,8 +22324,8 @@
         "unique_id": "Tentacruel_3_1",
         "nature": "timid",
         "types": [
-            "poison",
-            "water"
+            "water",
+            "poison"
         ],
         "item": "Wacan Berry",
         "moves": [
@@ -22375,8 +22375,8 @@
         "unique_id": "Aerodactyl_3_1",
         "nature": "jolly",
         "types": [
-            "rock",
-            "flying"
+            "flying",
+            "rock"
         ],
         "item": "King's Rock",
         "moves": [
@@ -22678,8 +22678,8 @@
         "unique_id": "Exeggutor_3_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "grass"
+            "grass",
+            "psychic"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -22729,8 +22729,8 @@
         "unique_id": "Starmie_3_1",
         "nature": "timid",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -23181,8 +23181,8 @@
         "unique_id": "Lucario_3_1",
         "nature": "modest",
         "types": [
-            "fighting",
-            "steel"
+            "steel",
+            "fighting"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -23282,8 +23282,8 @@
         "unique_id": "Probopass_3_1",
         "nature": "brave",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Cheri Berry",
         "moves": [
@@ -23383,8 +23383,8 @@
         "unique_id": "Aggron_3_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -23434,8 +23434,8 @@
         "unique_id": "Walrein_3_1",
         "nature": "adamant",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Chople Berry",
         "moves": [
@@ -23485,8 +23485,8 @@
         "unique_id": "Mamoswine_3_1",
         "nature": "adamant",
         "types": [
-            "ice",
-            "ground"
+            "ground",
+            "ice"
         ],
         "item": "Icy Rock",
         "moves": [
@@ -23536,8 +23536,8 @@
         "unique_id": "Lapras_3_1",
         "nature": "adamant",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Leftovers",
         "moves": [
@@ -23638,8 +23638,8 @@
         "unique_id": "Magnezone_3_1",
         "nature": "bold",
         "types": [
-            "electric",
-            "steel"
+            "steel",
+            "electric"
         ],
         "item": "Light Clay",
         "moves": [
@@ -23689,8 +23689,8 @@
         "unique_id": "Rhyperior_3_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Focus Band",
         "moves": [
@@ -23840,8 +23840,8 @@
         "unique_id": "Gyarados_3_1",
         "nature": "careful",
         "types": [
-            "flying",
-            "water"
+            "water",
+            "flying"
         ],
         "item": "Razor Fang",
         "moves": [
@@ -23941,8 +23941,8 @@
         "unique_id": "Kingdra_3_1",
         "nature": "timid",
         "types": [
-            "dragon",
-            "water"
+            "water",
+            "dragon"
         ],
         "item": "Razor Fang",
         "moves": [
@@ -24192,8 +24192,8 @@
         "unique_id": "Togekiss_3_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Power Herb",
         "moves": [
@@ -24293,8 +24293,8 @@
         "unique_id": "Dragonite_3_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -24395,8 +24395,8 @@
         "unique_id": "Salamence_3_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Cheri Berry",
         "moves": [
@@ -24446,8 +24446,8 @@
         "unique_id": "Metagross_3_1",
         "nature": "adamant",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -24598,8 +24598,8 @@
         "unique_id": "Venusaur_4_1",
         "nature": "bold",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Big Root",
         "moves": [
@@ -24653,8 +24653,8 @@
         "unique_id": "Charizard_4_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "fire"
+            "fire",
+            "flying"
         ],
         "item": "White Herb",
         "moves": [
@@ -24958,8 +24958,8 @@
         "unique_id": "Blaziken_4_1",
         "nature": "timid",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -25009,8 +25009,8 @@
         "unique_id": "Swampert_4_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -25060,8 +25060,8 @@
         "unique_id": "Torterra_4_1",
         "nature": "sassy",
         "types": [
-            "ground",
-            "grass"
+            "grass",
+            "ground"
         ],
         "item": "Leftovers",
         "moves": [
@@ -25115,8 +25115,8 @@
         "unique_id": "Infernape_4_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "Muscle Band",
         "moves": [
@@ -25166,8 +25166,8 @@
         "unique_id": "Empoleon_4_1",
         "nature": "adamant",
         "types": [
-            "steel",
-            "water"
+            "water",
+            "steel"
         ],
         "item": "Razor Claw",
         "moves": [
@@ -25368,8 +25368,8 @@
         "unique_id": "Quagsire_4_1",
         "nature": "careful",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Leftovers",
         "moves": [
@@ -25574,8 +25574,8 @@
         "unique_id": "Lanturn_4_1",
         "nature": "calm",
         "types": [
-            "electric",
-            "water"
+            "water",
+            "electric"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -25727,8 +25727,8 @@
         "unique_id": "Skarmory_4_1",
         "nature": "careful",
         "types": [
-            "flying",
-            "steel"
+            "steel",
+            "flying"
         ],
         "item": "Leftovers",
         "moves": [
@@ -25832,8 +25832,8 @@
         "unique_id": "Whiscash_4_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Persim Berry",
         "moves": [
@@ -26038,8 +26038,8 @@
         "unique_id": "Dewgong_4_1",
         "nature": "calm",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Wacan Berry",
         "moves": [
@@ -26139,8 +26139,8 @@
         "unique_id": "Staraptor_4_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "King's Rock",
         "moves": [
@@ -26190,8 +26190,8 @@
         "unique_id": "Gastrodon_4_1",
         "nature": "sassy",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Zoom Lens",
         "moves": [
@@ -26292,8 +26292,8 @@
         "unique_id": "Vileplume_4_1",
         "nature": "bold",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Black Sludge",
         "moves": [
@@ -26347,8 +26347,8 @@
         "unique_id": "Victreebel_4_1",
         "nature": "adamant",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Black Sludge",
         "moves": [
@@ -26859,8 +26859,8 @@
         "unique_id": "Golem_4_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "White Herb",
         "moves": [
@@ -26910,8 +26910,8 @@
         "unique_id": "Rhydon_4_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Focus Sash",
         "moves": [
@@ -26961,8 +26961,8 @@
         "unique_id": "Slowbro_4_1",
         "nature": "adamant",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -27212,8 +27212,8 @@
         "unique_id": "Slowking_4_1",
         "nature": "adamant",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -27313,8 +27313,8 @@
         "unique_id": "Altaria_4_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Shell Bell",
         "moves": [
@@ -27415,8 +27415,8 @@
         "unique_id": "Abomasnow_4_1",
         "nature": "bold",
         "types": [
-            "ice",
-            "grass"
+            "grass",
+            "ice"
         ],
         "item": "Big Root",
         "moves": [
@@ -27576,8 +27576,8 @@
         "unique_id": "Cradily_4_1",
         "nature": "impish",
         "types": [
-            "rock",
-            "grass"
+            "grass",
+            "rock"
         ],
         "item": "Leftovers",
         "moves": [
@@ -27682,8 +27682,8 @@
         "unique_id": "Bastiodon_4_1",
         "nature": "modest",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Persim Berry",
         "moves": [
@@ -27934,8 +27934,8 @@
         "unique_id": "Poliwrath_4_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "water"
+            "water",
+            "fighting"
         ],
         "item": "Lax Incense",
         "moves": [
@@ -28694,8 +28694,8 @@
         "unique_id": "Bronzong_4_1",
         "nature": "calm",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -29001,8 +29001,8 @@
         "unique_id": "Roserade_4_1",
         "nature": "calm",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Big Root",
         "moves": [
@@ -29103,8 +29103,8 @@
         "unique_id": "Steelix_4_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "steel"
+            "steel",
+            "ground"
         ],
         "item": "Shuca Berry",
         "moves": [
@@ -29205,8 +29205,8 @@
         "unique_id": "Gliscor_4_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "ground"
+            "ground",
+            "flying"
         ],
         "item": "Razor Fang",
         "moves": [
@@ -29256,8 +29256,8 @@
         "unique_id": "Tentacruel_4_1",
         "nature": "calm",
         "types": [
-            "poison",
-            "water"
+            "water",
+            "poison"
         ],
         "item": "Black Sludge",
         "moves": [
@@ -29307,8 +29307,8 @@
         "unique_id": "Aerodactyl_4_1",
         "nature": "jolly",
         "types": [
-            "rock",
-            "flying"
+            "flying",
+            "rock"
         ],
         "item": "Razor Fang",
         "moves": [
@@ -29610,8 +29610,8 @@
         "unique_id": "Exeggutor_4_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "grass"
+            "grass",
+            "psychic"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -29661,8 +29661,8 @@
         "unique_id": "Starmie_4_1",
         "nature": "timid",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Wide Lens",
         "moves": [
@@ -30113,8 +30113,8 @@
         "unique_id": "Lucario_4_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "steel"
+            "steel",
+            "fighting"
         ],
         "item": "Scope Lens",
         "moves": [
@@ -30214,8 +30214,8 @@
         "unique_id": "Probopass_4_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Chople Berry",
         "moves": [
@@ -30315,8 +30315,8 @@
         "unique_id": "Aggron_4_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -30366,8 +30366,8 @@
         "unique_id": "Walrein_4_1",
         "nature": "brave",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Life Orb",
         "moves": [
@@ -30417,8 +30417,8 @@
         "unique_id": "Mamoswine_4_1",
         "nature": "adamant",
         "types": [
-            "ice",
-            "ground"
+            "ground",
+            "ice"
         ],
         "item": "Sitrus Berry",
         "moves": [
@@ -30468,8 +30468,8 @@
         "unique_id": "Lapras_4_1",
         "nature": "impish",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -30570,8 +30570,8 @@
         "unique_id": "Magnezone_4_1",
         "nature": "impish",
         "types": [
-            "electric",
-            "steel"
+            "steel",
+            "electric"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -30621,8 +30621,8 @@
         "unique_id": "Rhyperior_4_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -30776,8 +30776,8 @@
         "unique_id": "Gyarados_4_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "water"
+            "water",
+            "flying"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -30877,8 +30877,8 @@
         "unique_id": "Kingdra_4_1",
         "nature": "timid",
         "types": [
-            "dragon",
-            "water"
+            "water",
+            "dragon"
         ],
         "item": "Shell Bell",
         "moves": [
@@ -31128,8 +31128,8 @@
         "unique_id": "Togekiss_4_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Scope Lens",
         "moves": [
@@ -31229,8 +31229,8 @@
         "unique_id": "Dragonite_4_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Razor Claw",
         "moves": [
@@ -31331,8 +31331,8 @@
         "unique_id": "Salamence_4_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Razor Fang",
         "moves": [
@@ -31382,8 +31382,8 @@
         "unique_id": "Metagross_4_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "Wise Glasses",
         "moves": [
@@ -31534,8 +31534,8 @@
         "unique_id": "Venusaur_5_1",
         "nature": "adamant",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Black Sludge",
         "moves": [
@@ -31585,8 +31585,8 @@
         "unique_id": "Charizard_5_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "fire"
+            "fire",
+            "flying"
         ],
         "item": "Scope Lens",
         "moves": [
@@ -31886,8 +31886,8 @@
         "unique_id": "Blaziken_5_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "Passho Berry",
         "moves": [
@@ -31937,8 +31937,8 @@
         "unique_id": "Swampert_5_1",
         "nature": "modest",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -31988,8 +31988,8 @@
         "unique_id": "Torterra_5_1",
         "nature": "modest",
         "types": [
-            "ground",
-            "grass"
+            "grass",
+            "ground"
         ],
         "item": "Lax Incense",
         "moves": [
@@ -32039,8 +32039,8 @@
         "unique_id": "Infernape_5_1",
         "nature": "modest",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -32090,8 +32090,8 @@
         "unique_id": "Empoleon_5_1",
         "nature": "brave",
         "types": [
-            "steel",
-            "water"
+            "water",
+            "steel"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -32292,8 +32292,8 @@
         "unique_id": "Quagsire_5_1",
         "nature": "modest",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -32494,8 +32494,8 @@
         "unique_id": "Lanturn_5_1",
         "nature": "modest",
         "types": [
-            "electric",
-            "water"
+            "water",
+            "electric"
         ],
         "item": "Sitrus Berry",
         "moves": [
@@ -32647,8 +32647,8 @@
         "unique_id": "Skarmory_5_1",
         "nature": "impish",
         "types": [
-            "flying",
-            "steel"
+            "steel",
+            "flying"
         ],
         "item": "Razor Claw",
         "moves": [
@@ -32748,8 +32748,8 @@
         "unique_id": "Whiscash_5_1",
         "nature": "modest",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Zoom Lens",
         "moves": [
@@ -32950,8 +32950,8 @@
         "unique_id": "Dewgong_5_1",
         "nature": "calm",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Salac Berry",
         "moves": [
@@ -33055,8 +33055,8 @@
         "unique_id": "Staraptor_5_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Muscle Band",
         "moves": [
@@ -33106,8 +33106,8 @@
         "unique_id": "Gastrodon_5_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Shell Bell",
         "moves": [
@@ -33208,8 +33208,8 @@
         "unique_id": "Vileplume_5_1",
         "nature": "adamant",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -33259,8 +33259,8 @@
         "unique_id": "Victreebel_5_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Power Herb",
         "moves": [
@@ -33763,8 +33763,8 @@
         "unique_id": "Golem_5_1",
         "nature": "brave",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Iron Ball",
         "moves": [
@@ -33814,8 +33814,8 @@
         "unique_id": "Rhydon_5_1",
         "nature": "brave",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Persim Berry",
         "moves": [
@@ -33865,8 +33865,8 @@
         "unique_id": "Slowbro_5_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Choice Specs",
         "moves": [
@@ -34116,8 +34116,8 @@
         "unique_id": "Slowking_5_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -34217,8 +34217,8 @@
         "unique_id": "Altaria_5_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -34319,8 +34319,8 @@
         "unique_id": "Abomasnow_5_1",
         "nature": "quiet",
         "types": [
-            "ice",
-            "grass"
+            "grass",
+            "ice"
         ],
         "item": "Occa Berry",
         "moves": [
@@ -34472,8 +34472,8 @@
         "unique_id": "Cradily_5_1",
         "nature": "calm",
         "types": [
-            "rock",
-            "grass"
+            "grass",
+            "rock"
         ],
         "item": "Big Root",
         "moves": [
@@ -34578,8 +34578,8 @@
         "unique_id": "Bastiodon_5_1",
         "nature": "careful",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Leftovers",
         "moves": [
@@ -34830,8 +34830,8 @@
         "unique_id": "Poliwrath_5_1",
         "nature": "modest",
         "types": [
-            "fighting",
-            "water"
+            "water",
+            "fighting"
         ],
         "item": "Wide Lens",
         "moves": [
@@ -35586,8 +35586,8 @@
         "unique_id": "Bronzong_5_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "Leftovers",
         "moves": [
@@ -35893,8 +35893,8 @@
         "unique_id": "Roserade_5_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "White Herb",
         "moves": [
@@ -35995,8 +35995,8 @@
         "unique_id": "Steelix_5_1",
         "nature": "relaxed",
         "types": [
-            "ground",
-            "steel"
+            "steel",
+            "ground"
         ],
         "item": "Iron Ball",
         "moves": [
@@ -36097,8 +36097,8 @@
         "unique_id": "Gliscor_5_1",
         "nature": "jolly",
         "types": [
-            "flying",
-            "ground"
+            "ground",
+            "flying"
         ],
         "item": "Focus Sash",
         "moves": [
@@ -36148,8 +36148,8 @@
         "unique_id": "Tentacruel_5_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "water"
+            "water",
+            "poison"
         ],
         "item": "Focus Sash",
         "moves": [
@@ -36199,8 +36199,8 @@
         "unique_id": "Aerodactyl_5_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "flying"
+            "flying",
+            "rock"
         ],
         "item": "Yache Berry",
         "moves": [
@@ -36502,8 +36502,8 @@
         "unique_id": "Exeggutor_5_1",
         "nature": "brave",
         "types": [
-            "psychic",
-            "grass"
+            "grass",
+            "psychic"
         ],
         "item": "Focus Sash",
         "moves": [
@@ -36553,8 +36553,8 @@
         "unique_id": "Starmie_5_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Wise Glasses",
         "moves": [
@@ -37005,8 +37005,8 @@
         "unique_id": "Lucario_5_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "steel"
+            "steel",
+            "fighting"
         ],
         "item": "Muscle Band",
         "moves": [
@@ -37106,8 +37106,8 @@
         "unique_id": "Probopass_5_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Scope Lens",
         "moves": [
@@ -37207,8 +37207,8 @@
         "unique_id": "Aggron_5_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Muscle Band",
         "moves": [
@@ -37258,8 +37258,8 @@
         "unique_id": "Walrein_5_1",
         "nature": "bold",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Lax Incense",
         "moves": [
@@ -37309,8 +37309,8 @@
         "unique_id": "Mamoswine_5_1",
         "nature": "adamant",
         "types": [
-            "ice",
-            "ground"
+            "ground",
+            "ice"
         ],
         "item": "Lax Incense",
         "moves": [
@@ -37360,8 +37360,8 @@
         "unique_id": "Lapras_5_1",
         "nature": "adamant",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -37462,8 +37462,8 @@
         "unique_id": "Magnezone_5_1",
         "nature": "modest",
         "types": [
-            "electric",
-            "steel"
+            "steel",
+            "electric"
         ],
         "item": "Chesto Berry",
         "moves": [
@@ -37513,8 +37513,8 @@
         "unique_id": "Rhyperior_5_1",
         "nature": "impish",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Focus Sash",
         "moves": [
@@ -37664,8 +37664,8 @@
         "unique_id": "Gyarados_5_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "water"
+            "water",
+            "flying"
         ],
         "item": "Persim Berry",
         "moves": [
@@ -37765,8 +37765,8 @@
         "unique_id": "Kingdra_5_1",
         "nature": "adamant",
         "types": [
-            "dragon",
-            "water"
+            "water",
+            "dragon"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -38016,8 +38016,8 @@
         "unique_id": "Togekiss_5_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Wise Glasses",
         "moves": [
@@ -38117,8 +38117,8 @@
         "unique_id": "Dragonite_5_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -38219,8 +38219,8 @@
         "unique_id": "Salamence_5_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Wise Glasses",
         "moves": [
@@ -38270,8 +38270,8 @@
         "unique_id": "Metagross_5_1",
         "nature": "adamant",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "Occa Berry",
         "moves": [
@@ -38422,8 +38422,8 @@
         "unique_id": "Venusaur_6_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Wise Glasses",
         "moves": [
@@ -38473,8 +38473,8 @@
         "unique_id": "Charizard_6_1",
         "nature": "timid",
         "types": [
-            "flying",
-            "fire"
+            "fire",
+            "flying"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -38774,8 +38774,8 @@
         "unique_id": "Blaziken_6_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "White Herb",
         "moves": [
@@ -38825,8 +38825,8 @@
         "unique_id": "Swampert_6_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Rindo Berry",
         "moves": [
@@ -38876,8 +38876,8 @@
         "unique_id": "Torterra_6_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "grass"
+            "grass",
+            "ground"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -38927,8 +38927,8 @@
         "unique_id": "Infernape_6_1",
         "nature": "jolly",
         "types": [
-            "fighting",
-            "fire"
+            "fire",
+            "fighting"
         ],
         "item": "King's Rock",
         "moves": [
@@ -38978,8 +38978,8 @@
         "unique_id": "Empoleon_6_1",
         "nature": "brave",
         "types": [
-            "steel",
-            "water"
+            "water",
+            "steel"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -39180,8 +39180,8 @@
         "unique_id": "Quagsire_6_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Muscle Band",
         "moves": [
@@ -39382,8 +39382,8 @@
         "unique_id": "Lanturn_6_1",
         "nature": "modest",
         "types": [
-            "electric",
-            "water"
+            "water",
+            "electric"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -39535,8 +39535,8 @@
         "unique_id": "Skarmory_6_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "steel"
+            "steel",
+            "flying"
         ],
         "item": "Life Orb",
         "moves": [
@@ -39636,8 +39636,8 @@
         "unique_id": "Whiscash_6_1",
         "nature": "adamant",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Muscle Band",
         "moves": [
@@ -39838,8 +39838,8 @@
         "unique_id": "Dewgong_6_1",
         "nature": "calm",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Chesto Berry",
         "moves": [
@@ -39939,8 +39939,8 @@
         "unique_id": "Staraptor_6_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Choice Band",
         "moves": [
@@ -39990,8 +39990,8 @@
         "unique_id": "Gastrodon_6_1",
         "nature": "modest",
         "types": [
-            "ground",
-            "water"
+            "water",
+            "ground"
         ],
         "item": "Wise Glasses",
         "moves": [
@@ -40092,8 +40092,8 @@
         "unique_id": "Vileplume_6_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Wise Glasses",
         "moves": [
@@ -40143,8 +40143,8 @@
         "unique_id": "Victreebel_6_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "Focus Band",
         "moves": [
@@ -40647,8 +40647,8 @@
         "unique_id": "Golem_6_1",
         "nature": "brave",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -40698,8 +40698,8 @@
         "unique_id": "Rhydon_6_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -40749,8 +40749,8 @@
         "unique_id": "Slowbro_6_1",
         "nature": "quiet",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Leftovers",
         "moves": [
@@ -41000,8 +41000,8 @@
         "unique_id": "Slowking_6_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Wise Glasses",
         "moves": [
@@ -41101,8 +41101,8 @@
         "unique_id": "Altaria_6_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "White Herb",
         "moves": [
@@ -41203,8 +41203,8 @@
         "unique_id": "Abomasnow_6_1",
         "nature": "brave",
         "types": [
-            "ice",
-            "grass"
+            "grass",
+            "ice"
         ],
         "item": "Shell Bell",
         "moves": [
@@ -41356,8 +41356,8 @@
         "unique_id": "Cradily_6_1",
         "nature": "calm",
         "types": [
-            "rock",
-            "grass"
+            "grass",
+            "rock"
         ],
         "item": "Leftovers",
         "moves": [
@@ -41462,8 +41462,8 @@
         "unique_id": "Bastiodon_6_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Focus Sash",
         "moves": [
@@ -41714,8 +41714,8 @@
         "unique_id": "Poliwrath_6_1",
         "nature": "adamant",
         "types": [
-            "fighting",
-            "water"
+            "water",
+            "fighting"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -42470,8 +42470,8 @@
         "unique_id": "Bronzong_6_1",
         "nature": "adamant",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -42777,8 +42777,8 @@
         "unique_id": "Roserade_6_1",
         "nature": "modest",
         "types": [
-            "poison",
-            "grass"
+            "grass",
+            "poison"
         ],
         "item": "White Herb",
         "moves": [
@@ -42879,8 +42879,8 @@
         "unique_id": "Steelix_6_1",
         "nature": "brave",
         "types": [
-            "ground",
-            "steel"
+            "steel",
+            "ground"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -42981,8 +42981,8 @@
         "unique_id": "Gliscor_6_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "ground"
+            "ground",
+            "flying"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -43032,8 +43032,8 @@
         "unique_id": "Tentacruel_6_1",
         "nature": "timid",
         "types": [
-            "poison",
-            "water"
+            "water",
+            "poison"
         ],
         "item": "Scope Lens",
         "moves": [
@@ -43083,8 +43083,8 @@
         "unique_id": "Aerodactyl_6_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "flying"
+            "flying",
+            "rock"
         ],
         "item": "Choice Band",
         "moves": [
@@ -43386,8 +43386,8 @@
         "unique_id": "Exeggutor_6_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "grass"
+            "grass",
+            "psychic"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -43437,8 +43437,8 @@
         "unique_id": "Starmie_6_1",
         "nature": "modest",
         "types": [
-            "psychic",
-            "water"
+            "water",
+            "psychic"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -43889,8 +43889,8 @@
         "unique_id": "Lucario_6_1",
         "nature": "modest",
         "types": [
-            "fighting",
-            "steel"
+            "steel",
+            "fighting"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -43990,8 +43990,8 @@
         "unique_id": "Probopass_6_1",
         "nature": "modest",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Life Orb",
         "moves": [
@@ -44091,8 +44091,8 @@
         "unique_id": "Aggron_6_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "steel"
+            "steel",
+            "rock"
         ],
         "item": "Focus Sash",
         "moves": [
@@ -44142,8 +44142,8 @@
         "unique_id": "Walrein_6_1",
         "nature": "modest",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Leftovers",
         "moves": [
@@ -44193,8 +44193,8 @@
         "unique_id": "Mamoswine_6_1",
         "nature": "adamant",
         "types": [
-            "ice",
-            "ground"
+            "ground",
+            "ice"
         ],
         "item": "Life Orb",
         "moves": [
@@ -44244,8 +44244,8 @@
         "unique_id": "Lapras_6_1",
         "nature": "modest",
         "types": [
-            "ice",
-            "water"
+            "water",
+            "ice"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -44346,8 +44346,8 @@
         "unique_id": "Magnezone_6_1",
         "nature": "modest",
         "types": [
-            "electric",
-            "steel"
+            "steel",
+            "electric"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -44397,8 +44397,8 @@
         "unique_id": "Rhyperior_6_1",
         "nature": "adamant",
         "types": [
-            "rock",
-            "ground"
+            "ground",
+            "rock"
         ],
         "item": "Choice Band",
         "moves": [
@@ -44548,8 +44548,8 @@
         "unique_id": "Gyarados_6_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "water"
+            "water",
+            "flying"
         ],
         "item": "Chesto Berry",
         "moves": [
@@ -44649,8 +44649,8 @@
         "unique_id": "Kingdra_6_1",
         "nature": "modest",
         "types": [
-            "dragon",
-            "water"
+            "water",
+            "dragon"
         ],
         "item": "Wide Lens",
         "moves": [
@@ -44900,8 +44900,8 @@
         "unique_id": "Togekiss_6_1",
         "nature": "modest",
         "types": [
-            "flying",
-            "normal"
+            "normal",
+            "flying"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -45001,8 +45001,8 @@
         "unique_id": "Dragonite_6_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Choice Band",
         "moves": [
@@ -45103,8 +45103,8 @@
         "unique_id": "Salamence_6_1",
         "nature": "adamant",
         "types": [
-            "flying",
-            "dragon"
+            "dragon",
+            "flying"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -45154,8 +45154,8 @@
         "unique_id": "Metagross_6_1",
         "nature": "adamant",
         "types": [
-            "psychic",
-            "steel"
+            "steel",
+            "psychic"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -45306,8 +45306,8 @@
         "unique_id": "Articuno_7_1",
         "nature": "docile",
         "types": [
-            "flying",
-            "ice"
+            "ice",
+            "flying"
         ],
         "item": "Icy Rock",
         "moves": [
@@ -45408,8 +45408,8 @@
         "unique_id": "Moltres_7_1",
         "nature": "timid",
         "types": [
-            "flying",
-            "fire"
+            "fire",
+            "flying"
         ],
         "item": "Passho Berry",
         "moves": [
@@ -45759,8 +45759,8 @@
         "unique_id": "Latias_7_1",
         "nature": "calm",
         "types": [
-            "psychic",
-            "dragon"
+            "dragon",
+            "psychic"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -45810,8 +45810,8 @@
         "unique_id": "Latios_7_1",
         "nature": "calm",
         "types": [
-            "psychic",
-            "dragon"
+            "dragon",
+            "psychic"
         ],
         "item": "Focus Band",
         "moves": [
@@ -45861,8 +45861,8 @@
         "unique_id": "Heatran_7_1",
         "nature": "modest",
         "types": [
-            "fire",
-            "steel"
+            "steel",
+            "fire"
         ],
         "item": "Shuca Berry",
         "moves": [
@@ -46016,8 +46016,8 @@
         "unique_id": "Articuno_7_2",
         "nature": "brave",
         "types": [
-            "flying",
-            "ice"
+            "ice",
+            "flying"
         ],
         "item": "Wacan Berry",
         "moves": [
@@ -46118,8 +46118,8 @@
         "unique_id": "Moltres_7_2",
         "nature": "timid",
         "types": [
-            "flying",
-            "fire"
+            "fire",
+            "flying"
         ],
         "item": "Heat Rock",
         "moves": [
@@ -46473,8 +46473,8 @@
         "unique_id": "Latias_7_2",
         "nature": "adamant",
         "types": [
-            "psychic",
-            "dragon"
+            "dragon",
+            "psychic"
         ],
         "item": "Expert Belt",
         "moves": [
@@ -46524,8 +46524,8 @@
         "unique_id": "Latios_7_2",
         "nature": "adamant",
         "types": [
-            "psychic",
-            "dragon"
+            "dragon",
+            "psychic"
         ],
         "item": "Lum Berry",
         "moves": [
@@ -46575,8 +46575,8 @@
         "unique_id": "Heatran_7_2",
         "nature": "adamant",
         "types": [
-            "fire",
-            "steel"
+            "steel",
+            "fire"
         ],
         "item": "Quick Claw",
         "moves": [
@@ -46734,8 +46734,8 @@
         "unique_id": "Articuno_7_3",
         "nature": "modest",
         "types": [
-            "flying",
-            "ice"
+            "ice",
+            "flying"
         ],
         "item": "Wise Glasses",
         "moves": [
@@ -46836,8 +46836,8 @@
         "unique_id": "Moltres_7_3",
         "nature": "adamant",
         "types": [
-            "flying",
-            "fire"
+            "fire",
+            "flying"
         ],
         "item": "Power Herb",
         "moves": [
@@ -47187,8 +47187,8 @@
         "unique_id": "Latias_7_3",
         "nature": "timid",
         "types": [
-            "psychic",
-            "dragon"
+            "dragon",
+            "psychic"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -47238,8 +47238,8 @@
         "unique_id": "Latios_7_3",
         "nature": "timid",
         "types": [
-            "psychic",
-            "dragon"
+            "dragon",
+            "psychic"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -47289,8 +47289,8 @@
         "unique_id": "Heatran_7_3",
         "nature": "modest",
         "types": [
-            "fire",
-            "steel"
+            "steel",
+            "fire"
         ],
         "item": "Brightpowder",
         "moves": [
@@ -47440,8 +47440,8 @@
         "unique_id": "Articuno_7_4",
         "nature": "modest",
         "types": [
-            "flying",
-            "ice"
+            "ice",
+            "flying"
         ],
         "item": "Charti Berry",
         "moves": [
@@ -47542,8 +47542,8 @@
         "unique_id": "Moltres_7_4",
         "nature": "modest",
         "types": [
-            "flying",
-            "fire"
+            "fire",
+            "flying"
         ],
         "item": "White Herb",
         "moves": [
@@ -47897,8 +47897,8 @@
         "unique_id": "Latias_7_4",
         "nature": "modest",
         "types": [
-            "psychic",
-            "dragon"
+            "dragon",
+            "psychic"
         ],
         "item": "White Herb",
         "moves": [
@@ -47948,8 +47948,8 @@
         "unique_id": "Latios_7_4",
         "nature": "modest",
         "types": [
-            "psychic",
-            "dragon"
+            "dragon",
+            "psychic"
         ],
         "item": "White Herb",
         "moves": [
@@ -47999,8 +47999,8 @@
         "unique_id": "Heatran_7_4",
         "nature": "quiet",
         "types": [
-            "fire",
-            "steel"
+            "steel",
+            "fire"
         ],
         "item": "Focus Sash",
         "moves": [

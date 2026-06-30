@@ -130,5 +130,5 @@ if __name__ == "__main__":
     g_defend_types: TypeMatchups = get_defend_type_dict()
     print_type_matchups("Defender Matchups", g_defend_types)
 
-    g_attack_types = get_attack_type_dict()
-    print_type_matchups("Attack Matchups", g_attack_types)
+    # g_attack_types = get_attack_type_dict()
+    # print_type_matchups("Attack Matchups", g_attack_types)

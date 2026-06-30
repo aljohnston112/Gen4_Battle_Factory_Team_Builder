@@ -48,7 +48,7 @@ class OpponentBattleResultViewModel:
                     team_use_case=team_use_case,
                     opponent_pokemon=opponent_pokemon,
                     set_numbers=set_numbers,
-                    use_accuracy=use_accuracy
+                    use_accuracy=use_accuracy,
                 )
             print_use_case: PrintUseCase = self.__print_use_case__
             print_function: Callable[[str], None] = \
