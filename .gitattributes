@@ -1,0 +1,2 @@
+data/fresh/pokemon_ranks_accuracy filter=lfs diff=lfs merge=lfs -text
+data/fresh/pokemon_ranks filter=lfs diff=lfs merge=lfs -text
